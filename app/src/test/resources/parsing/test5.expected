@@ -1,0 +1,15 @@
+(PROGRAM NAME:R begin
+  (VAR_DECL NAME:x TYPE:NAME:x)
+  (REC_DECL NAME:abc)
+  (VAR_DECL NAME:x
+    (TYPE:ref
+      (TYPE:ref TYPE:NAME:x)))
+  (REC_DECL NAME:ef
+    (PARAMFIELD_DECL NAME:x TYPE:int))
+  (REC_DECL NAME:a5
+    (PARAMFIELD_DECL NAME:x TYPE:int)
+    (PARAMFIELD_DECL NAME:y
+      (TYPE:ref TYPE:NAME:x)))
+  (VAR_DECL NAME:x
+    (TYPE:ref TYPE:NAME:x))
+end)

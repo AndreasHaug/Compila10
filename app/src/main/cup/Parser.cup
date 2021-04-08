@@ -1,0 +1,405 @@
+package parser;
+   
+import java_cup.runtime.*;
+/* import parser.Terminals.terminal; */
+import node.*;
+import list.*;
+import java.util.*;
+
+//parser code {::};
+
+/* Terminals */
+non terminal Program			program;
+/* non terminal ColonType 			colon_type; */
+non terminal Decl			decl; //var_decl, proc_decl, rec_decl;
+non terminal DeclList			decl_list, decl_list_in;
+non terminal DeclList                   decls;
+
+non terminal VarDecl			var_decl;//NotAssignedVarDecl, WithoutTypeAssignedVarDecl, WithTypeAssignedVarDecl;//var_decl;
+non terminal ProcDecl			proc_decl;//WithTypeProcDecl, WithoutTypeProcDecl;//proc_decl;
+non terminal RecDecl			rec_decl;
+non terminal ParamfieldDecl		paramfield_decl;
+/* non terminal ParamfieldDecls		paramfield_decls1, paramfield_decls2; */
+non terminal ParamfieldDeclList		paramfield_semi_decl_list, paramfield_comma_decl_list;
+non terminal StmtList			stmt_list;
+non terminal Exp			exp, arith_op_exp, rel_op_exp, log_op_exp, new_name_exp, call_stmt_exp;
+non terminal ExpList			exp_list;
+non terminal RefVar			ref_var;
+non terminal DerefVar			deref_var;
+non terminal Var			var;
+non terminal Terminals			log_op;
+non terminal Terminals			rel_op;
+non terminal Terminals 			arith_op;
+non terminal Literal			literal;
+non terminal Stmt			stmt;
+non terminal AssignStmt			assign_stmt;
+non terminal IfStmt			if_stmt;
+non terminal WhileStmt			while_stmt;
+non terminal ReturnStmt			return_stmt;
+non terminal CallStmt			call_stmt;
+non terminal Type			type;
+
+/* Non terminals */
+terminal AND, ASSIGNMENT, ASTERISK, BEGIN, BOOL;
+terminal CARET, COLON, COMMA, CURLPARLEFT, CURLPARRIGHT, DEREF, DO, DOT, ELSE, END, EQUALS, FALSE, FI;
+terminal FLOAT, GREATER, GREATEREQUAL, IF, IN, INT, LESS, LESSEQUAL, LESSGREATER, MINUS;
+terminal NEW, NOT, NULL, OD, OR, PARLEFT, PARRIGHT, PLUS, PROCEDURE, PROGRAM, REF, RETURN;
+terminal STRING, STRUCT, SEMICOLON, SLASH, THEN, TRUE, VAR, WHILE;
+
+terminal Stringliteral STRINGLITERAL;
+terminal Boolliteral BOOLLITERAL;
+terminal Floatliteral FLOATLITERAL;
+terminal Intliteral INTLITERAL;
+terminal Name NAME;
+
+
+precedence nonassoc SEMICOLON, PARLEFT;
+precedence left OR;
+precedence left AND;
+precedence right NOT;
+precedence left LESS, LESSEQUAL, GREATER, GREATEREQUAL, EQUALS, LESSGREATER;
+precedence left PLUS, MINUS;
+precedence left ASTERISK, SLASH;
+precedence right CARET;
+precedence left DOT;
+
+
+start with program;
+
+
+
+
+/* The grammar */
+
+program ::= PROGRAM NAME:n BEGIN decl_list:l END
+	{: RESULT = new Program(n, l); :};
+
+
+decl_list ::=
+    decl:d
+    {:
+	DeclList l = new DeclList();
+	l.add(d);
+	RESULT = l;
+    :}
+    |
+    decl_list:l SEMICOLON decl:d
+    {:
+	l.add(d);
+	RESULT = l;
+    :}
+    |
+    {: RESULT = new DeclList(); :};
+/* decls ::= */
+/*     SEMICOLON decl:d */
+/*     {: */
+/* 	DeclList l = new DeclList(); */
+/* 	l.add(d); */
+/* 	RESULT = l; */
+/*     :} */
+/*     | */
+/*     decls:l SEMICOLON decl:d */
+/*     {: */
+/* 	l.add(d); */
+/* 	RESULT = l; */
+/*     :} */
+/*     |; */
+   
+/*     decl:d SEMICOLON */
+/*     {: */
+/* 	DeclList dl = new DeclList(); */
+/*         dl.add(d); */
+/* 	RESULT = dl;	 */
+/*     :} */
+/*     | */
+/*     decl:d */
+/*     {: */
+/* 	/\* dl.add(d); *\/ */
+/* 	RESULT = new DeclList(d); */
+/*     :} */
+/*      | */
+/*      decl_list:l SEMICOLON decl:d */
+/*      {: */
+/* 	 l.add(d); */
+/* 	 RESULT = l; */
+/*      :} */
+/*      | */
+/*      {: RESULT = new DeclList(); :} */
+/* ; */
+
+
+/* decls ::= */
+    /* SEMICOLON decl:d decls:ds {: ds.add(d); RESULT = ds; :} */
+    /* decls:s SEMICOLON decl:d */
+    /* {: */
+	/* LinkedList<Decl> s = new LinkedList<>(); */
+	/* s.add(d); */
+	/* RESULT = s; */
+	/* s.add(d); RESULT = s; */
+    /* :} */
+    /* decl:d decls:s */
+    /* {: */
+	/* decls.push(d); */
+	/* RESULT = d; */
+    /* :} */
+    /* | */
+    /* ; */
+
+decl_list_in ::=
+    decl_list:dl {: RESULT = dl; :}
+    |
+    decl_list:dl IN
+    {:
+	dl.setIn();
+	RESULT = dl;
+    :}
+;
+    /* /\* decl_list_in:l IN {: RESULT = new DeclListWithIn(l); :} *\/ */
+    /* decl:d */
+    /* {: */
+    /* 	DeclListWithIn dl = new DeclListWithIn(); */
+    /* 	dl.add(d); */
+    /* 	RESULT = dl; */
+    /* :} */
+    /* | */
+    /* decl_list_in:dl SEMICOLON decl:d */
+    /* {: */
+    /* 	dl.add(d); */
+    /* 	RESULT = dl; */
+    /* :} */
+    /* | */
+    /* decl_list_in:dl IN */
+    /* {: */
+    /* 	dl.setIn(); */
+    /* 	RESULT = dl; */
+    /* :} */
+    /* | */
+    /* /\* IN *\/ */
+    /* {:RESULT = new DeclListWithIn();:} */
+    /* /\* | *\/ */
+    /* /\* {: RESULT = null :} *\/ */
+    /* ; */
+
+
+
+stmt_list ::= stmt:s
+    {: RESULT = new StmtList(s);:}
+    |
+    stmt_list:l SEMICOLON stmt:s
+    {:
+	l.add(s);
+        RESULT = l;
+    :}
+    |
+    {: RESULT = new StmtList(); :};
+
+exp_list ::= exp:e {: RESULT = new ExpList(e); :}
+             |
+	     exp_list:l COMMA exp:e
+	     {:
+		l.add(e);
+		RESULT = l;
+	     :}
+             |
+	     {: RESULT = new ExpList(); :};
+
+paramfield_semi_decl_list ::= paramfield_decl:d
+ 		     {: RESULT = new ParamfieldDeclList(d); :}
+		     |
+		     paramfield_semi_decl_list:l SEMICOLON paramfield_decl:d
+		     {:
+			 l.add(d);
+			 RESULT = l;
+		     :}
+ 		     |
+		     {: RESULT = new ParamfieldDeclList(); :};
+
+paramfield_comma_decl_list ::= paramfield_decl:d
+ 		     {: RESULT = new ParamfieldDeclList(d); :}
+		     |
+		     paramfield_comma_decl_list:l COMMA paramfield_decl:d
+		     {:
+			 l.add(d);
+			 RESULT = l;
+		     :}
+ 		     |
+		     {: RESULT = new ParamfieldDeclList(); :};
+
+decl ::= var_decl:d {:RESULT = d;:}
+	 |
+	 proc_decl:p {:RESULT =  p;:}
+	 |
+	 rec_decl:r {:RESULT =  r;:};
+
+
+var_decl ::=
+
+
+         VAR NAME:n COLON type:t
+         {: RESULT = new NotAssignedVarDecl(n, t); :}
+         |
+	 VAR NAME:n COLON type:t ASSIGNMENT exp:e
+	 {: RESULT = new WithTypeAssignedVarDecl(n, t, e); :}
+	 |
+	 VAR NAME:n ASSIGNMENT exp:e
+	 {: RESULT = new WithoutTypeAssignedVarDecl(n, e); :}
+;
+
+proc_decl ::=
+              PROCEDURE NAME:n
+              PARLEFT paramfield_comma_decl_list:pl PARRIGHT
+              BEGIN decl_list_in:dl
+              stmt_list:sl
+              END
+              {: RESULT = new WithoutTypeProcDecl(n, pl, dl, sl); :}
+              |
+              PROCEDURE NAME:n PARLEFT
+              paramfield_comma_decl_list:pl PARRIGHT
+              COLON type:t BEGIN decl_list_in:dl
+              stmt_list:sl END
+              {: RESULT = new WithTypeProcDecl(n, pl, t, dl, sl); :};
+          	       
+
+rec_decl       ::= STRUCT NAME:n CURLPARLEFT paramfield_semi_decl_list:l CURLPARRIGHT
+	       {:
+	           RESULT = new RecDecl(n, l);
+	       :};
+
+literal ::= FLOATLITERAL:f {: RESULT = f; :}
+            |
+	    INTLITERAL:i {: RESULT = i; :}
+            |
+	    STRINGLITERAL:s {: RESULT = s; :}
+            |
+	    BOOLLITERAL:b {: RESULT = b; :}
+	    |
+	    NULL:n {: RESULT = new Null(); :}
+	    ;
+
+
+stmt ::= assign_stmt:a {: RESULT = a; :}
+    |
+    if_stmt:i {: RESULT = i; :}
+    |
+    while_stmt:w {: RESULT = w; :}
+    |
+    return_stmt:r {: RESULT = r; :}
+    |
+    call_stmt:c {: RESULT = c; :};
+
+assign_stmt ::= var:v ASSIGNMENT exp:e {: RESULT = new VarAssignStmt(e, v); :}
+    |
+    deref_var:d ASSIGNMENT exp:e {: RESULT = new DerefVarAssignStmt(e, d); :};
+
+if_stmt ::= IF exp:e THEN stmt_list:sl FI
+    {: RESULT = new WithoutElseIfStmt(e, sl); :}
+    |
+    IF exp:e THEN stmt_list:l1 ELSE stmt_list:l2 FI
+    {: RESULT = new WithElseIfStmt(e, l1, l2); :}
+    ;
+
+while_stmt ::= WHILE exp:e DO stmt_list:l OD
+    {: RESULT = new WhileStmt(e, l); :}
+    ;
+
+return_stmt ::= RETURN {: RESULT = new ReturnStmt(); :}
+    |
+    RETURN exp:e {: RESULT = new ReturnStmt(e); :}
+    ;
+
+call_stmt ::= NAME:n PARLEFT exp_list:l PARRIGHT
+{: RESULT = new CallStmt(n, l); :};
+
+ 
+exp ::=
+    log_op_exp:e {: RESULT = e; :}
+    |
+    NOT exp:e {: RESULT = new NotExp(e); :}
+    |
+    rel_op_exp:e {: RESULT = e; :}
+    |
+    arith_op_exp:e {: RESULT = e; :}
+    |     
+    literal:l {: RESULT = l; :}//new LiteralExp(l); :}    
+    |
+    call_stmt_exp:c {: RESULT = c; :}
+    |
+    new_name_exp:n {: RESULT = n; :}
+    |
+    var:v {: RESULT = v; :}
+    |
+    ref_var:r {: RESULT = r; :}
+    |
+    deref_var:dv {: RESULT = dv; :}
+    |
+    PARLEFT exp:e PARRIGHT {: RESULT = e; :};
+
+log_op_exp ::=
+    exp:e1 AND exp:e2 {: RESULT = new AndOpExp(e1, e2); :}
+    |
+    exp:e1 OR exp:e2 {: RESULT = new OrOpExp(e1, e2); :};
+
+rel_op_exp ::= exp:e1 LESS exp:e2 {: RESULT = new LessOpExp(e1, e2); :}
+    |
+    exp:e1 LESSEQUAL exp:e2 {: RESULT = new LessEqualOpExp(e1, e2) ; :}
+    |
+    exp:e1 GREATER exp:e2 {: RESULT = new GreaterOpExp(e1, e2) ; :}
+    |
+    exp:e1 GREATEREQUAL exp:e2 {: RESULT = new GreaterEqualOpExp(e1, e2); :}
+    |
+    exp:e1 EQUALS exp:e2 {: RESULT = new EqualsOpExp(e1, e2); :}
+    |
+    exp:e1 LESSGREATER exp:e2 {: RESULT = new NotEqualsOpExp(e1, e2); :}
+;
+
+arith_op_exp ::=
+    exp:e1 PLUS exp:e2 {: RESULT = new AddOpExp(e1, e2); :}
+    |
+    exp:e1 MINUS exp:e2 {: RESULT = new MinusOpExp(e1, e2); :}
+    |
+    exp:e1 ASTERISK exp:e2 {: RESULT = new MulOpExp(e1, e2); :}
+    |
+    exp:e1 SLASH exp:e2 {: RESULT = new DivOpExp(e1, e2); :}
+    |
+    exp:e1 CARET exp:e2 {: RESULT = new PowerOpExp(e1, e2); :};
+
+new_name_exp ::= NEW NAME:n {: RESULT = new NewNameExp(n); :};
+
+call_stmt_exp ::= call_stmt:cs {: RESULT = new CallStmtExp(cs); :};
+
+ref_var ::=    REF PARLEFT var:v PARRIGHT
+	{:
+	    RESULT = new RefVar(v);
+	:};
+
+deref_var ::= DEREF PARLEFT var:v PARRIGHT {: RESULT = new DerefVar(v);  :}
+              |
+	      DEREF PARLEFT deref_var:dv PARRIGHT {: RESULT = new DerefDerefVar(dv);  :};
+
+var ::=    NAME:n {: RESULT = new NameVar(n); :}
+           |
+	   exp:e DOT NAME:n
+	   {: RESULT = new ExpVar(e, n); :};
+
+paramfield_decl ::= NAME:n COLON type:t {: RESULT = new ParamfieldDecl(n, t); :};
+	  
+type	::=
+    FLOAT {:RESULT = new FloatType();:}
+    |
+    INT {:RESULT = new IntType();:}
+    |
+    STRING {:RESULT = new StringType();:}
+    |
+    BOOL {:RESULT = new BoolType();:}
+    |
+    NAME:n {: RESULT = new NameType(n);:}	
+    |
+    REF PARLEFT type:t PARRIGHT {: RESULT = new RefType(t); :};
+
+
+
+
+
+
+
+
