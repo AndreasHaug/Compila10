@@ -10,24 +10,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import type.*;
-import java.util.HashMap;
 import symboltable.Symboltable;
 
 public class App {
 
-  public static void main(String[] args) throws FileNotFoundException, IOException {    
-    App app = new App();
-
-
-    //some way maybe to carry the type representations
-    //must improve this solution if so
-    HashMap<String, type.Type> testmap = new HashMap<>();
-    testmap.put("hello", new StructType("hello", null));
-    testmap.put("float", type.Type.floatType);
-    testmap.put("string", type.Type.stringType);
-    testmap.put("bool", type.Type.boolType);
-    testmap.put("ref", type.Type.refType);
-        
+  public static void main(String[] args) throws FileNotFoundException,
+						IOException {    
+    App app = new App();       
     app.doRunCompiler(args);
   }
 
