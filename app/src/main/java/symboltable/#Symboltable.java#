@@ -3,17 +3,14 @@ package symboltable;
 import java.util.HashMap;
 
 public class Symboltable<T> {
+  
+    private HashMap<String, T> map;
+  private Symboltable outer;
 
-  private HashMap<String, T> map;
-  private Symboltable<T> outer;
-
-  public Symboltable() {
-    map = new HashMap<>();
-  }
-    
   public Symboltable(Symboltable outer) {
     map = new HashMap<>();
-    this.outer = outer;    
+    this.outer = outer;
+    
   }
 
   public T add(String name, T instance) {
@@ -21,8 +18,16 @@ public class Symboltable<T> {
   }
 
   public T lookup(String name) {
-    return map.containsKey(name) ?
-      map.get(name) : (outer != null ? outer.lookup(name) : null);
+      if map.containsKey(name) {
+	      pa
+		  }
+		
+    // return
+	// map.containsKey(name) ?
+	// map.get(name)
+	// : null
+	// : (outer != null ? outer.lookup(name) : null)
+	// ;
   }
   
 }

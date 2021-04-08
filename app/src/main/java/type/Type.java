@@ -1,9 +1,16 @@
 package type;
 
 public abstract class Type {
-    static class FloatType extends Type {}
-    static class IntType extends Type {}
-    static class StringType extends Type {}
-    static class BoolType extends Type {}
-    static class RefType extends Type {}
+
+    public static FloatType floatType = new FloatType();
+    public static IntType intType = new IntType();
+    public static StringType stringType = new StringType();
+    public static BoolType boolType = new BoolType();
+    public static RefType refType = new RefType();  
 }
+
+class FloatType extends Type {}
+class IntType extends Type {}
+class StringType extends Type {}
+class BoolType extends Type {}
+class RefType extends Type {}

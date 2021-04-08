@@ -9,14 +9,40 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
+import type.*;
+import java.util.HashMap;
+import symboltable.Symboltable;
 
 public class App {
 
   public static void main(String[] args) throws FileNotFoundException, IOException {    
     App app = new App();
+
+
+    //some way maybe to carry the type representations
+    //must improve this solution if so
+    HashMap<String, type.Type> testmap = new HashMap<>();
+    testmap.put("hello", new StructType("hello", null));
+    testmap.put("float", type.Type.floatType);
+    testmap.put("string", type.Type.stringType);
+    testmap.put("bool", type.Type.boolType);
+    testmap.put("ref", type.Type.refType);
+        
     app.doRunCompiler(args);
   }
 
+    private Symboltable<type.Type> initBuildtinTypes() {
+	Symboltable<type.Type> types = new Symboltable<>();
+
+	types.add("float", type.Type.floatType);
+	types.add("int", type.Type.stringType);
+	types.add("string", type.Type.stringType);
+	types.add("bool", type.Type.boolType);
+	types.add("ref", type.Type.refType);
+
+	return types;
+    }
+    
 
   public void doRunCompiler(String args[]) {
     FileReader reader = null; 
