@@ -46,4 +46,7 @@ public abstract class ListProperty {
       : "";
   }
 
+    public void semanticListAnalyze() {
+    }
+
 }

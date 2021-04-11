@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import symboltable.Symboltable;
+
 public interface SyntaxtreeProperty {
 
   public default String indent(int indent) {
@@ -11,5 +13,9 @@ public interface SyntaxtreeProperty {
   }
 
   public String printSyntaxtree(int indent);
+
+    public default void semanticAnalyze() throws IllegalAccessException {
+	throw new IllegalAccessException("Not implemented");
+    }
   
 }

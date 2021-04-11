@@ -19,6 +19,7 @@ public class SymboltableUnit<T> {
   }
 
     public boolean exists(String name) {
-	return map.containsKey(  
+	return map.containsKey(name);
+    }
 }
 

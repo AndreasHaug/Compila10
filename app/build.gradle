@@ -80,7 +80,8 @@ clean {
     // delete 'src/main/cup/Parser.cup~'
 
     delete fileTree('src/test/resources') {include '**/*ast'}  
-    // delete fileTree(dir: 'src', include: '**~')
+    delete fileTree(dir: 'src/main/', include: '**~')
+    delete fileTree(dir: 'src/main/', include: '#*#')
 
 
     // def tree = fileTree('src')
