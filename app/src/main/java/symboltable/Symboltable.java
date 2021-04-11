@@ -1,28 +1,78 @@
 package symboltable;
 
-import java.util.HashMap;
-
-public class Symboltable<T> {
-
-  private HashMap<String, T> map;
-  private Symboltable<T> outer;
-
-  public Symboltable() {
-    map = new HashMap<>();
-  }
+public class Symboltable {
     
-  public Symboltable(Symboltable outer) {
-    map = new HashMap<>();
-    this.outer = outer;    
-  }
+    private SymboltableUnit<symboltable.Procedure> procs;
+    private SymboltableUnit<symboltable.Type> types;
+    private SymboltableUnit<symboltable.Var> vars;
+    private Symboltable outer;
 
-  public T add(String name, T instance) {
-    return map.put(name, instance);
-  }
+    public Symboltable() {
+	initProcs(new SymboltableUnit<>());
+	initTypes(new SymboltableUnit<>());
+	initVars(new SymboltableUnit<>());
+	outer = null;
+    }
 
-  public T lookup(String name) {
-    return map.containsKey(name) ?
-      map.get(name) : (outer != null ? outer.lookup(name) : null);
-  }
-  
+    public Symboltable(Symboltable outer) {
+	initProcs(new SymboltableUnit<>());
+	initTypes(new SymboltableUnit<>());
+	initVars(new SymboltableUnit<>());
+	this.outer = outer;
+    }
+
+    //lookup will return null if no occurence is found
+    public SymboltableInstance lookup(String key) {
+	if (procs.exists(key))
+	    return procs.lookup(key);
+	if (types.exists(key))
+	    return procs.lookup(key);
+	if (vars.exists(key))
+	    return procs.lookup(key);
+	return outer.lookup(key);
+		    
+    }
+
+    public Procedure addProcedure(String procedureName, Procedure proc) {
+	if (exists(procedureName))
+	    return procs.add(procedureName, proc);
+	throw new error.NameAlreadyDeclared(procedureName);
+    }
+
+    public Type addType(String typeName, Type type) {
+	if (exists(typeName))
+	    return types.add(typeName, type);
+	throw new error.NameAlreadyDeclared(typeName);
+    }
+
+    public Var addVar(String varName, Var varVal) {
+	if (exists(varName))	   
+	    return vars.add(varName, varVal);
+	throw new error.NameAlreadyDeclared(varName);
+	
+    }
+
+    private void initProcs(SymboltableUnit<Procedure> procs) {
+	this.procs = procs;
+	//TODO: add buildt in procedures
+    }
+
+    private void initTypes(SymboltableUnit<Type> types) {
+	this.types = types;
+	types.add("float", symboltable.Type.floatType);
+	types.add("int", symboltable.Type.stringType);
+	types.add("string", symboltable.Type.stringType);
+	types.add("bool", symboltable.Type.boolType);
+	types.add("ref", symboltable.Type.refType);	
+    }
+
+    private void initVars(SymboltableUnit<Var> vars) {
+	this.vars = vars;
+    }
+
+    private boolean exists(String key) {
+	return procs.exists(key) ||
+	    types.exists(key) ||
+	    vars.exists(key);
+    }   
 }

@@ -1,1 +1,4 @@
+* TODO wrap all symboltablesunits into a aggregated interface
+* TODO check when adding in symboltable if this name already exists, and also must check all units
+* TODO initalize symboltable buildt in procedure names
 

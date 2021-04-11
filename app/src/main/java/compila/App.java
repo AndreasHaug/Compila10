@@ -9,31 +9,20 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
-import type.*;
 import symboltable.Symboltable;
 
 public class App {
 
   public static void main(String[] args) throws FileNotFoundException,
 						IOException {    
-    App app = new App();       
+    App app = new App();    
     app.doRunCompiler(args);
   }
 
-    private Symboltable<type.Type> initBuildtinTypes() {
-	Symboltable<type.Type> types = new Symboltable<>();
+    public void doRunCompiler(String args[]) {
 
-	types.add("float", type.Type.floatType);
-	types.add("int", type.Type.stringType);
-	types.add("string", type.Type.stringType);
-	types.add("bool", type.Type.boolType);
-	types.add("ref", type.Type.refType);
-
-	return types;
-    }
-    
-
-  public void doRunCompiler(String args[]) {
+	Symboltable st = new Symboltable();
+	
     FileReader reader = null; 
     BufferedWriter bw = null;
     Program p = null;

@@ -1,6 +1,6 @@
-package type;
+package symboltable;
 
-public abstract class Type {
+public abstract class Type implements SymboltableInstance {
 
     public static FloatType floatType = new FloatType();
     public static IntType intType = new IntType();
