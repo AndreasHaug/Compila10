@@ -1,4 +1,16 @@
 * TODO wrap all symboltablesunits into a aggregated interface
 * TODO check when adding in symboltable if this name already exists, and also must check all units
 * TODO initalize symboltable buildt in procedure names
-
+* TODO DECL_LIST in program
+* TODO symboltable interface must have a method to check if a name is declared in current scope or not
+* TODO implement derivation of type for all exp
+** TODO CallTmtm
+** TODO DerefDerefVar
+** TODO DerefVar
+** TODO literals
+** TODO LiteralExp
+** TODO NewName
+** TODO NotExp
+** TODO operators
+** TODO RefVar
+** TODO Var

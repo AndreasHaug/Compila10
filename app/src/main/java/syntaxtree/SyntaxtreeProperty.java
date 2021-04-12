@@ -14,8 +14,11 @@ public interface SyntaxtreeProperty {
 
   public String printSyntaxtree(int indent);
 
-    public default void semanticAnalyze() throws IllegalAccessException {
-	throw new IllegalAccessException("Not implemented");
-    }
+  public default void semanticAnalyze(Symboltable symboltable)
+    // throws IllegalAccessException
+  {
+    System.out.println("Call of semanticAnalyse() which is not implemented");
+    // throw new IllegalAccessException("Not implemented");
+  }
   
 }

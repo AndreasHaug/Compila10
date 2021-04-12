@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class WithoutTypeAssignedVarDecl extends VarDecl {
 
   public WithoutTypeAssignedVarDecl(Name name, Exp exp) {
@@ -13,4 +15,8 @@ public class WithoutTypeAssignedVarDecl extends VarDecl {
       exp.printSyntaxtree(indent) +
       ")";
   }
+
+  public void semanticAnalyze(Symboltable table) {
+    
+  } 
 }

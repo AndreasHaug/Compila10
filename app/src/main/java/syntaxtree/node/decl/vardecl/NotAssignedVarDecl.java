@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class NotAssignedVarDecl extends VarDecl {
 
   Type type;
@@ -13,5 +15,9 @@ public class NotAssignedVarDecl extends VarDecl {
   public String printSyntaxtree(int indent) {
     return (super.printSyntaxtree(indent) +      
 	    type.printSyntaxtree(indent)) + ")";
+  }
+
+  public void semanticAnalyze(Symboltable table) {
+    
   }
 }

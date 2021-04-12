@@ -2,6 +2,7 @@ package list;
 
 import node.*;
 import syntaxtree.SyntaxtreeProperty;
+import symboltable.Symboltable;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,9 @@ public abstract class ListProperty {
       : "";
   }
 
-    public void semanticListAnalyze() {
-    }
+  public void semanticListAnalyze(Symboltable table) {
+    for (SyntaxtreeProperty sp : list)
+      sp.semanticAnalyze(table);
+  }
 
 }

@@ -30,6 +30,10 @@ public class Program implements SyntaxtreeProperty {
     return a;
   }
 
+  public void semanticAnalyze(Symboltable table) {
+    l.semanticListAnalyze(new Symboltable(table));
+  }
+
     
     
 }
