@@ -6,4 +6,7 @@ public class FloatType extends Type {
     return "TYPE:float";
   }
 
+  public String getTypeRep() {
+    return "float";
+  }
 }

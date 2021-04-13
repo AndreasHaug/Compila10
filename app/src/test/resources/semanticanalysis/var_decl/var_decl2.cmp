@@ -1,0 +1,7 @@
+//declaring variable with name already declared,
+//should lead to an error
+program vardecltest2
+begin
+    var x := 5;
+    var x := 4 
+end

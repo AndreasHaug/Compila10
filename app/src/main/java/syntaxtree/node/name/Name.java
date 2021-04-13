@@ -17,6 +17,7 @@ public class Name implements syntaxtree.SyntaxtreeProperty {
   }
 
   public String toString() {
-    return " " + n + " ";
+    return n;
+    // return " " + n + " ";
   }
 }

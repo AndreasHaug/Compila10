@@ -16,7 +16,11 @@ public class WithoutTypeAssignedVarDecl extends VarDecl {
       ")";
   }
 
-  public void semanticAnalyze(Symboltable table) {
-    
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    symboltable.Type expType = exp.semanticAnalyze(table);
+    table.addVar(name.toString(),
+		 new symboltable.Var(name.toString(), exp, expType));
+    return expType;
   } 
 }

@@ -6,4 +6,7 @@ public class BoolType extends Type {
     return "TYPE:bool";
   }
 
+  public String getTypeRep() {
+    return "bool";
+  }
 }

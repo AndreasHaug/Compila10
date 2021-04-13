@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class Stringliteral extends Literal {
 
   private String s;
@@ -16,6 +18,10 @@ public class Stringliteral extends Literal {
   @Override
   public Object getLiteralValue() {
     return (String) s;
+  }
+
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return symboltable.Type.stringType;
   }
 
 }

@@ -17,7 +17,14 @@ public class NotAssignedVarDecl extends VarDecl {
 	    type.printSyntaxtree(indent)) + ")";
   }
 
-  public void semanticAnalyze(Symboltable table) {
-    
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    String typeRef = type.getTypeRep();        
+    symboltable.Type expType = table.lookupType(typeRef);
+    if (expType == null)
+      throw new error.NoTypeExists(typeRef);    
+    table.addVar(name.toString(),
+		 new symboltable.Var(name.toString(), null, expType));
+    return expType;
   }
 }

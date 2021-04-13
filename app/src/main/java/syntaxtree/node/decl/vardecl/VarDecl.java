@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public abstract class VarDecl extends Decl {
 
   protected Name name;
@@ -22,4 +24,15 @@ public abstract class VarDecl extends Decl {
       name.printSyntaxtree(indent) +
       " ";
   }
+
+  // @Override
+  // public symboltable.Type semanticAnalyze(Symboltable table) {
+    // if (table.existsInScope(name.toString())) {
+      //TODO: ERROR: IMPLEMENT THIS
+    // }
+    // table.addVar(name.toString(), null);
+    //TODO: get type from exp
+
+    // return null;
+  // }
 }

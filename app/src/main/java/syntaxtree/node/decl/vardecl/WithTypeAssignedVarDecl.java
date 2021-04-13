@@ -18,8 +18,11 @@ public class WithTypeAssignedVarDecl extends VarDecl {
       "))";
   }
 
-  public void semanticAnalyze(Symboltable table) {
-    
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    String typeRef = type.getTypeRep();
+    //TODO: complete this
+    return null;
   }
   
 }

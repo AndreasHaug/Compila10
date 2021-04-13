@@ -1,0 +1,7 @@
+program vardecltest3
+begin
+    var x : int;
+    var r : float;
+    var i : bool;
+    var p : string
+end    

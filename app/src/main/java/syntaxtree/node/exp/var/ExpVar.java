@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class ExpVar extends Var {
 
   private Exp e;
@@ -12,11 +14,16 @@ public class ExpVar extends Var {
 
   public String printSyntaxtree(int indent) {
     return
-      // super.printSyntaxtree(indent) +
       "(. " +
       e.printSyntaxtree(indent) +
       " " +
       n.printSyntaxtree(indent) +
       ")";
   }
+
+  // @Override
+  // public symboltable.Type semanticAnalyze(Symboltable table) {
+    // System.out.println("Exp.Var: this is not determined yet.");
+    // return null;
+  // }
 }

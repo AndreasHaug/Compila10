@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class Null extends Literal {
   
   @Override
@@ -10,6 +12,10 @@ public class Null extends Literal {
   @Override
   public Object getLiteralValue() {
     return null;
-    // throw new IllegalAccessException();
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return symboltable.Type.nullType;
   }
 }

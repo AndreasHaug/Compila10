@@ -6,5 +6,8 @@ public abstract class RelOpExp extends OpExp {
     super(l, r);
   }
 
-  
+  @Override
+  public symboltable.Type semanticAnalyze() {
+    return symboltable.Type.boolType;
+  } 
 }

@@ -6,4 +6,7 @@ public class IntType extends Type {
     return "TYPE:int";
   }
 
+  public String getTypeRep() {
+    return "int";
+  }
 }

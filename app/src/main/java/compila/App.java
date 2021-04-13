@@ -46,6 +46,27 @@ public class App {
       System.exit(0);
     }
 
+
+
+    parser par = new parser(new Lexer(reader));
+    try {
+      p = (Program) par.parse().value;     
+      Syntaxtree ast = new Syntaxtree(p);
+      p.semanticAnalyze(new Symboltable());
+      // String astPrint = ast.printSyntaxtree(0);
+
+      // bw.flush();
+      // bw.write(astPrint);
+      // bw.close();
+      // return astPrint;
+    }
+    catch (Exception e) {
+      System.out.println("Syntax error");
+      e.printStackTrace();
+      System.exit(0);
+    }
+
+    
     //Rest of the compiler functionality to be implemented
     // return null;
   }

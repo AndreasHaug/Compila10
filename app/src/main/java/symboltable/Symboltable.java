@@ -22,34 +22,49 @@ public class Symboltable {
   }
 
   //lookup will return null if no occurence is found
-  public SymboltableInstance lookup(String key) {
+  public SymboltableInstance lookup(String key) {    
     if (procs.exists(key))
-	    return procs.lookup(key);
+      return procs.lookup(key);
     if (types.exists(key))
-	    return procs.lookup(key);
+      return procs.lookup(key);
     if (vars.exists(key))
-	    return procs.lookup(key);
-    return outer.lookup(key);
-		    
+      return procs.lookup(key);
+    if (outer == null)
+      return null;    
+    return outer.lookup(key);          	    
+  }
+
+  public symboltable.Type lookupType(String key) {
+    return types.lookup(key);
   }
 
   public Procedure addProcedure(String procedureName, Procedure proc) {
-    if (exists(procedureName))
-	    return procs.add(procedureName, proc);
+    if (!exists(procedureName))
+      return procs.add(procedureName, proc);
     throw new error.NameAlreadyDeclared(procedureName);
   }
 
   public Type addType(String typeName, Type type) {
-    if (exists(typeName))
-	    return types.add(typeName, type);
+    if (!exists(typeName))
+      return types.add(typeName, type);
     throw new error.NameAlreadyDeclared(typeName);
   }
 
   public Var addVar(String varName, Var varVal) {
-    if (exists(varName))	   
-	    return vars.add(varName, varVal);
+    if (!exists(varName))	   
+      return vars.add(varName, varVal);
     throw new error.NameAlreadyDeclared(varName);
 	
+  }
+
+  public boolean existsInScope(String key) {
+    return procs.existsInScope(key) ||
+      types.existsInScope(key) ||
+      vars.existsInScope(key);
+  }
+
+  public boolean typeExists(String typeRep) {
+    return types.exists(typeRep);
   }
 
   private void initProcs(SymboltableUnit<Procedure> procs) {
@@ -72,7 +87,7 @@ public class Symboltable {
 
   private boolean exists(String key) {
     return procs.exists(key) ||
-	    types.exists(key) ||
-	    vars.exists(key);
-  }   
+      types.exists(key) ||
+      vars.exists(key);
+  }
 }

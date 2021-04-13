@@ -18,8 +18,12 @@ public class SymboltableUnit<T> {
       return map.get(name);
   }
 
-    public boolean exists(String name) {
-	return map.containsKey(name);
-    }
+  public boolean existsInScope(String name) {
+    return map.containsKey(name);
+  }
+
+  public boolean exists(String name) {
+    return map.containsKey(name);
+  }
 }
 

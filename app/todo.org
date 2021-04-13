@@ -13,4 +13,10 @@
 ** TODO NotExp
 ** TODO operators
 ** TODO RefVar
-** TODO Var
+** TODO Var: the ExpVar is tricky
+* TODO In VarDecl
+** TODO super
+*** TODO create an error if the name is already declared
+*** TODO when adding a var to symboltable the type is currently set to null
+* TODO symboltable must have a way in the interface to update(when assigned) an unassigned variable
+

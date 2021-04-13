@@ -1,0 +1,5 @@
+// declaring a variable with nonexisting type -> error
+program vardecltest4
+begin
+    var x : i
+end    

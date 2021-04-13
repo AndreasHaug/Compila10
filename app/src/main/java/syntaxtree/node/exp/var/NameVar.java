@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class NameVar extends Var {
 
   private Name n;
@@ -10,5 +12,9 @@ public class NameVar extends Var {
 
   public String printSyntaxtree(int indent) {
     return n.printSyntaxtree(indent);
+  }
+
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return table.lookupType(n.toString());
   }
 }

@@ -9,8 +9,10 @@ public class NameType extends Type {
   }
 
   public String printSyntaxtree(int indent) {
-    return super.printSyntaxtree(indent) +
-      n.printSyntaxtree(indent);
+    return super.printSyntaxtree(indent) + n.printSyntaxtree(indent);
   }
 
+  public String getTypeRep() {
+    return n.toString();
+  }
 }

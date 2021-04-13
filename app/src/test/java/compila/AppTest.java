@@ -21,25 +21,23 @@ public class AppTest {
   public void setup() {
     app = new App();
   }
-  
+
   public void doParserTest(int testfileNumber) throws IOException {
 
-    String t = app.doRunParser(new String[] {
-	"src/test/resources/parsing/test" + Integer.toString(testfileNumber) + ".cmp",
-	"src/test/resources/parsing/test" + Integer.toString(testfileNumber) + ".ast"});
+    String t = app
+      .doRunParser(new String[] { "src/test/resources/parsing/test" + Integer.toString(testfileNumber) + ".cmp",
+				 "src/test/resources/parsing/test" + Integer.toString(testfileNumber) + ".ast" });
 
-    assertEquals((Files.lines(Paths.get("src/test/resources/parsing/test" +
-					Integer.toString(testfileNumber) + ".ast")))		     
+    assertEquals(
+		 (Files.lines(Paths.get("src/test/resources/parsing/test" + Integer.toString(testfileNumber) + ".ast")))
 		 .collect(Collectors.joining()),
-		 (Files.lines(Paths.get("src/test/resources/parsing/test" +
-					Integer.toString(testfileNumber) + ".expected")))
-		 .collect(Collectors.joining()));  
+		 (Files.lines(Paths.get("src/test/resources/parsing/test" + Integer.toString(testfileNumber) + ".expected")))
+		 .collect(Collectors.joining()));
   }
 
   public void parserFullProgramTest(String programname) {
-    String t = app.doRunParser(new String [] {
-	"src/test/resources/fullprograms/" + programname + ".cmp",
-      "src/test/resources/fullprograms/" + programname + ".ast"});
+    String t = app.doRunParser(new String[] { "src/test/resources/fullprograms/" + programname + ".cmp",
+					     "src/test/resources/fullprograms/" + programname + ".ast" });
   }
 
   @Test
@@ -81,7 +79,7 @@ public class AppTest {
   public void test8() throws IOException {
     doParserTest(8);
   }
- 
+
   @Test
   public void test9() throws IOException {
     doParserTest(9);
@@ -105,7 +103,48 @@ public class AppTest {
   @Test
   public void runmeParserTest() {
     parserFullProgramTest("runme");
-  }  
+  }
+
+  @Test
+  public void varDeclTest1() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl1.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl1.ast" });
+  }
+
+  @Test
+  public void varDeclTest2() {
+    //this should lead to an error with declaring a variable that already exists
+    try {
+      app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl2.cmp",
+				      "src/test/resources/semanticanalysis/var_decl/var_decl2.ast" });
+    }
+    catch (error.NameAlreadyDeclared n) {
+      return;
+    }
+    assertEquals(1, 2); //failing test if no exception
+  }
+
+  @Test
+  public void varDeclTest3() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl3.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl3.ast" });
+  }
+
+  @Test
+  public void varDeclTest4() {
+    //this should lead to an error with declaring a variable that already exists
+    try {
+      app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl4.cmp",
+				      "src/test/resources/semanticanalysis/var_decl/var_decl4.ast" });
+    }
+    catch (error.NoTypeExists n) {
+      return;
+    }    
+    assertEquals(1, 2); //exception is expected; failing test if no exception
+  }
+
+  
 }
+
 
 

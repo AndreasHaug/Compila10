@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class Floatliteral extends Literal {
 
   private double l;
@@ -18,4 +20,7 @@ public class Floatliteral extends Literal {
     return (double) l;
   }
 
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return symboltable.Type.floatType;
+  }
 }

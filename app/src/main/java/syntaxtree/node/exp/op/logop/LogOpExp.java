@@ -10,4 +10,9 @@ public abstract class LogOpExp extends OpExp {
   public String printSyntaxtree(int indent) {
     return indent(indent) + super.printSyntaxtree(indent+1);
   }
+
+  @Override
+  public symboltable.Type semanticAnalyze() {
+    return symboltable.Type.boolType;
+  }
 }
