@@ -1,6 +1,7 @@
 package symboltable;
 
 import java.util.HashMap;
+import list.ParamfieldDeclList;
 
 public class SymboltableUnit<T> {
 
@@ -8,7 +9,11 @@ public class SymboltableUnit<T> {
 
   public SymboltableUnit() {
     map = new HashMap<>();
-  }   
+  }
+
+  public SymboltableUnit(ParamfieldDeclList l) {
+    
+  }
 
   public T add(String name, T instance) {
     return map.put(name, instance);

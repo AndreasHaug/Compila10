@@ -4,8 +4,10 @@
 package compila;
 
 import org.junit.Test;
+// import org.graalvm.compiler.debug.Assertions_OptionDescriptors;
 import org.junit.Before;
 import static org.junit.Assert.*;
+// import org.junit.api.Assertions;
 
 import java.util.stream.Stream;
 import java.nio.file.Files;
@@ -111,40 +113,54 @@ public class AppTest {
 				    "src/test/resources/semanticanalysis/var_decl/var_decl1.ast" });
   }
 
-  @Test
+  @Test(expected = error.NameAlreadyDeclared.class)
   public void varDeclTest2() {
-    //this should lead to an error with declaring a variable that already exists
-    try {
-      app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl2.cmp",
-				      "src/test/resources/semanticanalysis/var_decl/var_decl2.ast" });
-    }
-    catch (error.NameAlreadyDeclared n) {
-      return;
-    }
-    assertEquals(1, 2); //failing test if no exception
+    /**
+     * Declaring a already declared variable should lead to an error
+     */		
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl2.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl2.ast" });
   }
-
+		
   @Test
   public void varDeclTest3() {
     app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl3.cmp",
 				    "src/test/resources/semanticanalysis/var_decl/var_decl3.ast" });
   }
-
-  @Test
+		
+  @Test(expected = error.NoTypeExists.class)
   public void varDeclTest4() {
-    //this should lead to an error with declaring a variable that already exists
-    try {
-      app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl4.cmp",
-				      "src/test/resources/semanticanalysis/var_decl/var_decl4.ast" });
-    }
-    catch (error.NoTypeExists n) {
-      return;
-    }    
-    assertEquals(1, 2); //exception is expected; failing test if no exception
+    /**
+     * Declaring a variable with a nonexisting type should lead to an error
+     */
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl4.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl4.ast" });
   }
 
-  
+  @Test
+  public void varDeclTest5() {
+    /**
+     * Legal variable declarations
+     */
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl5.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl5.ast" });
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void varDeclTest6() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl6.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl6.ast" });
+  }
+
+  @Test(expected = error.NoTypeExists.class)
+  public void varDeclTest7() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl7.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl7.ast" });
+  }
+
+  @Test(expected = error.NameAlreadyDeclared.class)
+  public void varDeclTest8() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/var_decl/var_decl8.cmp",
+				    "src/test/resources/semanticanalysis/var_decl/var_decl8.ast" });
+  }
 }
-
-
-

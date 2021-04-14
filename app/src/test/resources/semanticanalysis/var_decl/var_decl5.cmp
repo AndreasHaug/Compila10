@@ -1,0 +1,7 @@
+program vardecltest5
+begin
+    var x : int := 4;
+    var u : float := 5.5;
+    var r : bool := true;
+    var e : string := "hello"
+end    

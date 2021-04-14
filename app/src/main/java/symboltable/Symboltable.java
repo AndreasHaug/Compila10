@@ -75,7 +75,7 @@ public class Symboltable {
   private void initTypes(SymboltableUnit<Type> types) {
     this.types = types;
     types.add("float", symboltable.Type.floatType);
-    types.add("int", symboltable.Type.stringType);
+    types.add("int", symboltable.Type.intType);
     types.add("string", symboltable.Type.stringType);
     types.add("bool", symboltable.Type.boolType);
     types.add("ref", symboltable.Type.refType);	

@@ -21,7 +21,12 @@ public class ParamfieldDeclList extends list.ListProperty {
 
   public int size() {
     return list.size();
-  } 
+  }
+
+  public symboltable.SymboltableUnit toSymboltable() {
+    //iterate, get name and type
+    return null;
+  }
 }
 
 

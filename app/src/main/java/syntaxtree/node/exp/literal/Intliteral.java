@@ -20,6 +20,7 @@ public class Intliteral extends Literal {
     return (int) l;
   }
 
+  @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
     return symboltable.Type.intType;
   }

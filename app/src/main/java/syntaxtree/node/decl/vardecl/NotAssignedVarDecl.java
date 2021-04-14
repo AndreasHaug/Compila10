@@ -19,12 +19,16 @@ public class NotAssignedVarDecl extends VarDecl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
+    if (table.existsInScope(name.toString())) {
+      throw new error.NameAlreadyDeclared(name.toString());
+    }
+    
     String typeRef = type.getTypeRep();        
-    symboltable.Type expType = table.lookupType(typeRef);
-    if (expType == null)
+    symboltable.Type declType = table.lookupType(typeRef);
+    if  (declType == null)
       throw new error.NoTypeExists(typeRef);    
     table.addVar(name.toString(),
-		 new symboltable.Var(name.toString(), null, expType));
-    return expType;
+		 new symboltable.Var(name.toString(), null, declType));
+    return declType;
   }
 }

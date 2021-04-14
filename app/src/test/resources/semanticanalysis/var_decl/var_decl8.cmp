@@ -1,0 +1,5 @@
+program vardecltest8
+begin
+    var x : int := 9;
+    var x : string := "hello"
+end

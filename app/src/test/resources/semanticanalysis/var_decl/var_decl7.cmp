@@ -1,0 +1,4 @@
+program vardecltest7
+begin
+    var x : sometype := 8
+end    

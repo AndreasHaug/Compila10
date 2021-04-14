@@ -18,4 +18,12 @@ public class ParamfieldDecl extends Decl {
       t.printSyntaxtree(indent) +
       ")";
   }
+
+  public Name getName() {
+    return n;
+  }
+
+  public Type getType() {
+    return t;
+  }
 }

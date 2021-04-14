@@ -18,6 +18,10 @@ public class WithoutTypeAssignedVarDecl extends VarDecl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
+    if (table.existsInScope(name.toString())) {
+      throw new error.NameAlreadyDeclared(name.toString());
+    }
+
     symboltable.Type expType = exp.semanticAnalyze(table);
     table.addVar(name.toString(),
 		 new symboltable.Var(name.toString(), exp, expType));

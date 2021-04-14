@@ -1,6 +1,7 @@
 package node;
 
 import list.*;
+import symboltable.Symboltable;
 
 public class RecDecl extends Decl {
 
@@ -18,5 +19,16 @@ public class RecDecl extends Decl {
       n.printSyntaxtree(indent).trim() +
        l.printSyntaxtreeList(indent) +
       ")";
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+
+    if (table.existsInScope(n.toString())) {
+      throw new error.NameAlreadyDeclared(n.toString());
+    }
+
+    //TODO
+    return null;
   }
 }

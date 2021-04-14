@@ -1,16 +1,21 @@
 package type;
 
 import java.util.HashMap;
-import symboltable.*;
 
-public class StructType extends Type {
+public class StructType extends symboltable.Type {
  
   private String name;
-  private Symboltable instances;
+  private symboltable.SymboltableUnit<symboltable.Type> instances;
+  // private Symboltable instances;
 
-  public StructType(String name, Symboltable instances) {
+  public StructType(String name, symboltable.SymboltableUnit<symboltable.Type> instances) {
     this.name = name;
     this.instances = instances;
+  }
+
+  @Override
+  public String toString() {
+    return name;
   }
   
 }

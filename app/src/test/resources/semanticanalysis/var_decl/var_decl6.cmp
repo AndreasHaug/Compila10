@@ -1,0 +1,4 @@
+program vardecltest6
+begin
+    var x : int := "hello"
+end    
