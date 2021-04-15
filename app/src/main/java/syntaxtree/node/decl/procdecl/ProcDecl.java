@@ -1,6 +1,7 @@
 package node;
 
 import list.*;
+import symboltable.Symboltable;
 
 public abstract class ProcDecl extends Decl {
 
@@ -43,4 +44,10 @@ public abstract class ProcDecl extends Decl {
       "(PROC_DECL " +
       n.printSyntaxtree(indent);
   }
+
+  // @Override
+  // public symboltable.Type semanticAnalyse(Symboltable table) {
+
+    // return null;
+  // }
 }

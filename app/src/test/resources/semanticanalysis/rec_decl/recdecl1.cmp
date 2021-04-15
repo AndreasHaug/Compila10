@@ -1,0 +1,4 @@
+program recdecl1 begin
+    struct obj { a : int; b : float };
+    struct obj2 {a : float; c : bool}
+end

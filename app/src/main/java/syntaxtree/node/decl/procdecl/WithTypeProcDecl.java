@@ -35,4 +35,10 @@ public class WithTypeProcDecl extends ProcDecl {
       printSyntaxtreeMiddle(indent) +
       printSyntaxtreeTail(indent);
   }
+
+  // @Override
+  // public symboltable.Type semanticAnalyse(Symboltable table) {
+    // this one must have a return stmt as the last stmt
+    // return null;
+  // }  
 }

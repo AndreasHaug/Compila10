@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class ParamfieldDecl extends Decl {
 
   private Name n;
@@ -25,5 +27,25 @@ public class ParamfieldDecl extends Decl {
 
   public Type getType() {
     return t;
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    /**
+     * Enforce that all name in a list of parameters are unique
+     */
+    if (table.lookup(n.toString()) != null) {
+      throw new error.NameAlreadyDeclared(n.toString());
+    }
+
+    /**
+     * Ensure that the type exists
+     */
+    symboltable.Type checked = table.lookupType(t.getTypeRep());
+    if (checked == null) {
+      throw new error.NoTypeExists(t.getTypeRep());
+    }
+    
+    return checked;
   }
 }

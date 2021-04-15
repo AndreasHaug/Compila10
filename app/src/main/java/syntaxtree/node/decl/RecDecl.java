@@ -2,6 +2,8 @@ package node;
 
 import list.*;
 import symboltable.Symboltable;
+import symboltable.SymboltableUnit;
+import type.StructType;
 
 public class RecDecl extends Decl {
 
@@ -23,12 +25,15 @@ public class RecDecl extends Decl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
-
     if (table.existsInScope(n.toString())) {
       throw new error.NameAlreadyDeclared(n.toString());
     }
 
-    //TODO
-    return null;
+    Symboltable structInstances = l.toSymboltable(new Symboltable(table));
+
+    StructType stype = new StructType(n.toString(), structInstances);
+    table.addType(n.toString(), stype);
+    
+    return stype;
   }
 }

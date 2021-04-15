@@ -1,0 +1,3 @@
+program recdecl3 begin
+    struct obj { a : int; a : float }
+end
