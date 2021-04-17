@@ -1,15 +1,17 @@
 package list;
 
 import node.*;
+import symboltable.Symboltable;
+
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
 public class StmtList extends list.ListProperty {
 
-  private LinkedList<Stmt> l;
+  // private LinkedList<Stmt> l;
 
   public StmtList() {
-    super();
+    super();   
   }
 
   public StmtList(Stmt s) {
@@ -19,5 +21,13 @@ public class StmtList extends list.ListProperty {
 
   public void add(Stmt s) {
     list.add((Stmt) s);
+  }
+
+  public void stmtListForWithoutTypeProcDecl(Symboltable table) {
+    list.stream().forEach(x -> ((Stmt) x).stmtForWithoutTypeProcDecl(table));
+  }
+
+  public void stmtListForWithTypeProcDecl(symboltable.Type returnType, Symboltable table) {
+    list.stream().forEach(x -> ((Stmt) x).stmtForWithTypeProcDecl(returnType, table));
   }
 }

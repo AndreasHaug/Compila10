@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class DerefDerefVar extends DerefVar {
 
   private DerefVar dv;
@@ -14,6 +16,11 @@ public class DerefDerefVar extends DerefVar {
     return indent(indent) +
       "(DEREF_VAR " +
       dv.printSyntaxtree(indent+1) + ")";
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return dv.semanticAnalyze(table);
   }
 }
 

@@ -53,11 +53,11 @@ public class App {
       p = (Program) par.parse().value;     
       Syntaxtree ast = new Syntaxtree(p);
       p.semanticAnalyze(new Symboltable());
-      // String astPrint = ast.printSyntaxtree(0);
+      String astPrint = ast.printSyntaxtree(0);
 
-      // bw.flush();
-      // bw.write(astPrint);
-      // bw.close();
+      bw.flush();
+      bw.write(astPrint);
+      bw.close();
       // return astPrint;
     }
     catch (Exception e) {

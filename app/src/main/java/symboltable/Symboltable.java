@@ -38,6 +38,10 @@ public class Symboltable {
     return types.lookup(key);
   }
 
+  public symboltable.Var lookupVar(String key) {
+    return vars.lookup(key);
+  }
+
   public Procedure addProcedure(String procedureName, Procedure proc) {
     if (!exists(procedureName))
       return procs.add(procedureName, proc);
@@ -75,10 +79,17 @@ public class Symboltable {
   private void initTypes(SymboltableUnit<Type> types) {
     this.types = types;
     types.add("float", symboltable.Type.floatType);
+    types.add("ref(float)", new symboltable.RefType(symboltable.Type.floatType));
+    
     types.add("int", symboltable.Type.intType);
+    types.add("ref(int)", new symboltable.RefType(symboltable.Type.intType));
+    
     types.add("string", symboltable.Type.stringType);
+    types.add("ref(string)", new symboltable.RefType(symboltable.Type.stringType));
+    
     types.add("bool", symboltable.Type.boolType);
-    types.add("ref", symboltable.Type.refType);	
+    types.add("ref(bool)", new symboltable.RefType(symboltable.Type.boolType));
+
   }
 
   private void initVars(SymboltableUnit<Var> vars) {

@@ -1,0 +1,7 @@
+program procdecl3 begin
+  procedure donald() : int
+      begin
+    in
+      return 4
+  end
+end

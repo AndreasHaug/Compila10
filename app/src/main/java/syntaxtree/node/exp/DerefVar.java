@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class DerefVar extends Exp {
 
   private Var var;
@@ -15,6 +17,11 @@ public class DerefVar extends Exp {
       "(DEREF_VAR " +
       var.printSyntaxtree(indent+1) +
       ")";
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return var.semanticAnalyze(table);
   }
 }
 

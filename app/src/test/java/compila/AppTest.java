@@ -176,5 +176,25 @@ public class AppTest {
     app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/rec_decl/recdecl3.cmp",
 				    "src/test/resources/semanticanalysis/rec_decl/recdecl3.ast" });
   }
+
+  @Test
+  public void procDeclTest1() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/proc_decl/procdecl1.cmp",
+				    "src/test/resources/semanticanalysis/proc_decl/procdecl1.ast" });
+  }
+
+  @Test(expected = error.NameAlreadyDeclared.class)
+  public void procDeclTest2() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/proc_decl/procdecl2.cmp",
+				    "src/test/resources/semanticanalysis/proc_decl/procdecl2.ast" });
+  }
+
+  @Test
+  public void procDeclTest3() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/proc_decl/procdecl3.cmp",
+				    "src/test/resources/semanticanalysis/proc_decl/procdecl3.ast" });
+  }
+
+
   
 }

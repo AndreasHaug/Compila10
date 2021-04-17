@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class NewNameExp extends Exp {
 
   private Name n;
@@ -15,6 +17,11 @@ public class NewNameExp extends Exp {
       "(NEW " +
       n.printSyntaxtree(indent) +
       ")";
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return table.lookupType(n.toString());
   }
 
   

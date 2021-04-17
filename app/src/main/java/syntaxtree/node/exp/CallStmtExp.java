@@ -17,5 +17,10 @@ public class CallStmtExp extends Exp {
   @Override
   public String printSyntaxtree(int indent) {
     return cs.printSyntaxtree(indent);
-  }  
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return cs.semanticAnalyze(table);
+  }
 }

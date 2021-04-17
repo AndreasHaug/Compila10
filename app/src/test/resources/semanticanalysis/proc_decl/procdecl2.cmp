@@ -1,0 +1,8 @@
+(* Parameters has duplicate names
+   expecting error *)
+program procdecl2 begin
+  procedure world(a : int, b : ref(int), b : float)
+    begin
+  in
+  end
+end

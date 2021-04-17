@@ -1,0 +1,6 @@
+program procdecl1 begin
+  procedure hello(a : int, b : float, c : bool, d : ref(int))
+    begin
+  in
+  end
+end

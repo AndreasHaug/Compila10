@@ -1,6 +1,7 @@
 package node;
 
 import list.*;
+import symboltable.Symboltable;
 
 public class WithTypeProcDecl extends ProcDecl {
 
@@ -36,9 +37,12 @@ public class WithTypeProcDecl extends ProcDecl {
       printSyntaxtreeTail(indent);
   }
 
-  // @Override
-  // public symboltable.Type semanticAnalyse(Symboltable table) {
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    super.semanticAnalyze(table);
+    dl.semanticListAnalyze(table);
+    sl.stmtListForWithTypeProcDecl(table.lookupType(t.getTypeRep()), table);
     // this one must have a return stmt as the last stmt
-    // return null;
-  // }  
+    return null;
+  }  
 }

@@ -3,7 +3,7 @@ package node;
 import list.*;
 import symboltable.Symboltable;
 import symboltable.SymboltableUnit;
-import type.StructType;
+import symboltable.StructType;
 
 public class RecDecl extends Decl {
 
@@ -31,8 +31,10 @@ public class RecDecl extends Decl {
 
     Symboltable structInstances = l.toSymboltable(new Symboltable(table));
 
-    StructType stype = new StructType(n.toString(), structInstances);
+    symboltable.StructType stype = new StructType(n.toString(), structInstances);
+    symboltable.RefType structRefType = new symboltable.RefType(stype);
     table.addType(n.toString(), stype);
+    table.addType("ref(" + n.toString() + ")", structRefType);
     
     return stype;
   }

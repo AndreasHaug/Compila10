@@ -14,6 +14,6 @@ public class RefType extends Type {
   }
 
   public String getTypeRep() {
-    return "ref";
+    return "ref(" + t.getTypeRep() + ")";
   }
 }
