@@ -22,24 +22,46 @@ public class Symboltable {
   }
 
   //lookup will return null if no occurence is found
-  public SymboltableInstance lookup(String key) {    
+  public SymboltableInstance lookup(String key) {
     if (procs.exists(key))
       return procs.lookup(key);
     if (types.exists(key))
-      return procs.lookup(key);
+      return types.lookup(key);
     if (vars.exists(key))
-      return procs.lookup(key);
+      return vars.lookup(key);
     if (outer == null)
       return null;    
     return outer.lookup(key);          	    
   }
 
   public symboltable.Type lookupType(String key) {
-    return types.lookup(key);
+    if (types.exists(key)) {
+      return types.lookup(key);      
+    }
+    if (outer == null) {
+      return null;      
+    }
+    return outer.lookupType(key);
   }
 
   public symboltable.Var lookupVar(String key) {
-    return vars.lookup(key);
+    if (vars.exists(key)) {
+      return vars.lookup(key);      
+    }
+    if (outer == null) {
+      return null;      
+    }
+    return outer.lookupVar(key);
+  }
+
+  public symboltable.Procedure lookupProcedure(String key) {
+    if (procs.exists(key)) {
+      return procs.lookup(key);      
+    }
+    if (outer == null) {
+      return null;      
+    }
+    return outer.lookupProcedure(key);
   }
 
   public Procedure addProcedure(String procedureName, Procedure proc) {
