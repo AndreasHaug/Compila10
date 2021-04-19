@@ -1,6 +1,7 @@
 package node;
 
 import list.StmtList;
+import symboltable.Symboltable;
 
 public class WithElseIfStmt extends IfStmt {
 
@@ -20,5 +21,14 @@ public class WithElseIfStmt extends IfStmt {
       sl2.printSyntaxtreeList(indent+1) +
       "))";      
   }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    symboltable.Type cond = super.semanticAnalyze(table);
+    sl2.semanticListAnalyze(new Symboltable(table));
+
+    return cond;
+  }
+  
 
 }
