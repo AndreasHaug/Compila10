@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class NameType extends Type {
 
   private Name n;
@@ -14,5 +16,9 @@ public class NameType extends Type {
 
   public String getTypeRep() {
     return n.toString();
+  }
+
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return table.lookupType(n.toString());
   }
 }

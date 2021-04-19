@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class StringType extends Type {
 
   public String printSyntaxtree(int indent) {
@@ -8,5 +10,10 @@ public class StringType extends Type {
 
   public String getTypeRep() {
     return "string";
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    return symboltable.Type.stringType;
   }
 }
