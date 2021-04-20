@@ -249,11 +249,11 @@ public class AppTest {
   /**
    * Checking missing main procedure
    */
-  // @Test
-  // public void generalFail4() {
-  //   app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general4_fail.cmp",
-  // 				    "src/test/resources/semanticanalysis/errors/general4_fail.ast" });
-  // }
+  @Test(expected = error.NoMainProcedure.class)
+  public void generalFail4() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general4_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/general4_fail.ast" });
+  }
 
   
 }

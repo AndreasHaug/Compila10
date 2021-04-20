@@ -1,8 +1,8 @@
-program general4_fail (* error, no procedure main() *)
+program general4_fail //(* error, no procedure main() *)
 begin
   procedure Proc()
   begin
     in
-    printstr( "Hello world!" )
+    //printstr( "Hello world!" )
   end
 end
