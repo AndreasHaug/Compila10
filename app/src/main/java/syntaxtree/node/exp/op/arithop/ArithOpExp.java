@@ -13,7 +13,7 @@ public class ArithOpExp extends OpExp {
     return super.printSyntaxtree(indent);
   }
 
-  public symboltable.Type semanticAnalyze(Symboltable table) {
+  public symboltable.Type semanticAnalyze(Symboltable table) {    
     if (l.semanticAnalyze(table) == symboltable.Type.intType &&
 	r.semanticAnalyze(table) == symboltable.Type.intType)
       return symboltable.Type.intType;    
