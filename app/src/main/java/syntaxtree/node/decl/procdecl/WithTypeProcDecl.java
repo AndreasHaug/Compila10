@@ -39,10 +39,15 @@ public class WithTypeProcDecl extends ProcDecl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
-    super.semanticAnalyze(table);
+    Symboltable params = pl.toSymboltable(table);
+    
     dl.semanticListAnalyze(table);
     sl.stmtListForWithTypeProcDecl(table.lookupType(t.getTypeRep()), table);
-    // this one must have a return stmt as the last stmt
+    table.addProcedure(n.toString(),
+		       new symboltable.Procedure(n.toString(),
+						 params,
+						 t.semanticAnalyze(table)));
+    // this one should enforce always reaching a return stmt
     return null;
   }  
 }

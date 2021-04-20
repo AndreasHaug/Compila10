@@ -22,7 +22,8 @@ public class WithoutTypeProcDecl extends ProcDecl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
-    super.semanticAnalyze(table);
+    // super.semanticAnalyze(table);
+    Symboltable params = pl.toSymboltable(table);
 
     dl.semanticListAnalyze(table);
     sl.stmtListForWithoutTypeProcDecl(table);
