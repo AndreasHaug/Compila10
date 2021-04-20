@@ -195,6 +195,65 @@ public class AppTest {
 				    "src/test/resources/semanticanalysis/proc_decl/procdecl3.ast" });
   }
 
+  @Test
+  public void procDeclTest4() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/proc_decl/procdecl4.cmp",
+				    "src/test/resources/semanticanalysis/proc_decl/procdecl4.ast" });
+  }
+
+  @Test(expected = error.NameNotFound.class)
+  public void procDeclTest5() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/proc_decl/procdecl5.cmp",
+				    "src/test/resources/semanticanalysis/proc_decl/procdecl5.ast" });
+  }
+
+  @Test
+  public void ifTest1() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/if/iftest1.cmp",
+				    "src/test/resources/semanticanalysis/if/iftest1.ast" });
+  }
+
+  @Test(expected = error.IfInvalidExpression.class)
+  public void ifTest2() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/if/iftest2.cmp",
+				    "src/test/resources/semanticanalysis/if/iftest2.ast" });
+  }
+
+  
+  @Test(expected = error.MismatchedTypes.class)
+  public void procDeclTest6() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/proc_decl/procdecl6.cmp",
+				    "src/test/resources/semanticanalysis/proc_decl/procdecl6.ast" });
+  }
+
+  
+  @Test(expected = error.NameAlreadyDeclared.class)
+  public void generalFail1() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general1_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/general2_fail.ast" });
+  }
+
+  @Test(expected = error.NameAlreadyDeclared.class)
+  public void generalFail2() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general2_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/general2_fail.ast" });
+  }
+
+  @Test(expected = error.NameNotFound.class)
+  public void generalFail3() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general3_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/general3_fail.ast" });
+  }
+
+
+  /**
+   * Checking missing main procedure
+   */
+  // @Test
+  // public void generalFail4() {
+  //   app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general4_fail.cmp",
+  // 				    "src/test/resources/semanticanalysis/errors/general4_fail.ast" });
+  // }
 
   
 }
