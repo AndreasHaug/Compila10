@@ -3,6 +3,7 @@ package compila;
 import parser.*;
 import syntaxtree.*;
 import node.*;
+import error.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class App {
     try {
       p = (Program) par.parse().value;     
       Syntaxtree ast = new Syntaxtree(p);
-      p.semanticAnalyze(new Symboltable());
+      p.semanticAnalyze(st);
       String astPrint = ast.printSyntaxtree(0);
 
       bw.flush();
@@ -66,6 +67,9 @@ public class App {
       System.exit(0);
     }
 
+    if (st.lookupProcedure("main") == null) {
+      throw new NoMainProcedure();
+    }
     
     //Rest of the compiler functionality to be implemented
     // return null;
