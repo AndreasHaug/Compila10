@@ -21,6 +21,10 @@ public class ExpVar extends Var {
       ")";
   }
 
+  public String toString() {
+    return e.toString() + n.toString();
+  }
+
   // @Override
   // public symboltable.Type semanticAnalyze(Symboltable table) {
     // System.out.println("Exp.Var: this is not determined yet.");
