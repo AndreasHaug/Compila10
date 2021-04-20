@@ -14,7 +14,17 @@ public class NameVar extends Var {
     return n.printSyntaxtree(indent);
   }
 
+  public String toString() {
+    return n.toString();
+  }
+
   public symboltable.Type semanticAnalyze(Symboltable table) {
-    return table.lookupType(n.toString());
+    symboltable.Var variable = table.lookupVar(n.toString());
+    if (variable == null) {
+      throw new error.NameNotFound("Name " + n.toString() + " cannot be found");
+    }
+    
+    // return table.lookupType(n.toString());
+    return variable.getType();
   }
 }
