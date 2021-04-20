@@ -1,3 +1,8 @@
 program recdecl3 begin
-    struct obj { a : int; a : float }
+    struct obj { a : int; a : float };
+
+  procedure main()
+    begin
+  in
+  end
 end

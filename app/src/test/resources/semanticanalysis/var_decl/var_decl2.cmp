@@ -3,5 +3,10 @@
 program vardecltest2
 begin
     var x := 5;
-    var x := 4 
+    var x := 4;
+
+  procedure main()
+    begin
+  in
+  end
 end

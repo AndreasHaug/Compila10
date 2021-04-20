@@ -3,5 +3,11 @@ program procdecl3 begin
       begin
     in
       return 4
+  end;
+
+
+  procedure main()
+    begin
+  in
   end
 end

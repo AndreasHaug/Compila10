@@ -1,5 +1,10 @@
 program vardecltest8
 begin
     var x : int := 9;
-    var x : string := "hello"
+    var x : string := "hello";
+
+  procedure main()
+    begin
+  in
+  end
 end

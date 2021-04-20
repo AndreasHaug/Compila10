@@ -5,5 +5,10 @@ program procdecl6 begin
       var b : float := 2.3
   in
     return true
+  end;
+
+  procedure main()
+    begin
+  in
   end
 end

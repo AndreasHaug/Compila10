@@ -5,6 +5,11 @@ program procdecl5 begin
       var b : int := 6
     in
       return a + c  //error: c is not declared
-    end
+    end;
+
+  procedure main()
+    begin
+  in
+  end
 end
     

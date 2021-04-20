@@ -10,6 +10,13 @@ program iftest1 begin
     then
     b := 2
     fi
+  end;
+
+  procedure main()
+    begin
+  in
   end
+
+
     
 end

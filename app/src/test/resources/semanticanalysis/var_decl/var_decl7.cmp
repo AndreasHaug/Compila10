@@ -1,4 +1,9 @@
 program vardecltest7
 begin
-    var x : sometype := 8
+    var x : sometype := 8;
+
+  procedure main()
+    begin
+  in
+  end
 end    
