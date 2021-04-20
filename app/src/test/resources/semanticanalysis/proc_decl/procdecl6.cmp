@@ -1,0 +1,9 @@
+program procdecl6 begin
+  procedure wrongTypeDecl() : bool
+    begin
+      var a : int := "hello"; //int is not string
+      var b : float := 2.3
+  in
+    return true
+  end
+end

@@ -1,0 +1,10 @@
+program procdecl4 begin
+  procedure goodbye() : int
+    begin 
+      var a : int := 4;
+      var b : int := 6
+    in
+      return a + b
+    end
+end
+    
