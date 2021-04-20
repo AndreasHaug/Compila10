@@ -6,6 +6,7 @@ public abstract class Type implements SymboltableInstance {
   public static IntType intType = new IntType();
   public static StringType stringType = new StringType();
   public static BoolType boolType = new BoolType();
+  public static VoidType voidType = new VoidType();
   public static NullType nullType = new NullType();
 
   @Override
@@ -54,7 +55,7 @@ class NullType extends Type {
   }
 }
 
-class voidType extends Type {
+class VoidType extends Type {
   public String toString() {
     return "void";
   }
