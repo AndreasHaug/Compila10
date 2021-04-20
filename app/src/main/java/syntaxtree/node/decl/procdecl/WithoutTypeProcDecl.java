@@ -27,6 +27,11 @@ public class WithoutTypeProcDecl extends ProcDecl {
 
     dl.semanticListAnalyze(table);
     sl.stmtListForWithoutTypeProcDecl(table);
+    table.addProcedure(n.toString(),
+		       new symboltable.Procedure(n.toString(),
+						 params,
+						 symboltable.Type.voidType));
+
     return null;
   }
 }
