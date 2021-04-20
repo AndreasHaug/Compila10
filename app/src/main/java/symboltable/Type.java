@@ -18,6 +18,16 @@ class FloatType extends Type {
   public String toString() {
     return "float";
   }
+
+  /**
+   * Ensure float can be assigned with intliteral
+   */
+  @Override
+  public boolean equals(Object compare) {
+    return
+      super.equals(compare) ||
+      ((Type) compare).toString().equals("int");
+  }
 }
 
 class IntType extends Type {
