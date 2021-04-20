@@ -1,6 +1,7 @@
 package node;
 
 import list.ExpList;
+import symboltable.Symboltable;
 
 public class CallStmt extends Stmt {
 
@@ -20,5 +21,16 @@ public class CallStmt extends Stmt {
       " " +
       el.printSyntaxtreeList(indent+1) +
       ")";
+  }
+
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    symboltable.Procedure proc = table.lookupProcedure(n.toString());
+    if (proc == null) {
+      throw new error.NameNotFound("Call of procedure " +
+				   n.toString() +
+				   " which cannot be found");
+    }
+
+    return proc.getType();
   }
 }

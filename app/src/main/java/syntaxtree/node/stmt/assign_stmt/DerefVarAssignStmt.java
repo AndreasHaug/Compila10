@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public class DerefVarAssignStmt extends AssignStmt {
 
   DerefVar v;
@@ -18,4 +20,19 @@ public class DerefVarAssignStmt extends AssignStmt {
       ")";
   }
 
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+
+    symboltable.Type varType = v.semanticAnalyze(table);
+    symboltable.Type expType = e.semanticAnalyze(table);
+
+    if (!varType.equals(expType)) {
+      throw new error.MismatchedTypes("Variable of type " +
+				      varType.toString() +
+				      " cannot be assigned to value of type " +
+				      expType.toString());
+    }
+
+    return expType;
+  }
 }
