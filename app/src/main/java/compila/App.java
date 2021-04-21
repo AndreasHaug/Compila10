@@ -22,9 +22,9 @@ public class App {
 
     public void doRunCompiler(String args[]) {
 
-	Symboltable st = new Symboltable();
+      Symboltable st = new Symboltable(true);
 	
-    FileReader reader = null; 
+      FileReader reader = null; 
     BufferedWriter bw = null;
     Program p = null;
    
@@ -60,6 +60,9 @@ public class App {
       bw.write(astPrint);
       bw.close();
       // return astPrint;
+    }
+    catch (error.ScannerError se) {
+      se.getMessage();
     }
     catch (Exception e) {
       System.out.println("Syntax error");
