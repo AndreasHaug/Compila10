@@ -1,6 +1,7 @@
 package node;
 
 import list.StmtList;
+import symboltable.Symboltable;
 
 public class WhileStmt extends Stmt {
 
@@ -18,6 +19,20 @@ public class WhileStmt extends Stmt {
       e.printSyntaxtree(indent) +
       sl.printSyntaxtreeList(indent) +
       ")";
+  }
+
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    symboltable.Type cond = e.semanticAnalyze(table);
+
+    if (!cond.equals(symboltable.Type.boolType)) {
+      throw new error.WhileInvalidExpression();
+    }
+
+    sl.semanticListAnalyze(new Symboltable(table));
+
+    return cond;
+
   }
 
 }
