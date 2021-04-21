@@ -1,5 +1,10 @@
 package symboltable;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Symboltable {
     
   private SymboltableUnit<symboltable.Procedure> procs;
@@ -7,11 +12,20 @@ public class Symboltable {
   private SymboltableUnit<symboltable.Var> vars;
   private Symboltable outer;
 
-  public Symboltable() {
-    initProcs(new SymboltableUnit<>());
-    initTypes(new SymboltableUnit<>());
-    initVars(new SymboltableUnit<>());
-    outer = null;
+  public Symboltable(boolean init) {
+
+    if (init) {
+      initProcs(new SymboltableUnit<>());
+      initTypes(new SymboltableUnit<>());
+      initVars(new SymboltableUnit<>());
+      outer = null;
+    }
+
+    else {
+      procs = new SymboltableUnit<>();
+      types = new SymboltableUnit<>();
+      vars = new SymboltableUnit<>();
+    }
   }
 
   public Symboltable(Symboltable outer) {
@@ -93,9 +107,78 @@ public class Symboltable {
     return types.exists(typeRep);
   }
 
+  public int varSize() {
+    return vars.size();
+  }
+
+  public Collection varsAsCollection() {
+    return vars.asCollection();
+  }
+
+  public LinkedList<symboltable.Type> varsTypes() {
+    return vars      
+      .stream()
+      .map(x -> x.getType())
+      .collect(Collectors.toCollection(LinkedList::new));
+  }
+
   private void initProcs(SymboltableUnit<Procedure> procs) {
     this.procs = procs;
-    //TODO: add buildt in procedures
+
+    procs.add("readint",
+	      new Procedure("readint",
+			    new Symboltable(false),
+			    Type.intType));      
+
+    procs.add("readfloat",
+	      new Procedure("readfloat",
+			    new Symboltable(false),
+			    Type.floatType));
+
+    procs.add("readchar",
+	      new Procedure("readchar",
+			    new Symboltable(false),
+			    Type.intType));
+
+    procs.add("readstring",
+	      new Procedure("readline",
+			    new Symboltable(false),
+			    Type.stringType));
+
+    procs.add("readline",
+	      new Procedure("readline",
+			    new Symboltable(false),
+			    Type.stringType));
+
+    Symboltable printint = new Symboltable(false);
+    printint.addVar("i", new Var("i", null, Type.intType));
+    procs.add("printint",
+	      new Procedure("printint",
+			    printint,
+			    Type.voidType));
+
+    Symboltable printfloat = new Symboltable(false);
+    printfloat.addVar("f", new Var("f", null, Type.floatType));
+    procs.add("printfloat",
+	      new Procedure("printfloat",
+			    printfloat,
+			    Type.voidType));
+
+    Symboltable printstr = new Symboltable(false);
+    printstr.addVar("s", new Var("s", null, Type.stringType));
+    procs.add("printstr",
+	      new Procedure("printstr",
+			    printstr,
+			    Type.voidType));
+
+    Symboltable printline = new Symboltable(false);
+    printline.addVar("s", new Var("s", null, Type.stringType));
+    procs.add("printline",
+	      new Procedure("printline",
+			    printline,
+			    Type.voidType));
+
+    
   }
 
   private void initTypes(SymboltableUnit<Type> types) {

@@ -1,6 +1,11 @@
 package symboltable;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Stream;
+
 import list.ParamfieldDeclList;
 
 public class SymboltableUnit<T> {
@@ -29,6 +34,18 @@ public class SymboltableUnit<T> {
 
   public boolean exists(String name) {
     return map.containsKey(name);
+  }
+
+  public int size() {
+    return map.size();
+  }
+
+  public Collection asCollection() {
+    return map.values();
+  }
+
+  public Stream<T> stream() {
+    return map.values().stream();
   }
 }
 
