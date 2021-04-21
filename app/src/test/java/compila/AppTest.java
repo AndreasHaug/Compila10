@@ -290,6 +290,48 @@ public class AppTest {
     app.doRunCompiler(new String[] {
 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.cmp",
 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.ast"
-      });    
+      });
   }
+
+  @Test(expected = error.InvalidReturnType.class)
+  public void returnContradictingExpressionFail() {
+        app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/return_contradicting_expression_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/return_contradicting_expression_fail.ast"
+      });
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void type1Fail() {
+        app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type1_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type1_fail.ast"
+      });
+  }
+
+  @Test(expected = error.IfInvalidExpression.class)
+  public void type2Fail() {
+        app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type2_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type2_fail.ast"
+      });
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void type3Fail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type3_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type3_fail.ast"
+      });
+  }
+
+  // @Test
+  // public void type4Fail() {
+  //   app.doRunCompiler(new String[] {
+  // 	"src/test/resources/semanticanalysis/errors/type4_fail.cmp",
+  // 	"src/test/resources/semanticanalysis/errors/type4_fail.ast"
+  //     });
+  // }
+
+  
 }
