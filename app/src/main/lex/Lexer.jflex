@@ -57,7 +57,7 @@ private Symbol symbol(int type, Name n) {
 //  //LineTerminator = "\r|\n|\r|\n"
  LineTerminator = [\r\n]*
 
- WhiteSpace = {LineTerminator} | [ t\f]
+ WhiteSpace = {LineTerminator} | [ t\f] | [\t]
  Identifier = [:jletter:] [:jletterdigit:]*
 
 %%
@@ -77,7 +77,7 @@ private Symbol symbol(int type, Name n) {
 
  [\(][\*][^\*\)]*[\*][\)] {}
 
-
+  // [\t] {}
 
  "//".* {}
 
@@ -173,14 +173,20 @@ private Symbol symbol(int type, Name n) {
   "*" {return symbol(sym.ASTERISK);}
   "^" {return symbol(sym.CARET);}  
   
-  [a-zA-Z][a-zA-Z0-9|_]*[a-zA-Z0-9]*
+  [a-zA-Z]([a-zA-Z0-9|_])*([a-zA-Z0-9]*)
+  //  [A-Za-z][\w$]*(\.[\w$]+)?(\[\d+])?
   {
       Name n = new Name(yytext());
       //System.out.println("name: " + yytext());
       return symbol(sym.NAME, n);
   }
 
-  . {System.out.println(linenumber() + "Scanner error: illegal character!"); System.exit(0);}
+  . {
+
+
+throw new error.ScannerError(yytext(), yyline, yycolumn);
+// System.out.println(linenumber() + "Scanner error: illegal character!"); System.exit(0);
+}
 
 
   
