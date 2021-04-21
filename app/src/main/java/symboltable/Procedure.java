@@ -1,6 +1,8 @@
 package symboltable;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class Procedure implements SymboltableInstance {
 
@@ -17,8 +19,15 @@ public class Procedure implements SymboltableInstance {
     this.t = t;
   }
 
-
   public symboltable.Type getType() {
     return t;
+  }
+
+  public int parameterCount() {
+    return args.varSize();
+  }
+
+  public LinkedList<symboltable.Type> parameterTypes() {
+    return args.varsTypes();
   }
 }
