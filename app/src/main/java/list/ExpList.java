@@ -1,6 +1,8 @@
 package list;
 
 import node.*;
+import symboltable.Symboltable;
+
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -17,6 +19,13 @@ public class ExpList extends ListProperty {
 
   public void add(Exp e) {
     super.add((Exp) e);
+  }
+
+  public LinkedList<symboltable.Type> types(Symboltable table) {
+    return list
+      .stream()
+      .map(x -> x.semanticAnalyze(table))
+      .collect(Collectors.toCollection(LinkedList::new));
   }
 
   @Override
