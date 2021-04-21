@@ -1,5 +1,9 @@
 package node;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import error.WrongNumberOfArguments;
 import list.ExpList;
 import symboltable.Symboltable;
 
@@ -29,6 +33,26 @@ public class CallStmt extends Stmt {
       throw new error.NameNotFound("Call of procedure " +
 				   n.toString() +
 				   " which cannot be found");
+    }
+
+    int argCount = el.size();
+    int parCount = proc.parameterCount();
+    if (argCount != parCount) {
+      throw new WrongNumberOfArguments(parCount, argCount);
+    }
+
+    //these list may be another datastructure?
+    LinkedList<symboltable.Type> parameterTypes = proc.parameterTypes();
+    LinkedList<symboltable.Type> argTypes = el.types(table);
+
+    /** 
+     * this is a bit simple, but it should catch the error
+     * printing a good error message in the future is maybe not
+     * so easy
+     */
+    if (!parameterTypes.equals(argTypes)) {
+      throw new error
+	.MismatchedTypes("In procedure call argument types not matching");
     }
 
     return proc.getType();
