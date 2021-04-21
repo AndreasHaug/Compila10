@@ -285,11 +285,11 @@ public class AppTest {
 				    "src/test/resources/semanticanalysis/errors/procedure5_fail.ast" });    
   }
 
-  //   @Test(expected = error.MismatchedTypes.class)
-  // public void procedureUnknownReturntypeFail() {
-  //   app.doRunCompiler(new String[] {
-  // 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.cmp",
-  // 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.ast"
-  //     });    
-  // }
+  @Test(expected = error.InvalidReturnType.class)
+  public void procedureUnknownReturntypeFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.ast"
+      });    
+  }
 }

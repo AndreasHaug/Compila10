@@ -42,6 +42,9 @@ public class ReturnStmt extends Stmt {
 
     symboltable.Type expType = e.semanticAnalyze(table);
 
+    if (expType == null) {
+      throw new error.InvalidReturnType("Cannot find return type");
+    }
     if (!expType.equals(returnType)) {
       throw new error.InvalidReturnType("Procedure with return type " +
 				  returnType.toString() +
