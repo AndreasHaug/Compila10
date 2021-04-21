@@ -255,5 +255,41 @@ public class AppTest {
 				    "src/test/resources/semanticanalysis/errors/general4_fail.ast" });
   }
 
+  @Test(expected = error.MismatchedTypes.class)
+  public void generalFail5() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/general5_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/general5_fail.ast" });
+  }
+
+  @Test(expected = error.InvalidReturnType.class)
+  public void procedurefail2() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/procedure2_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/procedure2_fail.ast" });    
+  }
   
+  @Test(expected = error.InvalidReturnType.class)
+  public void procedurefail3() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/procedure3_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/procedure3_fail.ast" });    
+  }
+
+  @Test(expected = error.WrongNumberOfArguments.class)
+  public void procedurefail4() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/procedure4_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/procedure4_fail.ast" });    
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void procedurefail5() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/errors/procedure5_fail.cmp",
+				    "src/test/resources/semanticanalysis/errors/procedure5_fail.ast" });    
+  }
+
+  //   @Test(expected = error.MismatchedTypes.class)
+  // public void procedureUnknownReturntypeFail() {
+  //   app.doRunCompiler(new String[] {
+  // 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.cmp",
+  // 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.ast"
+  //     });    
+  // }
 }
