@@ -30,8 +30,18 @@ public class ReturnStmt extends Stmt {
 
   @Override
   public symboltable.Type stmtForWithTypeProcDecl(symboltable.Type returnType, Symboltable table) {
+
+    /**
+     * Enforce the return stmt returning a value
+     */
+    if (e == null) {
+      throw new error.InvalidReturnType("Procedure with return type " +
+					returnType.toString() +
+					" cannot return void");
+    }
+
     symboltable.Type expType = e.semanticAnalyze(table);
-    
+
     if (!expType.equals(returnType)) {
       throw new error.InvalidReturnType("Procedure with return type " +
 				  returnType.toString() +
