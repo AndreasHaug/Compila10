@@ -39,10 +39,33 @@ public class WithTypeProcDecl extends ProcDecl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
+    /**
+     * A new scope for the procedure
+     */
+    Symboltable procTable = new Symboltable(table);
+
+    /**
+     * The actual parameters represented
+     */
     Symboltable params = pl.toSymboltable(table);
+    // System.out.println("varsize:");
     
-    dl.semanticListAnalyze(table);
-    sl.stmtListForWithTypeProcDecl(table.lookupType(t.getTypeRep()), table);
+    // System.out.println(params.varSize());
+    // System.out.println();
+    // System.out.println(pl);
+    // System.out.println(params.varPrint());
+
+    /**
+     * The parameters will also have to be in the
+     * scope of the procedure		
+     */
+    procTable = pl.addToSymboltable(procTable);
+    // System.out.println(procTable);
+    
+    dl.semanticListAnalyze(procTable);
+    sl.stmtListForWithTypeProcDecl(procTable.lookupType(t.getTypeRep()), procTable);
+    
+
     table.addProcedure(n.toString(),
 		       new symboltable.Procedure(n.toString(),
 						 params,

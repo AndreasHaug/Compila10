@@ -53,12 +53,12 @@ public class App {
     try {
       p = (Program) par.parse().value;     
       Syntaxtree ast = new Syntaxtree(p);
-      p.semanticAnalyze(st);
       String astPrint = ast.printSyntaxtree(0);
 
       bw.flush();
       bw.write(astPrint);
       bw.close();
+      p.semanticAnalyze(st);
       // return astPrint;
     }
     catch (error.ScannerError se) {

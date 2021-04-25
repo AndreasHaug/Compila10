@@ -25,9 +25,23 @@ public class ExpVar extends Var {
     return e.toString() + n.toString();
   }
 
-  // @Override
-  // public symboltable.Type semanticAnalyze(Symboltable table) {
-    // System.out.println("Exp.Var: this is not determined yet.");
-    // return null;
-  // }
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    symboltable.Type expType = e.semanticAnalyze(table);
+    if (!expType.isStruct()) {
+      throw new error.NoStruct(e +
+			       " is not of type struct " +
+			       " and can therefore not hold member " +
+			       n.toString());
+    }
+
+    symboltable.StructType structType = (symboltable.StructType) expType;
+    symboltable.Var var = structType.getInstance(n.toString());
+    if (var == null) {
+      throw new error.NoStructMember("Struct does not have any member " +
+				     n.toString());
+    }    
+    
+    return expType;
+  }
 }

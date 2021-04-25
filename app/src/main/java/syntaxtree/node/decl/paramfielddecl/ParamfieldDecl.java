@@ -41,12 +41,15 @@ public class ParamfieldDecl extends Decl {
     /**
      * Ensure that the type exists
      */
-    symboltable.Type checked = table.lookupType(t.getTypeRep());
-
+    symboltable.Type checked = table.lookupType(t.getTypeRep());   
     if (checked == null) {
       throw new error.NoTypeExists(t.getTypeRep());
     }
     
     return checked;
+  }
+
+  public String toString() {
+    return "(" + n.toString() + " : " + t.getTypeRep() + ")";
   }
 }

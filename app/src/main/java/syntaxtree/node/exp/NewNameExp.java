@@ -21,7 +21,16 @@ public class NewNameExp extends Exp {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
-    return table.lookupType(n.toString());
+
+    // System.out.println(n.toString());
+
+    if (table.lookupType(n.toString()) == null) {
+      throw new error
+	.NameNotFound("Name " + n.toString() + " cannot be found");      
+    }
+    else {
+      return table.lookupType(n.toString());      
+    }
   }
 
   

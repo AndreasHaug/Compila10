@@ -29,7 +29,7 @@ public class RecDecl extends Decl {
       throw new error.NameAlreadyDeclared(n.toString());
     }
 
-    Symboltable structInstances = l.toSymboltable(new Symboltable(table));
+    Symboltable structInstances = l.addToSymboltable(new Symboltable(table));
 
     symboltable.StructType stype = new StructType(n.toString(), structInstances);
     symboltable.RefType structRefType = new symboltable.RefType(stype);

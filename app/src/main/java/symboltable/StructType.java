@@ -16,5 +16,13 @@ public class StructType extends symboltable.Type {
   public String toString() {
     return name;
   }
-  
+
+  @Override
+  public boolean isStruct() {
+    return true;
+  }
+
+  public symboltable.Var getInstance(String name) {
+    return instances.lookupVar(name);
+  }
 }

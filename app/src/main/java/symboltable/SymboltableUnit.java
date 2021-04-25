@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import list.ParamfieldDeclList;
@@ -46,6 +47,17 @@ public class SymboltableUnit<T> {
 
   public Stream<T> stream() {
     return map.values().stream();
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("[");
+    for (Map.Entry v : map.entrySet()) {
+      sb.append(v.getKey() + ", " + v.getValue());
+    }
+    sb.append("]");
+    return sb.toString();
   }
 }
 

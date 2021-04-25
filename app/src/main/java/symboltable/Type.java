@@ -13,6 +13,10 @@ public abstract class Type implements SymboltableInstance {
   public boolean equals(Object compare) {
     return this.toString().equals(((Type) compare).toString());
   }
+
+  public boolean isStruct() {
+    return false;
+  }
 }
 
 class FloatType extends Type {

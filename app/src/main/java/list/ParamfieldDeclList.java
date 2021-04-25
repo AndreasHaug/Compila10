@@ -27,10 +27,31 @@ public class ParamfieldDeclList extends list.ListProperty {
     return list.size();
   }
 
+
+  /**
+   * Returns the parameters in the symboltable alone
+   */	
+  public symboltable.Symboltable toSymboltable(Symboltable table) {
+    Symboltable newTable = new Symboltable(false);
+    for (SyntaxtreeProperty pd : list) {
+      newTable.addVar(((ParamfieldDecl) pd)
+		   .getName()
+		   .toString(),
+		   new symboltable.Var(((ParamfieldDecl) pd)
+				       .getName()
+				       .toString(),
+				       null,
+				       ((ParamfieldDecl) pd).semanticAnalyze(table)));
+
+    }
+
+    return newTable;
+  }
+  
   /**
    * Takes the parameters and adds them to the symboltable
    */		
-  public symboltable.Symboltable toSymboltable(Symboltable table) {
+  public symboltable.Symboltable addToSymboltable(Symboltable table) {
     /**
      * Using a table for the list of parameters
      */
@@ -44,6 +65,10 @@ public class ParamfieldDeclList extends list.ListProperty {
     return table;
   }
 
+
+  public String toString() {
+    return list.toString();
+  }
 }
 
 

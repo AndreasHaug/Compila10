@@ -181,6 +181,10 @@ public class Symboltable {
     
   }
 
+  public String varPrint() {
+    return vars.toString();
+  }
+
   private void initTypes(SymboltableUnit<Type> types) {
     this.types = types;
     types.add("float", symboltable.Type.floatType);
@@ -201,7 +205,7 @@ public class Symboltable {
     this.vars = vars;
   }
 
-  private boolean exists(String key) {
+  public boolean exists(String key) {
     return procs.exists(key) ||
       types.exists(key) ||
       vars.exists(key);

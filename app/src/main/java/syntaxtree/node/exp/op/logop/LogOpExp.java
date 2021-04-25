@@ -1,5 +1,7 @@
 package node;
 
+import symboltable.Symboltable;
+
 public abstract class LogOpExp extends OpExp {
 
   public LogOpExp(Exp l, Exp r) {
@@ -12,7 +14,14 @@ public abstract class LogOpExp extends OpExp {
   }
 
   @Override
-  public symboltable.Type semanticAnalyze() {
+  public symboltable.Type semanticAnalyze(Symboltable table) {    
+    if (!l.semanticAnalyze(table).equals(symboltable.Type.boolType) ||
+	!r.semanticAnalyze(table).equals(symboltable.Type.boolType)) {
+
+      throw new error.MismatchedTypes(
+				      "In logical operators || as well as &&, both operands must be of type bool");				      
+    }
+
     return symboltable.Type.boolType;
   }
 }

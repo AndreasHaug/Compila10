@@ -26,7 +26,8 @@ public class NotAssignedVarDecl extends VarDecl {
     String typeRef = type.getTypeRep();        
     symboltable.Type declType = table.lookupType(typeRef);
     if  (declType == null)
-      throw new error.NoTypeExists(typeRef);    
+      throw new error.NoTypeExists(typeRef);
+    
     table.addVar(name.toString(),
 		 new symboltable.Var(name.toString(), null, declType));
     return declType;
