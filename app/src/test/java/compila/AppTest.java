@@ -285,7 +285,7 @@ public class AppTest {
 				    "src/test/resources/semanticanalysis/errors/procedure5_fail.ast" });    
   }
 
-  @Test(expected = error.InvalidReturnType.class)
+  @Test(expected = error.NameNotFound.class)
   public void procedureUnknownReturntypeFail() {
     app.doRunCompiler(new String[] {
 	"src/test/resources/semanticanalysis/errors/procedure_unknown_returntype_fail.cmp",
@@ -325,13 +325,132 @@ public class AppTest {
       });
   }
 
-  // @Test
-  // public void type4Fail() {
-  //   app.doRunCompiler(new String[] {
-  // 	"src/test/resources/semanticanalysis/errors/type4_fail.cmp",
-  // 	"src/test/resources/semanticanalysis/errors/type4_fail.ast"
-  //     });
-  // }
+  @Test(expected = error.WhileInvalidExpression.class)
+  public void type4Fail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type4_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type4_fail.ast"
+      });
+  }
 
-  
+  @Test(expected = error.NoStruct.class)
+  public void type5Fail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type5_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type5_fail.ast"
+      });
+  }
+
+  @Test(expected = error.NoStruct.class)
+  public void type6Fail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type6_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type6_fail.ast"
+      });
+  }
+
+  @Test(expected = error.NoStructMember.class)
+  public void type7Fail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/type7_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/type7_fail.ast"
+      });
+  }
+
+  @Test
+  (expected = error.NameNotFound.class)
+  public void undeclaredNewArgumentFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/undeclared_new_argument_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/undeclared_new_argument_fail.ast"
+      });
+  }
+
+  @Test(expected = error.NameNotFound.class)
+  public void undeclaredStructFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/undeclared_struct_fail.cmp",	"src/test/resources/semanticanalysis/errors/undeclared_struct_fail.ast"
+      });
+  }
+
+  @Test(expected = error.NoStructMember.class)
+  public void undeclaredStructVarFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/undeclared_struct_var_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/undeclared_struct_var_fail.ast"
+      });
+  }
+
+  @Test(expected = error.NotABool.class)
+  public void variableScopeShadowFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/variable_scope_shadow_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/variable_scope_shadow_fail.ast"
+      });
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void wrongArithOperandTypeFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/wrong_arith_operand_type_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/wrong_arith_operand_type_fail.ast"
+      });
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void wrongLogExpTypeFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/wrong_log_exp_type_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/wrong_log_exp_type_fail.ast"
+      });
+  }
+
+  @Test(expected = error.NotABool.class)
+  public void wrongNotOperandFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/wrong_not_operand_type_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/wrong_not_operand_type_fail.ast"
+      });
+  }
+
+  @Test(expected = error.MismatchedTypes.class)
+  public void wrongRelOperandTypeFail() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/errors/wrong_rel_operand_type_fail.cmp",
+	"src/test/resources/semanticanalysis/errors/wrong_rel_operand_type_fail.ast"
+      });
+  }
+
+  /**
+   * Semantic analyze test files without errors
+   */
+  @Test
+  public void semanticAnalyzeTest1() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/noerrors.test1.cmp",
+	"src/test/resources/semanticanalysis/noerrors.test1.ast"
+      });
+  }
+
+  @Test
+    public void semanticAnalyzeTest2() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/noerrors.test2.cmp",
+	"src/test/resources/semanticanalysis/noerrors.test2.ast"
+      });
+  }
+
+  @Test
+  public void semanticAnalyzeTest3() {
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/noerrors.test3.cmp",
+				    "src/test/resources/semanticanalysis/noerrors.test3.ast" });
+  }
+
+  @Test
+  public void semanticAnalyzeTest4() {
+    app.doRunCompiler(new String[] {
+	"src/test/resources/semanticanalysis/noerrors.test4.cmp",
+	"src/test/resources/semanticanalysis/noerrors.test4.ast"
+      });
+  }
 }

@@ -3,6 +3,6 @@ begin
   procedure Proc()
   begin
     in
-    //printstr( "Hello world!" )
+    printstr( "Hello world!" )
   end
 end
