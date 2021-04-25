@@ -30,6 +30,7 @@ public class Program implements SyntaxtreeProperty {
     return a;
   }
 
+  @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
     l.semanticListAnalyze(table);
     return null; //no return value needed from this

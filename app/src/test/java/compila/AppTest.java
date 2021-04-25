@@ -427,30 +427,30 @@ public class AppTest {
   @Test
   public void semanticAnalyzeTest1() {
     app.doRunCompiler(new String[] {
-	"src/test/resources/semanticanalysis/noerrors.test1.cmp",
-	"src/test/resources/semanticanalysis/noerrors.test1.ast"
+	"src/test/resources/semanticanalysis/noerrors/test1.cmp",
+	"src/test/resources/semanticanalysis/noerrors/test1.ast"
       });
   }
 
   @Test
     public void semanticAnalyzeTest2() {
     app.doRunCompiler(new String[] {
-	"src/test/resources/semanticanalysis/noerrors.test2.cmp",
-	"src/test/resources/semanticanalysis/noerrors.test2.ast"
+	"src/test/resources/semanticanalysis/noerrors/test2.cmp",
+	"src/test/resources/semanticanalysis/noerrors/test2.ast"
       });
   }
 
   @Test
   public void semanticAnalyzeTest3() {
-    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/noerrors.test3.cmp",
-				    "src/test/resources/semanticanalysis/noerrors.test3.ast" });
+    app.doRunCompiler(new String[] { "src/test/resources/semanticanalysis/noerrors/test3.cmp",
+				    "src/test/resources/semanticanalysis/noerrors/test3.ast" });
   }
 
   @Test
   public void semanticAnalyzeTest4() {
     app.doRunCompiler(new String[] {
-	"src/test/resources/semanticanalysis/noerrors.test4.cmp",
-	"src/test/resources/semanticanalysis/noerrors.test4.ast"
+	"src/test/resources/semanticanalysis/noerrors/test4.cmp",
+	"src/test/resources/semanticanalysis/noerrors/test4.ast"
       });
   }
 }
