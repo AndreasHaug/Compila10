@@ -5,6 +5,7 @@ import symboltable.Symboltable;
 public class RefType extends Type {
 
   private Type t;
+  private Symboltable table;
 
   public RefType(Type t) {
     this.t = t;

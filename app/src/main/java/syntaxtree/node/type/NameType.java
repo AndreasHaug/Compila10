@@ -5,6 +5,7 @@ import symboltable.Symboltable;
 public class NameType extends Type {
 
   private Name n;
+  private Symboltable table;
 
   public NameType(Name n) {
     this.n = n;
@@ -18,6 +19,7 @@ public class NameType extends Type {
     return n.toString();
   }
 
+  @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
     return table.lookupType(n.toString());
   }

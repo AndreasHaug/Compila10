@@ -97,7 +97,7 @@ private Symbol symbol(int type, Name n) {
 
 // /*Floatliteral*/
  [0-9]*"."([0-9])+ {
-    Floatliteral fl = new Floatliteral(Double.parseDouble(yytext()));
+    Floatliteral fl = new Floatliteral(Float.parseFloat(yytext()));
     return symbol(sym.FLOATLITERAL, fl);}
 
 /*Intliteral*/

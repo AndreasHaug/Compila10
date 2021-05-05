@@ -1,5 +1,7 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import symboltable.Symboltable;
 
 public abstract class VarDecl extends Decl {
@@ -14,7 +16,7 @@ public abstract class VarDecl extends Decl {
     this.exp = exp;
   }
 
-    public VarDecl(Name name) {
+  public VarDecl(Name name) {
     this.name = name;
   }
   
@@ -25,14 +27,42 @@ public abstract class VarDecl extends Decl {
       " ";
   }
 
-  // @Override
-  // public symboltable.Type semanticAnalyze(Symboltable table) {
-    // if (table.existsInScope(name.toString())) {
-      //TODO: ERROR: IMPLEMENT THIS
-    // }
-    // table.addVar(name.toString(), null);
-    //TODO: get type from exp
+  
+  @Override
+  public void codegen(CodeFile codefile) {
+    symboltable.Type sType = table.lookupVar(name.toString()).getType();
+    if (sType.isPrimitive()) {
+      codefile.addVariable(name.toString());
+      codefile.updateVariable(name.toString(), sType.getRuntime());
+    }
+    else {
+      codefile.addVariable(name.toString());
+      codefile.updateVariable(name.toString(),
+			      new bytecode.type.RefType(codefile
+							.structNumber(sType.toString())));
+							// .structNumber(type.getTypeRep())));      
+    }    
+  }
 
-    // return null;
-  // }
+
+  /**
+   * Doing declarations of variables inside procedure
+   */
+  @Override
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
+    symboltable.Type sType = table.lookupVar(name.toString()).getType();
+    if (sType.isPrimitive()) {
+      procedure.addLocalVariable(name.toString(), sType.getRuntime());
+    }
+    else {
+      // System.out.println(sType.toString());
+      procedure.addLocalVariable(name.toString(),
+				 new bytecode.type.RefType(codefile.
+							   structNumber(sType.toString())));
+							   // structNumber(type.getTypeRep())));
+
+      
+    }
+    codefile.updateProcedure(procedure);
+  }
 }

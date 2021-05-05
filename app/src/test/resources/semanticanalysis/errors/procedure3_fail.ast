@@ -1,0 +1,13 @@
+(PROGRAM NAME:procedure3_fail begin
+  (PROC_DECL NAME:Add
+    (PARAMFIELD_DECL NAME:val1 TYPE:int)
+    (PARAMFIELD_DECL NAME:val2 TYPE:int)
+  TYPE:int
+  begin in
+    (RETURN_STMT)
+  end)
+  (PROC_DECL NAME:main begin in
+    (CALL_STMT NAME:printint
+        (CALL_STMT NAME:Add Intliteral:40 Intliteral:2))
+  end)
+end)

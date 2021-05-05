@@ -1,0 +1,12 @@
+(PROGRAM NAME:undeclared_struct_var_fail begin
+  (PROC_DECL NAME:main
+  begin
+    (REC_DECL NAME:Zot
+      (PARAMFIELD_DECL NAME:x TYPE:int))
+    (VAR_DECL NAME:zot TYPE:NAME:Zot)
+  in
+    (ASSIGN_STMT NAME:zot
+      (NEW NAME:Zot))
+    (ASSIGN_STMT (. NAME:zot NAME:bar) Intliteral:42)
+  end)
+end)

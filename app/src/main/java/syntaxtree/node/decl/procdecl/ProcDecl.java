@@ -1,5 +1,6 @@
 package node;
 
+import bytecode.CodeFile;
 import list.*;
 import symboltable.Symboltable;
 
@@ -47,14 +48,17 @@ public abstract class ProcDecl extends Decl {
 
   // @Override
   // public symboltable.Type semanticAnalyze(Symboltable table) {
-    // symboltable.Type nameType = table.lookup(n.toString());   
-    // if (table.lookup(n.toString()) != null) {
-      // throw new error.NameAlreadyDeclared(n.toString());
-    // }
-
-    // Symboltable params = pl.toSymboltable(table);
-    
-    //should not matter
-    // return null;
+  // symboltable.Type nameType = table.lookup(n.toString());   
+  // if (table.lookup(n.toString()) != null) {
+  // throw new error.NameAlreadyDeclared(n.toString());
   // }
+
+  // Symboltable params = pl.toSymboltable(table);
+    
+  //should not matter
+  // return null;
+  // }
+
+
+  
 }

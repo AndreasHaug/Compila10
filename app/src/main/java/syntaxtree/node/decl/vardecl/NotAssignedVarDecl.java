@@ -1,11 +1,10 @@
 package node;
 
+import bytecode.CodeFile;
 import symboltable.Symboltable;
 
 public class NotAssignedVarDecl extends VarDecl {
 
-  Type type;
-  
   public NotAssignedVarDecl(Name name, Type type) {
     super(name);
     this.type = type;
@@ -19,6 +18,7 @@ public class NotAssignedVarDecl extends VarDecl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
+    this.table = table;
     if (table.existsInScope(name.toString())) {
       throw new error.NameAlreadyDeclared(name.toString());
     }

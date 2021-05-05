@@ -1,5 +1,7 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import symboltable.Symboltable;
 
 public class ExpVar extends Var {
@@ -22,7 +24,16 @@ public class ExpVar extends Var {
   }
 
   public String toString() {
-    return e.toString() + n.toString();
+    return e.toString();// + "." + n.toString();
+  }
+
+  public String getFieldName() {
+    return n.toString();
+  }
+
+  @Override
+  public boolean isStructField() {
+    return true;
   }
 
   @Override
@@ -42,6 +53,6 @@ public class ExpVar extends Var {
 				     n.toString());
     }    
     
-    return expType;
+    return var.getType();
   }
 }

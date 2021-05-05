@@ -1,5 +1,7 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import symboltable.Symboltable;
 
 public class ReturnStmt extends Stmt {
@@ -29,7 +31,8 @@ public class ReturnStmt extends Stmt {
   }
 
   @Override
-  public symboltable.Type stmtForWithTypeProcDecl(symboltable.Type returnType, Symboltable table) {
+  public symboltable.Type stmtForWithTypeProcDecl(symboltable.Type returnType,
+						  Symboltable table) {
 
     /**
      * Enforce the return stmt returning a value
@@ -52,6 +55,12 @@ public class ReturnStmt extends Stmt {
 				  expType);
     }
     return expType;
+  }
+
+
+  @Override
+  public void codegen(CodeFile codefile, CodeProcedure proc) {
+    proc.addInstruction(new bytecode.instructions.RETURN());
   }
 
 }

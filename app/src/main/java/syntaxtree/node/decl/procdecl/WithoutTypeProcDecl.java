@@ -1,23 +1,23 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.NEW;
+import bytecode.instructions.STOREGLOBAL;
 import list.*;
+import symboltable.StructType;
 import symboltable.Symboltable;
+import syntaxtree.SyntaxtreeProperty;
 
 public class WithoutTypeProcDecl extends ProcDecl {
 
-  public WithoutTypeProcDecl(Name n,
-			     ParamfieldDeclList pl,
-			     DeclList dl,
-			     StmtList sl) {
+  public WithoutTypeProcDecl(Name n, ParamfieldDeclList pl, DeclList dl, StmtList sl) {
     super(n, pl, dl, sl);
   }
-    
+
   @Override
   public String printSyntaxtree(int indent) {
-    return
-      super.printSyntaxtree(indent) +
-      printSyntaxtreeMiddle(indent) +
-      printSyntaxtreeTail(indent);
+    return super.printSyntaxtree(indent) + printSyntaxtreeMiddle(indent) + printSyntaxtreeTail(indent);
   }
 
   @Override
@@ -27,16 +27,50 @@ public class WithoutTypeProcDecl extends ProcDecl {
 
     Symboltable params = pl.toSymboltable(table);
 
-    
     dl.semanticListAnalyze(procTable);
     sl.stmtListForWithoutTypeProcDecl(procTable);
 
-    
-    table.addProcedure(n.toString(),
-		       new symboltable.Procedure(n.toString(),
-						 params,
-						 symboltable.Type.voidType));
+    table.addProcedure(n.toString(), new symboltable.Procedure(n.toString(), params, symboltable.Type.voidType));
 
+    this.table = procTable;
     return null;
+  }
+
+  @Override
+  public void codegen(CodeFile codefile) {
+
+      CodeProcedure proc = new CodeProcedure(n.toString(), bytecode.type.VoidType.TYPE, codefile);
+      codefile.addProcedure(n.toString());
+
+      //special case, when to load global variables
+      if (n.toString().equals("main")) {
+	//then load global variables
+
+	//get the global scope
+	Symboltable global = table.getGlobal();
+
+	//load globals
+	for (Object a : global.varsAsCollection()) {
+	  symboltable.Var var = (symboltable.Var) a;
+	  if (var.getExp() != null) {
+	    if (!var.getExp().isHeapAllocation()) {
+	      var.getExp().storeGlobal(var.getName(), codefile, proc);	      
+	    }
+	    else {
+	      proc.addInstruction(new NEW(codefile.structNumber(var.getExp().toString())));
+	      proc.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(var.getName().toString())));
+	      codefile.updateProcedure(proc);
+	    }
+	  }
+	}
+      }
+      
+      pl.listCodegen(codefile, proc);
+      dl.listCodegen(codefile, proc);
+      sl.listCodegen(codefile, proc);
+
+      proc.addInstruction(new bytecode.instructions.RETURN());
+      codefile.updateProcedure(proc);
+    
   }
 }

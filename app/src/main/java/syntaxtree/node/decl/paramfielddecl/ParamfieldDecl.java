@@ -1,5 +1,7 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import symboltable.Symboltable;
 
 public class ParamfieldDecl extends Decl {
@@ -20,6 +22,10 @@ public class ParamfieldDecl extends Decl {
       t.printSyntaxtree(indent) +
       ")";
   }
+  
+  public String toString() {
+    return "(" + n.toString() + " : " + t.getTypeRep() + ")";
+  }
 
   public Name getName() {
     return n;
@@ -31,6 +37,7 @@ public class ParamfieldDecl extends Decl {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
+    this.table = table;
     /**
      * Enforce that all name in a list of parameters are unique
      */
@@ -49,7 +56,19 @@ public class ParamfieldDecl extends Decl {
     return checked;
   }
 
-  public String toString() {
-    return "(" + n.toString() + " : " + t.getTypeRep() + ")";
+
+
+  
+  @Override
+  public void codegen(CodeFile codefile, CodeProcedure proc) {
+    String typeRep = this.getType().getTypeRep();
+    symboltable.Type parType = table.lookupType(typeRep);
+    if (parType.isPrimitive()) {
+      proc.addParameter(getName().toString(), parType.getRuntime());
+    }
+    else {
+      System.out.println("ParamfieldDecl has a struct as parameter " +
+			 "which is not yet implemented");
+    }
   }
 }

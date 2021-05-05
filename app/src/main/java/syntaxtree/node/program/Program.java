@@ -1,13 +1,15 @@
 package node;
 
 import syntaxtree.SyntaxtreeProperty;
+import bytecode.CodeFile;
 import list.*;
 import symboltable.Symboltable;
 
 public class Program implements SyntaxtreeProperty {
 
-  Name name;
-  DeclList l;
+  private Name name;
+  private DeclList l;
+  private Symboltable table;
 
   public Program(Name name, DeclList l) {
     this.name = name;
@@ -32,10 +34,13 @@ public class Program implements SyntaxtreeProperty {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
+    this.table = table;
     l.semanticListAnalyze(table);
-    return null; //no return value needed from this
+    return null;
   }
 
-    
-    
+  @Override
+  public void codegen(CodeFile codefile) {
+    l.listCodegen(codefile);
+  }        
 }

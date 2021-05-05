@@ -6,6 +6,9 @@ import symboltable.Symboltable;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+
 public abstract class ListProperty {
 
   LinkedList<SyntaxtreeProperty> list;
@@ -50,6 +53,14 @@ public abstract class ListProperty {
   public void semanticListAnalyze(Symboltable table) {
     for (SyntaxtreeProperty sp : list)
       sp.semanticAnalyze(table);
+  }
+
+  public void listCodegen(CodeFile codefile) {
+    list.stream().forEach(x -> x.codegen(codefile));
+  }
+
+  public void listCodegen(CodeFile codefile, CodeProcedure proc) {
+    list.stream().forEach(x -> x.codegen(codefile, proc));
   }
 
 }

@@ -1,5 +1,7 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import list.*;
 import symboltable.Symboltable;
 
@@ -48,19 +50,11 @@ public class WithTypeProcDecl extends ProcDecl {
      * The actual parameters represented
      */
     Symboltable params = pl.toSymboltable(table);
-    // System.out.println("varsize:");
-    
-    // System.out.println(params.varSize());
-    // System.out.println();
-    // System.out.println(pl);
-    // System.out.println(params.varPrint());
-
     /**
      * The parameters will also have to be in the
      * scope of the procedure		
      */
     procTable = pl.addToSymboltable(procTable);
-    // System.out.println(procTable);
     
     dl.semanticListAnalyze(procTable);
     sl.stmtListForWithTypeProcDecl(procTable.lookupType(t.getTypeRep()), procTable);
@@ -70,7 +64,32 @@ public class WithTypeProcDecl extends ProcDecl {
 		       new symboltable.Procedure(n.toString(),
 						 params,
 						 t.semanticAnalyze(table)));
-    // this one should enforce always reaching a return stmt
+    this.table = procTable;
     return null;
-  }  
+  }
+
+  @Override
+  public void codegen(CodeFile codefile) {
+    symboltable.Type sType = table.lookupProcedure(n.toString()).getType();
+
+    // if (!n.toString().equals("main")) {
+      CodeProcedure proc = new CodeProcedure(n.toString(),
+					     table.lookupProcedure(n.toString())
+					     .getType()
+					     .getRuntime(),
+					     codefile);
+      
+      codefile.addProcedure(n.toString());
+      pl.listCodegen(codefile, proc);
+      dl.listCodegen(codefile);
+      sl.listCodegen(codefile, proc);
+      codefile.updateProcedure(proc);
+    // }
+    // else {
+      //there is a already a main procedure
+      //must get the main proc object: that's difficult
+      //add everything else than the procedure
+      
+    // }
+  }
 }

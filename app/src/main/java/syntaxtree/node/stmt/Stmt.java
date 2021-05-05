@@ -5,6 +5,7 @@ import symboltable.Symboltable;
 public abstract class Stmt implements syntaxtree.SyntaxtreeProperty {
 
   protected Exp e;
+  protected Symboltable table;
 
   public Stmt(Exp e) {
     this.e = e;

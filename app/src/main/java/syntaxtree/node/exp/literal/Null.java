@@ -18,4 +18,15 @@ public class Null extends Literal {
   public symboltable.Type semanticAnalyze(Symboltable table) {
     return symboltable.Type.nullType;
   }
+
+  // @Override
+  // public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
+    
+  // }
+
+  // @Override
+  // public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
+      
+  // }
+  
 }

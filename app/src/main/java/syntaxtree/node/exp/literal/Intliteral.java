@@ -1,5 +1,10 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.PUSHINT;
+import bytecode.instructions.STOREGLOBAL;
+import bytecode.instructions.STORELOCAL;
 import symboltable.Symboltable;
 
 public class Intliteral extends Literal {
@@ -25,4 +30,25 @@ public class Intliteral extends Literal {
     return symboltable.Type.intType;
   }
 
+  @Override
+  public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
+    proc.addInstruction(new PUSHINT(l));
+    proc.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(varName)));
+    codefile.updateProcedure(proc);
+  }
+
+  @Override
+  public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
+    proc.addInstruction(new PUSHINT(l));
+    proc.addInstruction(new STORELOCAL(proc.variableNumber(varName)));
+    codefile.updateProcedure(proc);
+  }
+
+  @Override
+  public void pushOnStack(CodeProcedure procedure) {
+    procedure.addInstruction(new PUSHINT(l));
+  }
+
+  
+  
 }

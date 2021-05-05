@@ -14,8 +14,16 @@ public class Var implements SymboltableInstance {
     this.t = t;
   }
 
+  public String getName() {
+    return n;
+  }
+
   public symboltable.Type getType() {
     return t;
+  }
+
+  public Exp getExp() {
+    return e;
   }
 
   

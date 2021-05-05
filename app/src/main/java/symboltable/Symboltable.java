@@ -210,4 +210,19 @@ public class Symboltable {
       types.exists(key) ||
       vars.exists(key);
   }
+
+  public boolean isGlobal() {
+    return outer == null;
+  }
+
+  public Symboltable getGlobal() {
+    if (!isGlobal()) {
+      return outer.getGlobal();
+    }
+    return this;
+  }
+
+  public String printVars() {
+    return vars.toString();
+  }
 }

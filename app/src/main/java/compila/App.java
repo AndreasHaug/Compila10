@@ -7,24 +7,33 @@ import error.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import bytecode.CodeProcedure;
+import bytecode.instructions.PUSHINT;
+import bytecode.instructions.RETURN;
+import bytecode.instructions.STOREGLOBAL;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+
 import symboltable.Symboltable;
 
 public class App {
 
   public static void main(String[] args) throws FileNotFoundException,
-						IOException {    
+    IOException {    
     App app = new App();    
     app.doRunCompiler(args);
   }
 
-    public void doRunCompiler(String args[]) {
+  public void doRunCompiler(String args[]) {
 
-      Symboltable st = new Symboltable(true);
+    Symboltable st = new Symboltable(true);
 	
-      FileReader reader = null; 
+    FileReader reader = null; 
     BufferedWriter bw = null;
     Program p = null;
    
@@ -59,7 +68,6 @@ public class App {
       bw.write(astPrint);
       bw.close();
       p.semanticAnalyze(st);
-      // return astPrint;
     }
     catch (error.ScannerError se) {
       se.getMessage();
@@ -75,7 +83,83 @@ public class App {
     }
     
     //Rest of the compiler functionality to be implemented
-    // return null;
+    bytecode.CodeFile codefile = new bytecode.CodeFile();
+    CodeProcedure readInt = new CodeProcedure("readint", bytecode.type.IntType.TYPE, codefile);
+    codefile.addProcedure("readint");
+    codefile.updateProcedure(readInt);
+    
+    CodeProcedure readFloat = new CodeProcedure("readfloat", bytecode.type.FloatType.TYPE, codefile);
+    codefile.addProcedure("readfloat");
+    codefile.updateProcedure(readFloat);
+    
+    CodeProcedure readChar = new CodeProcedure("readchar", bytecode.type.IntType.TYPE, codefile);
+    codefile.addProcedure("readchar");
+    codefile.updateProcedure(readChar);
+
+    CodeProcedure readString = new CodeProcedure("readstring", bytecode.type.StringType.TYPE, codefile);
+    codefile.addProcedure("readstring");
+    codefile.updateProcedure(readString);
+
+    CodeProcedure readLine = new CodeProcedure("readline", bytecode.type.StringType.TYPE, codefile);
+    codefile.addProcedure("readline");
+    codefile.updateProcedure(readLine);
+
+    CodeProcedure printInt = new CodeProcedure("printint", bytecode.type.VoidType.TYPE, codefile);    
+    printInt.addParameter("i", bytecode.type.IntType.TYPE);
+    codefile.addProcedure("printint");
+    codefile.updateProcedure(printInt);
+
+    CodeProcedure printFloat = new CodeProcedure("printfloat", bytecode.type.VoidType.TYPE, codefile);
+    printFloat.addParameter("f", bytecode.type.FloatType.TYPE);
+    codefile.addProcedure("printfloat");
+    codefile.updateProcedure(printFloat);
+
+    CodeProcedure printStr = new CodeProcedure("printstr", bytecode.type.VoidType.TYPE, codefile);
+    printFloat.addParameter("s", bytecode.type.StringType.TYPE);
+    codefile.addProcedure("printstr");
+    codefile.updateProcedure(printStr);
+
+    CodeProcedure printLine = new CodeProcedure("printline", bytecode.type.VoidType.TYPE, codefile);
+    printLine.addParameter("s", bytecode.type.StringType.TYPE);
+    codefile.addProcedure("printline");
+    codefile.updateProcedure(printLine);
+
+    // CodeProcedure main = new CodeProcedure("main", bytecode.type.VoidType.TYPE, codefile);
+    // codefile.addProcedure("main");
+    // main.addInstruction(new RETURN());
+    // main.addInstruction(new PUSHINT(9));
+    // main.addInstruction(new bytecode.instructions.STORELOCAL(codefile.globalVariableNumber("a")));
+    // codefile.updateProcedure(main);
+
+
+    p.codegen(codefile);
+    codefile.setMain("main");
+      
+    // for (Object a : st.varsAsCollection()) {
+    //   if (((symboltable.Var) a).getExp() != null) {
+    // 	symboltable.Var var = (symboltable.Var) a;
+    // 	var.getExp().storeGlobal(var.getName(), codefile, main);
+    //   }	
+    // }
+      
+      // main.addInstruction(new bytecode.instructions.RETURN());
+      // codefile.updateProcedure(main);
+
+    try {
+      byte[] bytecode = codefile.getBytecode();
+      DataOutputStream stream = new DataOutputStream(new FileOutputStream("testfile.bin"));
+      stream.write(bytecode);
+      stream.close();
+    }
+    catch (FileNotFoundException fnf) {/* some error handling would be nice*/}
+    catch (IOException ioe) {/* some error handling would be nice*/}
+
+
+    try{
+      runtime.VirtualMachine vm = new runtime.VirtualMachine("testfile.bin");
+      vm.list();      
+    }
+    catch (Exception e) {}
   }
 
 

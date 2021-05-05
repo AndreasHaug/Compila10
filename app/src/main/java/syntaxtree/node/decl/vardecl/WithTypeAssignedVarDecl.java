@@ -1,5 +1,7 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import symboltable.Symboltable;
 
 public class WithTypeAssignedVarDecl extends VarDecl {
@@ -49,7 +51,38 @@ public class WithTypeAssignedVarDecl extends VarDecl {
     table.addVar(name.toString(),
 		 new symboltable.Var(name.toString(), exp, expType));
 
+    this.table = table;
     return declType;
+  }
+
+  // public void storeGlobal(CodeFile codefile, CodeProcedure proc) {
+    // exp.storeGlobal(codefile, proc);
+  // }
+
+
+  // @Override
+  // public void codegen(CodeFile codefile) {
+  //   super.codegen(codefile);
+  // }
+
+  // public void codegen(CodeFile codefile, CodeProcedure procedure) {
+  //   symboltable.Type sType = table.lookupVar(name.toString()).getType();
+  //   if (sType.isPrimitive()) {
+  //     procedure.addLocalVariable(name.toString(), sType.getRuntime());
+  //   }
+  //   else {
+  //     procedure.addLocalVariable(null, null);
+  //   }
+  // }
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
+    super.codegen(codefile, procedure);
+    if (!exp.isHeapAllocation()) {
+      exp.storeLocal(name.toString(), codefile, procedure);      
+    }
+    else {      
+      exp.codegen(codefile, procedure);
+    }
+    
   }
   
 }

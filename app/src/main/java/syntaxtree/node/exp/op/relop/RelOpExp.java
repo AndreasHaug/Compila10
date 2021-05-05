@@ -10,11 +10,36 @@ public abstract class RelOpExp extends OpExp {
 
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
-    if (!l.semanticAnalyze(table).equals(symboltable.Type.boolType) ||
-	!r.semanticAnalyze(table).equals(symboltable.Type.boolType)) {
-
-      throw new error.MismatchedTypes("In relational operators, both operands must be of type bool");				      
+    if (l.semanticAnalyze(table).isNumber()) {
+      if (!r.semanticAnalyze(table).isNumber()) {
+	throw new error.MismatchedTypes("In relational operator expression, " +
+					l.toString() +
+					" is of type " +
+					l.semanticAnalyze(table).toString() +
+					"but " +
+					r.toString() +
+					" is of type " +
+					r.semanticAnalyze(table).toString() +
+					". Both must be of numerical type");
+      }
     }
+    else if (l.semanticAnalyze(table).equals(symboltable.Type.stringType)) {
+      if (!r.semanticAnalyze(table).equals(symboltable.Type.stringType)) {
+	throw new error.MismatchedTypes("In relational operator expression, " +
+					l.toString() +
+					" is of type " +
+					l.semanticAnalyze(table).toString() +
+					"but " +
+					r.toString() +
+					" is of type " +
+					r.semanticAnalyze(table).toString() +
+					". Both must be of string type");
+					
+      }
+    }
+    
     return symboltable.Type.boolType;
   }
+
+
 }

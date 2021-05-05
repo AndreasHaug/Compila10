@@ -1,0 +1,9 @@
+(PROGRAM NAME:procedure2_fail begin
+  (PROC_DECL NAME:Proc TYPE:String
+  begin in
+    (RETURN_STMT Intliteral:42)
+  end)
+  (PROC_DECL NAME:main begin in
+    (CALL_STMT NAME:Proc)
+  end)
+end)
