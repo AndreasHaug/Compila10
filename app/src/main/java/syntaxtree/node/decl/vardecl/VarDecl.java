@@ -26,13 +26,12 @@ public abstract class VarDecl extends Decl {
       name.printSyntaxtree(indent) +
       " ";
   }
-
   
   @Override
   public void codegen(CodeFile codefile) {
     symboltable.Type sType = table.lookupVar(name.toString()).getType();
     if (sType.isPrimitive()) {
-      codefile.addVariable(name.toString());
+      codefile.addVariable(name.toString());      
       codefile.updateVariable(name.toString(), sType.getRuntime());
     }
     else {
@@ -40,11 +39,9 @@ public abstract class VarDecl extends Decl {
       codefile.updateVariable(name.toString(),
 			      new bytecode.type.RefType(codefile
 							.structNumber(sType.toString())));
-							// .structNumber(type.getTypeRep())));      
     }    
   }
-
-
+  
   /**
    * Doing declarations of variables inside procedure
    */
@@ -55,13 +52,9 @@ public abstract class VarDecl extends Decl {
       procedure.addLocalVariable(name.toString(), sType.getRuntime());
     }
     else {
-      // System.out.println(sType.toString());
       procedure.addLocalVariable(name.toString(),
 				 new bytecode.type.RefType(codefile.
-							   structNumber(sType.toString())));
-							   // structNumber(type.getTypeRep())));
-
-      
+							   structNumber(sType.toString())));     
     }
     codefile.updateProcedure(procedure);
   }

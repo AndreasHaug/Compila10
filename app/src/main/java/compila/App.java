@@ -62,11 +62,11 @@ public class App {
     try {
       p = (Program) par.parse().value;     
       Syntaxtree ast = new Syntaxtree(p);
-      String astPrint = ast.printSyntaxtree(0);
+      // String astPrint = ast.printSyntaxtree(0);
 
-      bw.flush();
-      bw.write(astPrint);
-      bw.close();
+      // bw.flush();
+      // bw.write(astPrint);
+      // bw.close();
       p.semanticAnalyze(st);
     }
     catch (error.ScannerError se) {
@@ -124,27 +124,10 @@ public class App {
     codefile.addProcedure("printline");
     codefile.updateProcedure(printLine);
 
-    // CodeProcedure main = new CodeProcedure("main", bytecode.type.VoidType.TYPE, codefile);
-    // codefile.addProcedure("main");
-    // main.addInstruction(new RETURN());
-    // main.addInstruction(new PUSHINT(9));
-    // main.addInstruction(new bytecode.instructions.STORELOCAL(codefile.globalVariableNumber("a")));
-    // codefile.updateProcedure(main);
-
 
     p.codegen(codefile);
     codefile.setMain("main");
       
-    // for (Object a : st.varsAsCollection()) {
-    //   if (((symboltable.Var) a).getExp() != null) {
-    // 	symboltable.Var var = (symboltable.Var) a;
-    // 	var.getExp().storeGlobal(var.getName(), codefile, main);
-    //   }	
-    // }
-      
-      // main.addInstruction(new bytecode.instructions.RETURN());
-      // codefile.updateProcedure(main);
-
     try {
       byte[] bytecode = codefile.getBytecode();
       DataOutputStream stream = new DataOutputStream(new FileOutputStream("testfile.bin"));
@@ -157,11 +140,15 @@ public class App {
 
     try{
       runtime.VirtualMachine vm = new runtime.VirtualMachine("testfile.bin");
-      vm.list();      
+      vm.list();
+      // vm.run();
     }
     catch (Exception e) {}
   }
 
+
+
+  
 
   public String doRunParser(String args[]) {
     FileReader reader = null; 
@@ -207,5 +194,59 @@ public class App {
 
     return null;
   }
-  
+
+
+  public void doRunSemanticChecker(String args[]) {
+
+    Symboltable st = new Symboltable(true);
+	
+    FileReader reader = null; 
+    BufferedWriter bw = null;
+    Program p = null;
+   
+    try {
+      try {
+	reader = new FileReader(args[0]);	
+      }
+      catch (FileNotFoundException f) {
+	System.out.println("File " + args[0] + " not found");
+	System.exit(0);
+      }
+      try {
+	bw = new BufferedWriter(new FileWriter(args[1]));      	      	
+      }
+      catch (IOException i) {}
+    }
+    catch (ArrayIndexOutOfBoundsException a) {
+      System.out.println("Missing input and/or output file");
+      System.out.println("Terminating.");
+      System.exit(0);
+    }
+
+
+
+    parser par = new parser(new Lexer(reader));
+    try {
+      p = (Program) par.parse().value;     
+      Syntaxtree ast = new Syntaxtree(p);
+      String astPrint = ast.printSyntaxtree(0);
+
+      bw.flush();
+      bw.write(astPrint);
+      bw.close();
+      p.semanticAnalyze(st);
+    }
+    catch (error.ScannerError se) {
+      se.getMessage();
+    }
+    catch (Exception e) {
+      System.out.println("Syntax error");
+      e.printStackTrace();
+      System.exit(0);
+    }
+
+    if (st.lookupProcedure("main") == null) {
+      throw new NoMainProcedure();
+    }
+  }
 }

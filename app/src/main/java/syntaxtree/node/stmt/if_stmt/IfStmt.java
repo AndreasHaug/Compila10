@@ -1,7 +1,14 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import list.StmtList;
 import symboltable.Symboltable;
+
+import bytecode.instructions.NOP;
+import bytecode.instructions.JMP;
+import bytecode.instructions.JMPTRUE;
+import bytecode.instructions.JMPFALSE;
 
 public abstract class IfStmt extends Stmt {
 
@@ -36,6 +43,20 @@ public abstract class IfStmt extends Stmt {
     return cond;
   }
 
-  
-  
+  @Override
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
+    e.pushOnStack(codefile, procedure);
+
+    int jmptrue = procedure.addInstruction(new NOP());
+    int jmpfalse = procedure.addInstruction(new NOP());
+
+    int ifStart = procedure.addInstruction(new NOP());
+    sl.listCodegen(codefile, procedure);
+    int ifEnd = procedure.addInstruction(new NOP());
+
+    procedure.replaceInstruction(jmptrue, new JMPTRUE(ifStart));
+    procedure.replaceInstruction(jmpfalse, new JMP(ifEnd));
+
+    codefile.updateProcedure(procedure);
+  }  
 }

@@ -3,9 +3,14 @@ package node;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import error.WrongNumberOfArguments;
 import list.ExpList;
 import symboltable.Symboltable;
+import syntaxtree.SyntaxtreeProperty;
+import bytecode.instructions.CALL;
 
 public class CallStmt extends Stmt {
 
@@ -55,6 +60,23 @@ public class CallStmt extends Stmt {
 	.MismatchedTypes("In procedure call argument types not matching");
     }
 
+    this.table = table;
+
     return proc.getType();
+  }
+
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
+    // Iterator i = el.getList().descendingIterator();
+    Iterator i = el.getList().listIterator();
+    while (i.hasNext()) {
+      SyntaxtreeProperty e = (SyntaxtreeProperty)  i.next();
+      ((Exp) e).pushOnStack(codefile, procedure);
+    }
+
+    // for (SyntaxtreeProperty e : el.getList()) {
+      // ((Exp) e).pushOnStack(codefile, procedure);
+    // }
+    procedure.addInstruction(new CALL(codefile.procedureNumber(n.toString())));
+    codefile.updateProcedure(procedure);
   }
 }

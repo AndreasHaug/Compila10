@@ -27,6 +27,7 @@ public abstract class Exp implements syntaxtree.SyntaxtreeProperty {
   }
 
   public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
+    procedure.addInstructi
     System.out.println("storeGlobal() not implemented for " + this.getClass().getName());
   }
 

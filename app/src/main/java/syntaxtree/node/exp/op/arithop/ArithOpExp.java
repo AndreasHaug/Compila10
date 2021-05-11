@@ -12,36 +12,20 @@ public class ArithOpExp extends OpExp {
     super(l, r);
   }
 
-
-  
-  
   @Override
   public String printSyntaxtree(int indent) {
     return super.printSyntaxtree(indent);
   }
 
-  public symboltable.Type semanticAnalyze(Symboltable table) {    
-    if (l.semanticAnalyze(table) == symboltable.Type.intType &&
-	r.semanticAnalyze(table) == symboltable.Type.intType)
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    symboltable.Type lsa = l.semanticAnalyze(table);
+    symboltable.Type rsa = r.semanticAnalyze(table);
+
+    this.table = table;
+    
+    if (lsa == symboltable.Type.intType &&
+	rsa == symboltable.Type.intType)
       return symboltable.Type.intType;    
     return symboltable.Type.floatType;    
   }
-
-  // private void pushOnStackAndAddInstruction(CodeProcedure procedure) {
-  //   r.pushOnStack(procedure);
-  //   l.pushOnStack(procedure);
-  //   this.addOperatorInstruction(procedure);
-  // }
-
-  // public void storeLocal(String varName, CodeFile codefile, CodeProcedure procedure) {
-  //   pushOnStackAndAddInstruction(procedure);
-  //   procedure.addInstruction(new STORELOCAL(procedure.variableNumber(varName)));
-  //   codefile.updateProcedure(procedure);    
-  // }
-
-  // public void storeGlobal(String varName, CodeFile codefile, CodeProcedure procedure) {
-  //   pushOnStackAndAddInstruction(procedure);
-  //   procedure.addInstruction(new STOREGLOBAL(procedure.globalVariableNumber(varName)));
-  //   codefile.updateProcedure(procedure);
-  // }
 }

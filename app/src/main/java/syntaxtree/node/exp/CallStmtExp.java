@@ -1,6 +1,8 @@
 package node;
 
 import symboltable.Symboltable;
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 
 public class CallStmtExp extends Exp {
 
@@ -22,5 +24,15 @@ public class CallStmtExp extends Exp {
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
     return cs.semanticAnalyze(table);
+  }
+
+  @Override
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
+    cs.codegen(codefile, procedure);
+  }
+
+  @Override
+  public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {
+    this.codegen(codefile, procedure);    
   }
 }

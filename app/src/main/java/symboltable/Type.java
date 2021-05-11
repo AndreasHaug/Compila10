@@ -2,6 +2,7 @@ package symboltable;
 
 import bytecode.CodeFile;
 import bytecode.type.*;
+import node.RefType;
 
 public abstract class Type implements SymboltableInstance {
 
@@ -31,6 +32,10 @@ public abstract class Type implements SymboltableInstance {
 
   public CodeType getRuntime() {
     throw new IllegalAccessError("Compound types cannot have a static type");
+  }
+
+  public CodeType getRuntime(CodeFile codefile, String typerep) {
+    return new bytecode.type.RefType(codefile.structNumber(typerep));
   }
 
   public int structNumber(CodeFile codefile, String structName) {

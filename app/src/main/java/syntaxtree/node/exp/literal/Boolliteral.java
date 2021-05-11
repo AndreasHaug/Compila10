@@ -36,19 +36,19 @@ public class Boolliteral extends Literal {
 
   @Override
   public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
-    proc.addInstruction(new PUSHBOOL(b));
+    // proc.addInstruction(new PUSHBOOL(b));
     proc.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(varName)));
   }
 
   @Override
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
-    proc.addInstruction(new PUSHBOOL(b));
+    // proc.addInstruction(new PUSHBOOL(b));
     proc.addInstruction(new STORELOCAL(proc.variableNumber(varName)));
     codefile.updateProcedure(proc);
   }
 
   @Override
-  public void pushOnStack(CodeProcedure procedure) {
+  public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {
     procedure.addInstruction(new PUSHBOOL(b));
   }
 }

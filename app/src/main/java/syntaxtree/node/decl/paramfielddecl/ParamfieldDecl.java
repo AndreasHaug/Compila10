@@ -55,20 +55,17 @@ public class ParamfieldDecl extends Decl {
     
     return checked;
   }
-
-
-
-  
+ 
   @Override
   public void codegen(CodeFile codefile, CodeProcedure proc) {
     String typeRep = this.getType().getTypeRep();
     symboltable.Type parType = table.lookupType(typeRep);
+
     if (parType.isPrimitive()) {
       proc.addParameter(getName().toString(), parType.getRuntime());
     }
     else {
-      System.out.println("ParamfieldDecl has a struct as parameter " +
-			 "which is not yet implemented");
+      proc.addParameter(getName().toString(), parType.getRuntime(codefile, typeRep));
     }
   }
 }

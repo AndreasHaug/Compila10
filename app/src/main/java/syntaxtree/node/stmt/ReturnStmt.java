@@ -60,6 +60,11 @@ public class ReturnStmt extends Stmt {
 
   @Override
   public void codegen(CodeFile codefile, CodeProcedure proc) {
+
+    if (e != null) {
+      e.pushOnStack(codefile, proc);
+    }
+    
     proc.addInstruction(new bytecode.instructions.RETURN());
   }
 

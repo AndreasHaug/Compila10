@@ -30,20 +30,28 @@ public abstract class OpExp extends Exp {
       ")";
   }
 
-  private void pushOnStackAndAddInstruction(CodeProcedure procedure) {
-    r.pushOnStack(procedure);
-    l.pushOnStack(procedure);
+  private void pushOnStackAndAddInstruction(CodeFile codefile, CodeProcedure procedure) {  
+    l.pushOnStack(codefile, procedure);
+    r.pushOnStack(codefile, procedure);
     this.addOperatorInstruction(procedure);
   }
+
+  public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {
+    pushOnStackAndAddInstruction(codefile, procedure);
+  }
+
+  // public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {
+  //   pushOnStackAndAddInstruction(codefile, procedure);
+  // }
   
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure procedure) {
-    pushOnStackAndAddInstruction(procedure);
+    // pushOnStackAndAddInstruction(codefile, procedure);
     procedure.addInstruction(new STORELOCAL(procedure.variableNumber(varName)));
     codefile.updateProcedure(procedure);    
   }
 
   public void storeGlobal(String varName, CodeFile codefile, CodeProcedure procedure) {
-    pushOnStackAndAddInstruction(procedure);
+    // pushOnStackAndAddInstruction(codefile, procedure);
     procedure.addInstruction(new STOREGLOBAL(procedure.globalVariableNumber(varName)));
     codefile.updateProcedure(procedure);
   }

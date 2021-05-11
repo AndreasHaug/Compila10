@@ -28,7 +28,7 @@ public class VarAssignStmt extends AssignStmt {
   @Override
   public symboltable.Type semanticAnalyze(Symboltable table) {
 
-    symboltable.Type varType = v.semanticAnalyze(table);
+    symboltable.Type varType = v.semanticAnalyze(table);    
     symboltable.Type expType = e.semanticAnalyze(table);
 
     if (!varType.equals(expType)) {
@@ -40,6 +40,9 @@ public class VarAssignStmt extends AssignStmt {
 				      expType.toString());
     }
     this.table = table;
+
+    // System.out.println(v);
+    // System.out.println(this.table.isLocal(v.toString()));
     return expType;
   }
 
@@ -47,27 +50,29 @@ public class VarAssignStmt extends AssignStmt {
   public void codegen(CodeFile codefile, CodeProcedure procedure) {
 
     //there is no handling of field of type struct(reference)
-    
-    if (!v.isStructField()) {      
+    if (!v.isStructField()) {
       if (e.isHeapAllocation()) {
 	//this may be put in the NewNameExp?
-	e.codegen(codefile, procedure);      
-      }
-      
-      if (!table.existsInScope(v.toString())) {
-	e.storeGlobal(v.toString(), codefile, procedure);
+	e.codegen(codefile, procedure);
       }
       else {
-	e.storeLocal(v.toString(), codefile, procedure);
+	e.pushOnStack(codefile, procedure);	
       }
-    }
+
+      if (!this.table.isLocal(v.toString())) {
+	v.storeGlobal(v.toString(), codefile, procedure);
+      }
+      else {
+	// e.pushOnStack(codefile, procedure);
+	v.storeLocal(v.toString(), codefile, procedure);
+      }
+    }    
     else {
       //is a field in a struct
       String varName = v.toString();      
       String structName = table.lookupVar(varName).getType().toString();
       String fieldName = v.getFieldName();
-      e.pushOnStack(procedure);
-
+      e.pushOnStack(codefile, procedure);
       procedure.addInstruction(table.existsInScope(varName) ?
 			       new LOADLOCAL(procedure.variableNumber(varName)) :
 			       new LOADGLOBAL(codefile.globalVariableNumber(varName)));

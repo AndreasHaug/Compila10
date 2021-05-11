@@ -64,6 +64,7 @@ public class WithTypeProcDecl extends ProcDecl {
 		       new symboltable.Procedure(n.toString(),
 						 params,
 						 t.semanticAnalyze(table)));
+
     this.table = procTable;
     return null;
   }
@@ -72,24 +73,23 @@ public class WithTypeProcDecl extends ProcDecl {
   public void codegen(CodeFile codefile) {
     symboltable.Type sType = table.lookupProcedure(n.toString()).getType();
 
-    // if (!n.toString().equals("main")) {
-      CodeProcedure proc = new CodeProcedure(n.toString(),
-					     table.lookupProcedure(n.toString())
-					     .getType()
-					     .getRuntime(),
-					     codefile);
-      
-      codefile.addProcedure(n.toString());
-      pl.listCodegen(codefile, proc);
-      dl.listCodegen(codefile);
-      sl.listCodegen(codefile, proc);
-      codefile.updateProcedure(proc);
-    // }
-    // else {
-      //there is a already a main procedure
-      //must get the main proc object: that's difficult
-      //add everything else than the procedure
-      
-    // }
+    CodeProcedure proc =  sType.isPrimitive() ?
+      new CodeProcedure(n.toString(),
+				 table.lookupProcedure(n.toString())
+				 .getType()
+				 .getRuntime(),
+				 codefile)
+      :   
+      new CodeProcedure(n.toString(),
+			       table.lookupProcedure(n.toString())
+			       .getType()
+			       .getRuntime(codefile, t.getTypeRep()),
+			       codefile);
+                
+    codefile.addProcedure(n.toString());
+    pl.listCodegen(codefile, proc);
+    dl.listCodegen(codefile, proc);
+    sl.listCodegen(codefile, proc);
+    codefile.updateProcedure(proc);
   }
 }

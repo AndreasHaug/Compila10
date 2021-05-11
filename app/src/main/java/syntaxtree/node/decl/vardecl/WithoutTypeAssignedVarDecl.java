@@ -32,33 +32,23 @@ public class WithoutTypeAssignedVarDecl extends VarDecl {
     return expType;
   }
 
-  // @Override
-  // public void codegen(Symboltable table, CodeFile codefile) {
-  //   symboltable.Type sType = table.lookupVar(name.toString()).getType();
-  //   if (sType.isPrimitive()) {
-  //     codefile.addVariable(name.toString());
-  //     codefile.updateVariable(name.toString(), sType.getRuntime());
-  //   }
-  //   else {
-  //     codefile.addVariable(name.toString());
-  //     codefile.updateVariable(name.toString(),
-  // 			      new bytecode.type.RefType(codefile.structNumber(type.getTypeRep())));      
-  //   }
-  // }
-
   @Override
-  public void codegen(CodeFile codefile, CodeProcedure procedure) {    
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
     super.codegen(codefile, procedure);
     if (!exp.isHeapAllocation()) {
+      exp.pushOnStack(codefile, procedure);
       exp.storeLocal(name.toString(), codefile, procedure);      
     }
     else {
       exp.codegen(codefile, procedure);
 
-      if (!table.existsInScope(name.toString())) {
+      // if (!table.existsInScope(name.toString())) {
+      if (!table.isLocal(name.toString())) {
+	exp.pushOnStack(codefile, procedure);
 	exp.storeGlobal(name.toString(), codefile, procedure);
       }
       else {
+	exp.pushOnStack(codefile, procedure);
 	exp.storeLocal(name.toString(), codefile, procedure);
       }
     }

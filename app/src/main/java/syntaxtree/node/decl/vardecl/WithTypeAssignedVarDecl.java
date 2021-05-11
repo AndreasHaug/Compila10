@@ -77,6 +77,7 @@ public class WithTypeAssignedVarDecl extends VarDecl {
   public void codegen(CodeFile codefile, CodeProcedure procedure) {
     super.codegen(codefile, procedure);
     if (!exp.isHeapAllocation()) {
+      exp.pushOnStack(codefile, procedure);
       exp.storeLocal(name.toString(), codefile, procedure);      
     }
     else {      

@@ -213,6 +213,16 @@ public class Symboltable {
 
   public boolean isGlobal() {
     return outer == null;
+  } 
+
+  public boolean isLocal(String varname) {
+    if (existsInScope(varname)) {
+      if (outer == null) {
+	return false;
+      }
+      return true;
+    }
+    return outer.isLocal(varname);       
   }
 
   public Symboltable getGlobal() {
