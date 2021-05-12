@@ -1,0 +1,26 @@
+program Fib
+begin
+
+  procedure fib(a : int) : int
+  begin
+    if a = 1 || a = 2 then
+      return 1
+    fi;
+
+    return fib(a-1) + fib(a-2)  
+  end;
+
+  procedure main()
+  begin
+     var c := 1
+  in   	
+    while c < 20 do    
+      printstr("fib(");
+      printint(c);
+      printstr(") = ");
+      printint(fib(c));
+      printline("");
+      c := c+1
+    od    
+  end
+end
