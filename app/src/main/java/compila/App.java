@@ -24,7 +24,7 @@ import symboltable.Symboltable;
 public class App {
 
   public static void main(String[] args) throws FileNotFoundException,
-    IOException {    
+                                                IOException {    
     App app = new App();    
     app.doRunCompiler(args);
   }
@@ -39,14 +39,14 @@ public class App {
    
     try {
       try {
-	reader = new FileReader(args[0]);	
+        reader = new FileReader(args[0]);	
       }
       catch (FileNotFoundException f) {
-	System.out.println("File " + args[0] + " not found");
-	System.exit(0);
+        System.out.println("File " + args[0] + " not found");
+        System.exit(0);
       }
       // try {
-	// bw = new BufferedWriter(new FileWriter(args[1]));      	      	
+      // bw = new BufferedWriter(new FileWriter(args[1]));      	      	
       // }
       // catch (IOException i) {}
     }
@@ -146,10 +146,6 @@ public class App {
     catch (Exception e) {}
   }
 
-
-
-  
-
   public String doRunParser(String args[]) {
     FileReader reader = null; 
     BufferedWriter bw = null;
@@ -157,14 +153,14 @@ public class App {
    
     try {
       try {
-	reader = new FileReader(args[0]);	
+        reader = new FileReader(args[0]);	
       }
       catch (FileNotFoundException f) {
-	System.out.println("File " + args[0] + " not found");
-	System.exit(0);
+        System.out.println("File " + args[0] + " not found");
+        System.exit(0);
       }
       try {
-	bw = new BufferedWriter(new FileWriter(args[1]));      	      	
+        bw = new BufferedWriter(new FileWriter(args[1]));      	      	
       }
       catch (IOException i) {}
     }
@@ -195,7 +191,6 @@ public class App {
     return null;
   }
 
-
   public void doRunSemanticChecker(String args[]) {
 
     Symboltable st = new Symboltable(true);
@@ -206,14 +201,14 @@ public class App {
    
     try {
       try {
-	reader = new FileReader(args[0]);	
+        reader = new FileReader(args[0]);	
       }
       catch (FileNotFoundException f) {
-	System.out.println("File " + args[0] + " not found");
-	System.exit(0);
+        System.out.println("File " + args[0] + " not found");
+        System.exit(0);
       }
       try {
-	bw = new BufferedWriter(new FileWriter(args[1]));      	      	
+        bw = new BufferedWriter(new FileWriter(args[1]));      	      	
       }
       catch (IOException i) {}
     }

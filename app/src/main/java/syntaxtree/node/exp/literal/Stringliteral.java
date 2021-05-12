@@ -31,13 +31,11 @@ public class Stringliteral extends Literal {
 
   @Override
   public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
-    // proc.addInstruction(new PUSHSTRING(proc.addStringConstant(s)));
     proc.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(varName)));
   }
 
   @Override
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
-    // proc.addInstruction(new PUSHSTRING(codefile.addStringConstant(s)));
     proc.addInstruction(new STORELOCAL(proc.variableNumber(varName)));
   }
 

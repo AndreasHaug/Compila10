@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 public class StmtList extends list.ListProperty {
 
-  // private LinkedList<Stmt> l;
-
   public StmtList() {
     super();   
   }
@@ -24,16 +22,12 @@ public class StmtList extends list.ListProperty {
   }
 
   public void stmtListForWithoutTypeProcDecl(Symboltable table) {
-    // list.stream().forEach(x -> ((Stmt) x).stmtForWithoutTypeProcDecl(table));
-    for (syntaxtree.SyntaxtreeProperty si : list) {
-      ((Stmt) si).stmtForWithoutTypeProcDecl(table);
-    }
+    list.stream()
+      .forEach(x -> ((Stmt) x).stmtForWithoutTypeProcDecl(table));
   }
 
   public void stmtListForWithTypeProcDecl(symboltable.Type returnType, Symboltable table) {
-    // list.stream().forEach(x -> ((Stmt) x).stmtForWithTypeProcDecl(returnType, table));
-    for (syntaxtree.SyntaxtreeProperty si : list) {
-      ((Stmt) si).stmtForWithTypeProcDecl(returnType, table);
-    }
+    list.stream()
+      .forEach(x -> ((Stmt) x).stmtForWithTypeProcDecl(returnType, table));
   }
 }

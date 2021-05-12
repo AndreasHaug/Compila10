@@ -33,10 +33,6 @@ public abstract class Exp implements syntaxtree.SyntaxtreeProperty {
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
       System.out.println("storeLocal() not implemented for " + this.getClass().getName());
   }
-
-  // public void pushOnStack(CodeProcedure procedure) {
-  //   System.out.println("pushOnStack(procedure) not implemented for " + this.getClass().getName());
-  // }
   
   public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {
     System.out.println("pushOnStack(codefile, procedure) not implemented for " + this.getClass().getName());

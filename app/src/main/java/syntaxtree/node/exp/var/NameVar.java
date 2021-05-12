@@ -41,16 +41,6 @@ public class NameVar extends Var {
 			     new LOADGLOBAL(procedure.globalVariableNumber(n.toString())));    
   }
 
-  // @Override
-  // public void storeGlobal(String varName, CodeFile codefile, CodeProcedure procedure) {
-    // System.out.println(n);
-    // procedure.addInstruction(new LOADGLOBAL(procedure.globalVariableNumber(n.toString())));
-    // System.out.println(n);
-    // System.out.println(varName);
-    // procedure.addInstruction(new STOREGLOBAL(procedure.variableNumber(varName)));
-    			     
-  // }
-
   @Override
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure procedure) {
     procedure.addInstruction(new STORELOCAL(procedure.variableNumber(n.toString())));

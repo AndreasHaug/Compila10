@@ -82,8 +82,7 @@ public class ParamfieldDeclList extends list.ListProperty {
 		   new symboltable.Var(
 				       ((ParamfieldDecl) pd)
 				       .getName()
-				       .toString(),
-
+				       .toString(),               
 				       null,
 
 				       ((ParamfieldDecl) pd).semanticAnalyze(table)));

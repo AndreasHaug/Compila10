@@ -32,14 +32,12 @@ public class Intliteral extends Literal {
 
   @Override
   public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
-    // proc.addInstruction(new PUSHINT(l));
     proc.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(varName)));
     codefile.updateProcedure(proc);
   }
 
   @Override
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
-    // proc.addInstruction(new PUSHINT(l));
     proc.addInstruction(new STORELOCAL(proc.variableNumber(varName)));
     codefile.updateProcedure(proc);
   }

@@ -25,24 +25,17 @@ public class Boolliteral extends Literal {
     return (boolean) b;
   }
 
-  // @Override
-  // public symboltable.Type getType() {
-    // return symboltable.Type.boolType;
-  // }
-
   public symboltable.Type semanticAnalyze(Symboltable table) {
     return symboltable.Type.boolType;
   }
 
   @Override
   public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
-    // proc.addInstruction(new PUSHBOOL(b));
     proc.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(varName)));
   }
 
   @Override
   public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
-    // proc.addInstruction(new PUSHBOOL(b));
     proc.addInstruction(new STORELOCAL(proc.variableNumber(varName)));
     codefile.updateProcedure(proc);
   }

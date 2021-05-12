@@ -1,9 +1,4 @@
 package symboltable;
 
-public interface SymboltableInstance {
-
-
-
-
-}
+public interface SymboltableInstance {}
 

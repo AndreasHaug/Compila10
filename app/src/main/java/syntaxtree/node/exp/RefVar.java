@@ -18,9 +18,10 @@ public class RefVar extends Exp implements
 
   @Override
   public symboltable.Type semanticAnalyze(symboltable.Symboltable table) {
-    // return null;
-
-    return table.lookupType("ref" + "(" + var.semanticAnalyze(table).toString() + ")");
+    return table.lookupType("ref" +
+                            "(" +
+                            var.semanticAnalyze(table).toString() +
+                            ")");
   }
 }
 

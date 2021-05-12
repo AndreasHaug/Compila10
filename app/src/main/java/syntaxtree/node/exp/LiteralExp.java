@@ -6,7 +6,5 @@ public class LiteralExp extends Exp {
 
   public LiteralExp(Literal l) {
     this.l = l;
-  }
-
-  
+  } 
 }

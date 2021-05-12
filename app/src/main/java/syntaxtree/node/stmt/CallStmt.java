@@ -46,7 +46,6 @@ public class CallStmt extends Stmt {
       throw new WrongNumberOfArguments(parCount, argCount);
     }
 
-    //these list may be another datastructure?
     LinkedList<symboltable.Type> parameterTypes = proc.parameterTypes();
     LinkedList<symboltable.Type> argTypes = el.types(table);
 
@@ -56,8 +55,6 @@ public class CallStmt extends Stmt {
      * so easy
      */
     if (!parameterTypes.equals(argTypes)) {
-      // System.out.println(parameterTypes);
-      // System.out.println(argTypes);
       throw new error
         .MismatchedTypes("In procedure call argument types not matching");
     }
@@ -68,16 +65,12 @@ public class CallStmt extends Stmt {
   }
 
   public void codegen(CodeFile codefile, CodeProcedure procedure) {
-    // Iterator i = el.getList().descendingIterator();
     Iterator i = el.getList().listIterator();
     while (i.hasNext()) {
       SyntaxtreeProperty e = (SyntaxtreeProperty)  i.next();
       ((Exp) e).pushOnStack(codefile, procedure);
     }
 
-    // for (SyntaxtreeProperty e : el.getList()) {
-      // ((Exp) e).pushOnStack(codefile, procedure);
-    // }
     procedure.addInstruction(new CALL(codefile.procedureNumber(n.toString())));
     codefile.updateProcedure(procedure);
   }

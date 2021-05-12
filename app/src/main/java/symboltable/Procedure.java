@@ -8,13 +8,10 @@ import java.util.stream.Collectors;
 public class Procedure implements SymboltableInstance {
 
   String n;
-  // symboltable.Var[] args;
-  // Symboltable args;
   ArrayList<symboltable.Var> args;
   symboltable.Type t;
 
   public Procedure(String n,
-                   // Symboltable args,
                    ArrayList<symboltable.Var> args,
                    symboltable.Type t) {
     this.n = n;
@@ -33,8 +30,6 @@ public class Procedure implements SymboltableInstance {
   public LinkedList<symboltable.Type> parameterTypes() {
     return args.stream()
       .map(x -> x.getType())
-           .collect(Collectors.toCollection(LinkedList::new));
-    
-    // return args.varsTypes();
+           .collect(Collectors.toCollection(LinkedList::new));    
   }
 }

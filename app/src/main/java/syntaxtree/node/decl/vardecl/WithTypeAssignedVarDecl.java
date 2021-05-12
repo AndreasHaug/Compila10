@@ -43,37 +43,18 @@ public class WithTypeAssignedVarDecl extends VarDecl {
 
     if (!declType.equals(expType)) {
       throw new error.MismatchedTypes("Cannot assign " +
-				      expType.toString() +
-				      " to variable declared as " +
-					declType.toString());
+                                      expType.toString() +
+                                      " to variable declared as " +
+                                      declType.toString());
     }
 
     table.addVar(name.toString(),
-		 new symboltable.Var(name.toString(), exp, expType));
+                 new symboltable.Var(name.toString(), exp, expType));
 
     this.table = table;
     return declType;
   }
 
-  // public void storeGlobal(CodeFile codefile, CodeProcedure proc) {
-    // exp.storeGlobal(codefile, proc);
-  // }
-
-
-  // @Override
-  // public void codegen(CodeFile codefile) {
-  //   super.codegen(codefile);
-  // }
-
-  // public void codegen(CodeFile codefile, CodeProcedure procedure) {
-  //   symboltable.Type sType = table.lookupVar(name.toString()).getType();
-  //   if (sType.isPrimitive()) {
-  //     procedure.addLocalVariable(name.toString(), sType.getRuntime());
-  //   }
-  //   else {
-  //     procedure.addLocalVariable(null, null);
-  //   }
-  // }
   public void codegen(CodeFile codefile, CodeProcedure procedure) {
     super.codegen(codefile, procedure);
     if (!exp.isHeapAllocation()) {

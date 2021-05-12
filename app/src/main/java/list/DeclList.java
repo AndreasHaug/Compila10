@@ -15,10 +15,6 @@ public class DeclList extends list.ListProperty {
     super();
   }
 
-  // public DeclList(LinkedList<Decl> l) {
-    // this.list = l;
-  // }
-
   public DeclList(DeclList dl, boolean isIn) {
     this.list = dl.getDeclList();
     this.isIn = isIn;
@@ -57,11 +53,4 @@ public class DeclList extends list.ListProperty {
 	: " in")
        : "");
   }
-
-
-  
-
-  
-
-
 }

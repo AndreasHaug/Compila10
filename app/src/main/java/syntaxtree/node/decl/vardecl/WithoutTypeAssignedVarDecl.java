@@ -26,7 +26,7 @@ public class WithoutTypeAssignedVarDecl extends VarDecl {
 
     symboltable.Type expType = exp.semanticAnalyze(table);
     table.addVar(name.toString(),
-		 new symboltable.Var(name.toString(), exp, expType));
+                 new symboltable.Var(name.toString(), exp, expType));
 
     this.table = table;
     return expType;
@@ -42,14 +42,13 @@ public class WithoutTypeAssignedVarDecl extends VarDecl {
     else {
       exp.codegen(codefile, procedure);
 
-      // if (!table.existsInScope(name.toString())) {
       if (!table.isLocal(name.toString())) {
-	exp.pushOnStack(codefile, procedure);
-	exp.storeGlobal(name.toString(), codefile, procedure);
+        exp.pushOnStack(codefile, procedure);
+        exp.storeGlobal(name.toString(), codefile, procedure);
       }
       else {
-	exp.pushOnStack(codefile, procedure);
-	exp.storeLocal(name.toString(), codefile, procedure);
+        exp.pushOnStack(codefile, procedure);
+        exp.storeLocal(name.toString(), codefile, procedure);
       }
     }
   }

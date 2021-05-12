@@ -33,16 +33,14 @@ public class VarAssignStmt extends AssignStmt {
 
     if (!varType.equals(expType)) {
       throw new error.MismatchedTypes("Variable " +
-				      v.toString() +
-				      " of type " +
-				      varType.toString() +
-				      " cannot be assigned to value of type " +
-				      expType.toString());
+                                      v.toString() +
+                                      " of type " +
+                                      varType.toString() +
+                                      " cannot be assigned to value of type " +
+                                      expType.toString());
     }
     this.table = table;
 
-    // System.out.println(v);
-    // System.out.println(this.table.isLocal(v.toString()));
     return expType;
   }
 
@@ -52,19 +50,19 @@ public class VarAssignStmt extends AssignStmt {
     //there is no handling of field of type struct(reference)
     if (!v.isStructField()) {
       if (e.isHeapAllocation()) {
-	//this may be put in the NewNameExp?
-	e.codegen(codefile, procedure);
+        //this may be put in the NewNameExp?
+        e.codegen(codefile, procedure);
       }
       else {
-	e.pushOnStack(codefile, procedure);	
+        e.pushOnStack(codefile, procedure);	
       }
 
       if (!this.table.isLocal(v.toString())) {
-	v.storeGlobal(v.toString(), codefile, procedure);
+        v.storeGlobal(v.toString(), codefile, procedure);
       }
       else {
-	// e.pushOnStack(codefile, procedure);
-	v.storeLocal(v.toString(), codefile, procedure);
+        // e.pushOnStack(codefile, procedure);
+        v.storeLocal(v.toString(), codefile, procedure);
       }
     }    
     else {
@@ -74,11 +72,11 @@ public class VarAssignStmt extends AssignStmt {
       String fieldName = v.getFieldName();
       e.pushOnStack(codefile, procedure);
       procedure.addInstruction(table.existsInScope(varName) ?
-			       new LOADLOCAL(procedure.variableNumber(varName)) :
-			       new LOADGLOBAL(codefile.globalVariableNumber(varName)));
+                               new LOADLOCAL(procedure.variableNumber(varName)) :
+                               new LOADGLOBAL(codefile.globalVariableNumber(varName)));
             
       procedure.addInstruction(new PUTFIELD(procedure.fieldNumber(structName, fieldName),
-					    procedure.structNumber(structName)));
+                                            procedure.structNumber(structName)));
       codefile.updateProcedure(procedure);
     }
   }
