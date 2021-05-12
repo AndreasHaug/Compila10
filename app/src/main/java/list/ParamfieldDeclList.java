@@ -5,6 +5,7 @@ import symboltable.Symboltable;
 import symboltable.SymboltableUnit;
 import syntaxtree.SyntaxtreeProperty;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -52,6 +53,19 @@ public class ParamfieldDeclList extends list.ListProperty {
     }
 
     return newTable;
+  }
+
+  public ArrayList<symboltable.Var> toList(Symboltable table) {
+    ArrayList<symboltable.Var> newList = new ArrayList<>();
+    for (SyntaxtreeProperty pd : list) {
+      newList.add(new symboltable.Var(
+                                      ((ParamfieldDecl) pd).getName()
+                                      .toString(),
+                                      null,
+                                      ((ParamfieldDecl) pd).semanticAnalyze(table)));
+    }
+
+    return newList;
   }
 
   /**
