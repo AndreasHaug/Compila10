@@ -24,7 +24,7 @@ public class ArithOpExp extends OpExp {
     this.table = table;
     
     if (lsa == symboltable.Type.intType &&
-	rsa == symboltable.Type.intType)
+        rsa == symboltable.Type.intType)
       return symboltable.Type.intType;    
     return symboltable.Type.floatType;    
   }

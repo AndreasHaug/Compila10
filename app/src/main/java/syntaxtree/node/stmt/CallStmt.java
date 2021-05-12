@@ -56,8 +56,10 @@ public class CallStmt extends Stmt {
      * so easy
      */
     if (!parameterTypes.equals(argTypes)) {
+      // System.out.println(parameterTypes);
+      // System.out.println(argTypes);
       throw new error
-	.MismatchedTypes("In procedure call argument types not matching");
+        .MismatchedTypes("In procedure call argument types not matching");
     }
 
     this.table = table;

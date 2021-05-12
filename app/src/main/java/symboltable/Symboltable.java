@@ -1,5 +1,6 @@
 package symboltable;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -126,57 +127,71 @@ public class Symboltable {
     this.procs = procs;
 
     procs.add("readint",
-	      new Procedure("readint",
-			    new Symboltable(false),
-			    Type.intType));      
+              new Procedure("readint",
+                            new ArrayList<>(),
+                            // new Symboltable(false),
+                            Type.intType));      
 
     procs.add("readfloat",
-	      new Procedure("readfloat",
-			    new Symboltable(false),
-			    Type.floatType));
+              new Procedure("readfloat",
+                            new ArrayList<>(),
+                            // new Symboltable(false),
+                            Type.floatType));
 
     procs.add("readchar",
-	      new Procedure("readchar",
-			    new Symboltable(false),
-			    Type.intType));
+              new Procedure("readchar",
+                            new ArrayList<>(),
+                            // new Symboltable(false),
+                            Type.intType));
 
     procs.add("readstring",
-	      new Procedure("readline",
-			    new Symboltable(false),
-			    Type.stringType));
+              new Procedure("readline",
+                            new ArrayList<>(),
+                            // new Symboltable(false),
+                            Type.stringType));
 
     procs.add("readline",
-	      new Procedure("readline",
-			    new Symboltable(false),
-			    Type.stringType));
+              new Procedure("readline",
+                            new ArrayList<>(),
+                            // new Symboltable(false),
+                            Type.stringType));
 
-    Symboltable printint = new Symboltable(false);
-    printint.addVar("i", new Var("i", null, Type.intType));
+    // Symboltable printint = new Symboltable(false);
+    ArrayList<symboltable.Var> printint = new ArrayList<>();
+    printint.add(new Var("i", null, Type.intType));
+    // printint.addVar("i", new Var("i", null, Type.intType));
     procs.add("printint",
-	      new Procedure("printint",
-			    printint,
-			    Type.voidType));
+              new Procedure("printint",
+                            printint,
+                            Type.voidType));
 
-    Symboltable printfloat = new Symboltable(false);
-    printfloat.addVar("f", new Var("f", null, Type.floatType));
+    // Symboltable printfloat = new Symboltable(false);
+    ArrayList<symboltable.Var> printfloat = new ArrayList<>();
+    // printfloat.addVar("f", new Var("f", null, Type.floatType));
+    printfloat.add(new Var("f", null, Type.floatType));
     procs.add("printfloat",
-	      new Procedure("printfloat",
-			    printfloat,
-			    Type.voidType));
+              new Procedure("printfloat",
+                            printfloat,
+                            Type.voidType));
 
-    Symboltable printstr = new Symboltable(false);
-    printstr.addVar("s", new Var("s", null, Type.stringType));
+    // Symboltable printstr = new Symboltable(false);
+    ArrayList<symboltable.Var> printstr = new ArrayList<>();
+    // printstr.addVar("s", new Var("s", null, Type.stringType));
+    printstr.add(new Var("s", null, Type.stringType));
     procs.add("printstr",
-	      new Procedure("printstr",
-			    printstr,
-			    Type.voidType));
+              new Procedure("printstr",
+                            printstr,
+                            Type.voidType));
 
-    Symboltable printline = new Symboltable(false);
-    printline.addVar("s", new Var("s", null, Type.stringType));
+    // Symboltable printline = new Symboltable(false);
+    ArrayList<symboltable.Var> printline = new ArrayList<>();
+    // printline.addVar("s", new Var("s", null, Type.stringType));
+    printline.add(new Var("s", null, Type.stringType));
+    
     procs.add("printline",
-	      new Procedure("printline",
-			    printline,
-			    Type.voidType));
+              new Procedure("printline",
+                            printline,
+                            Type.voidType));
 
     
   }
@@ -218,7 +233,7 @@ public class Symboltable {
   public boolean isLocal(String varname) {
     if (existsInScope(varname)) {
       if (outer == null) {
-	return false;
+        return false;
       }
       return true;
     }

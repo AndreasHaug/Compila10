@@ -3,17 +3,20 @@ package symboltable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class Procedure implements SymboltableInstance {
 
   String n;
   // symboltable.Var[] args;
-  Symboltable args;
+  // Symboltable args;
+  ArrayList<symboltable.Var> args;
   symboltable.Type t;
 
   public Procedure(String n,
-		   Symboltable args,
-		   symboltable.Type t) {
+                   // Symboltable args,
+                   ArrayList<symboltable.Var> args,
+                   symboltable.Type t) {
     this.n = n;
     this.args = args;
     this.t = t;
@@ -24,10 +27,14 @@ public class Procedure implements SymboltableInstance {
   }
 
   public int parameterCount() {
-    return args.varSize();
+    return args.size();
   }
 
   public LinkedList<symboltable.Type> parameterTypes() {
-    return args.varsTypes();
+    return args.stream()
+      .map(x -> x.getType())
+           .collect(Collectors.toCollection(LinkedList::new));
+    
+    // return args.varsTypes();
   }
 }

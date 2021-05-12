@@ -57,6 +57,12 @@ public class ReturnStmt extends Stmt {
     return expType;
   }
 
+  @Override
+  public symboltable.Type semanticAnalyze(Symboltable table) {
+    this.table = table;
+    return e == null ? null : e.semanticAnalyze(table);
+  }
+
 
   @Override
   public void codegen(CodeFile codefile, CodeProcedure proc) {

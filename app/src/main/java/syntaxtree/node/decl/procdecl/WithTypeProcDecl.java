@@ -1,5 +1,7 @@
 package node;
 
+import java.util.ArrayList;
+
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import list.*;
@@ -49,7 +51,7 @@ public class WithTypeProcDecl extends ProcDecl {
     /**
      * The actual parameters represented
      */
-    Symboltable params = pl.toSymboltable(table);
+    ArrayList params = pl.toList(table);
     /**
      * The parameters will also have to be in the
      * scope of the procedure		
@@ -57,14 +59,16 @@ public class WithTypeProcDecl extends ProcDecl {
     procTable = pl.addToSymboltable(procTable);
     
     dl.semanticListAnalyze(procTable);
+    table.addProcedure(n.toString(),
+                       new symboltable.Procedure(n.toString(),
+                                                 params,
+                                                 t.semanticAnalyze(table)));
+
     sl.stmtListForWithTypeProcDecl(procTable.lookupType(t.getTypeRep()), procTable);
     
 
-    table.addProcedure(n.toString(),
-		       new symboltable.Procedure(n.toString(),
-						 params,
-						 t.semanticAnalyze(table)));
 
+    
     this.table = procTable;
     return null;
   }

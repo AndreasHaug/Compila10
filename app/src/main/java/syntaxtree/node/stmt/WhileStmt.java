@@ -1,7 +1,14 @@
 package node;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import list.StmtList;
 import symboltable.Symboltable;
+
+import bytecode.instructions.NOP;
+import bytecode.instructions.JMP;
+import bytecode.instructions.JMPTRUE;
+import bytecode.instructions.JMPFALSE;
 
 public class WhileStmt extends Stmt {
 
@@ -35,4 +42,19 @@ public class WhileStmt extends Stmt {
 
   }
 
+  @Override
+  public void codegen(CodeFile codefile, CodeProcedure procedure) {
+    e.pushOnStack(codefile, procedure);
+
+    int jmpfalse = procedure.addInstruction(new NOP());
+
+    int whileStart = procedure.addInstruction(new NOP());
+    sl.listCodegen(codefile, procedure);
+    e.pushOnStack(codefile, procedure);
+    int jmptrue = procedure.addInstruction(new JMPTRUE(whileStart));
+    int whileEnd = procedure.addInstruction(new NOP());
+
+    procedure.replaceInstruction(jmpfalse, new JMPFALSE(whileEnd));
+    
+  }    
 }

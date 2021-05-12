@@ -1,5 +1,7 @@
 package node;
 
+import java.util.ArrayList;
+
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import bytecode.instructions.NEW;
@@ -25,13 +27,17 @@ public class WithoutTypeProcDecl extends ProcDecl {
     Symboltable procTable = new Symboltable(table);
     procTable = pl.addToSymboltable(procTable);
 
-    Symboltable params = pl.toSymboltable(table);
+    // Symboltable params = pl.toSymboltable(table);
+    ArrayList params = pl.toList(table);
 
     dl.semanticListAnalyze(procTable);
+
+    table.addProcedure(n.toString(),
+                       new symboltable.Procedure(n.toString(),
+                                                 params,
+                                                 symboltable.Type.voidType));
+    
     sl.stmtListForWithoutTypeProcDecl(procTable);
-
-    table.addProcedure(n.toString(), new symboltable.Procedure(n.toString(), params, symboltable.Type.voidType));
-
     this.table = procTable;
     return null;
   }
@@ -42,7 +48,8 @@ public class WithoutTypeProcDecl extends ProcDecl {
       CodeProcedure proc = new CodeProcedure(n.toString(), bytecode.type.VoidType.TYPE, codefile);
       codefile.addProcedure(n.toString());
 
-      //special case, when to load global variables
+
+     //special case, when to load global variables
       if (n.toString().equals("main")) {
 	//then load global variables
 
