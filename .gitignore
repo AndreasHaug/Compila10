@@ -34,3 +34,7 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+# backup and autosave files
+*~
+#*#
