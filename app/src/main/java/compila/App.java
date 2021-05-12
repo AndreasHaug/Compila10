@@ -45,10 +45,10 @@ public class App {
 	System.out.println("File " + args[0] + " not found");
 	System.exit(0);
       }
-      try {
-	bw = new BufferedWriter(new FileWriter(args[1]));      	      	
-      }
-      catch (IOException i) {}
+      // try {
+	// bw = new BufferedWriter(new FileWriter(args[1]));      	      	
+      // }
+      // catch (IOException i) {}
     }
     catch (ArrayIndexOutOfBoundsException a) {
       System.out.println("Missing input and/or output file");
@@ -140,8 +140,8 @@ public class App {
 
     try{
       runtime.VirtualMachine vm = new runtime.VirtualMachine("testfile.bin");
-      vm.list();
-      // vm.run();
+      // vm.list();
+      vm.run();
     }
     catch (Exception e) {}
   }
