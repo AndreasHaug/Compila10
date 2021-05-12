@@ -4,6 +4,7 @@ all:
 	cp app/src/test/resources/fullprograms/runme.cmp Compiler/app/bin/
 	cp app/src/test/resources/fullprograms/euclid.cmp Compiler/app/bin/
 	cp app/src/test/resources/fullprograms/plog.cmp Compiler/app/bin/
+	app/src/test/resources/fullprograms/fib.cmp Compiler/app/bin/
 
 clean:
 	./gradlew clean
