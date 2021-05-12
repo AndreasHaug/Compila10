@@ -77,6 +77,7 @@ clean {
     delete 'src/main/java/parser/Lexer.java'
     delete 'src/main/java/parser/parser.java'
     delete 'src/main/java/parser/sym.java'
+    delete '../Compiler'
     // delete 'src/main/cup/Parser.cup~'
 
     delete fileTree('src/test/resources') {include '**/*ast'}  
