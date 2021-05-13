@@ -55,9 +55,10 @@ private Symbol symbol(int type, Name n) {
 %}
 
 //  //LineTerminator = "\r|\n|\r|\n"
- LineTerminator = [\r\n]*
-
- WhiteSpace = {LineTerminator} | [ t\f] | [\t]
+ // LineTerminator = [\r\n]*
+ LineTerminator = \r|\n|\r\n
+ // WhiteSpace = {LineTerminator} | [ t\f] | [\t]
+ WhiteSpace = {LineTerminator} | [ \t\f]
  Identifier = [:jletter:] [:jletterdigit:]*
 
 %%
