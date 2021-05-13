@@ -2,6 +2,8 @@ package node;
 
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
+import bytecode.instructions.STOREGLOBAL;
+import bytecode.instructions.STORELOCAL;
 import symboltable.Symboltable;
 
 public abstract class Exp implements syntaxtree.SyntaxtreeProperty {
@@ -26,15 +28,19 @@ public abstract class Exp implements syntaxtree.SyntaxtreeProperty {
     return false;
   }
 
-  public void storeGlobal(String varName, CodeFile codefile, CodeProcedure proc) {
-    System.out.println("storeGlobal() not implemented for " + this.getClass().getName());
+  public void storeGlobal(String varName, CodeFile codefile, CodeProcedure procedure) {
+    procedure.addInstruction(new STOREGLOBAL(codefile.globalVariableNumber(varName)));
+    codefile.updateProcedure(procedure);
+    // System.out.println("storeGlobal() not implemented for " + this.getClass().getName());
   }
 
-  public void storeLocal(String varName, CodeFile codefile, CodeProcedure proc) {
-      System.out.println("storeLocal() not implemented for " + this.getClass().getName());
+  public void storeLocal(String varName, CodeFile codefile, CodeProcedure procedure) {
+    procedure.addInstruction(new STORELOCAL(procedure.variableNumber(varName)));
+    codefile.updateProcedure(procedure);
+      // System.out.println("storeLocal() not implemented for " + this.getClass().getName());
   }
   
-  public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {
+  public void pushOnStack(CodeFile codefile, CodeProcedure procedure) {    
     System.out.println("pushOnStack(codefile, procedure) not implemented for " + this.getClass().getName());
   }
 
