@@ -17,4 +17,11 @@ Compila is a small language running on JVM.
    make
    ```
    This command will also for convenience locate the executable named
-   Compila in Compiler/app/bin/ together with some code testfiles.
+   Compila in Compiler/bin/ together with some code testfiles. The
+   compiler can from here be run with
+   ```bash
+   ./Compila <filename>
+   ```
+
+# Tests
+[Tests](/TESTS.md)
