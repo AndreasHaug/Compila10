@@ -9,5 +9,8 @@ all:
 	cp app/src/test/resources/fullprograms/plog.cmp Compiler/bin/
 	cp app/src/test/resources/fullprograms/fib.cmp Compiler/bin/
 
+test:
+	./gradlew test
+
 clean:
 	./gradlew clean

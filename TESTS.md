@@ -1,7 +1,23 @@
 # Tests
 The tests are written as junit tests and are located in
 [app/src/test/](app/src/test/). They are there for testing of lexing, parsing and
-semantic analysis. As the output from the runme.cmp it is listed as
+semantic analysis. These tests can be run with
+```shell
+gradle test
+```
+(if gradle installed)
+or
+```shell
+./gradlew test
+```
+or
+```shell
+make test
+```
+The tests will also generate AST-representation located in app/src/test/resources.
+
+
+As the output from the runme.cmp it is listed as
 follows:
 ```shell
 [andreas@Andreas:Compiler/bin]$ ./Compila runme.cmp
