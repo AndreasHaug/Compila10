@@ -28,7 +28,7 @@ X        X
    X  X
     XX
 ```
-euclid.cmp
+euclid.cmp:
 ```shell
 [andreas@Andreas:Compiler/bin]$ ./Compila euclid.cmp
 1
