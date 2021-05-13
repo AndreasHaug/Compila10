@@ -5,6 +5,7 @@ import syntaxtree.*;
 import node.*;
 import error.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -130,7 +131,7 @@ public class App {
       
     try {
       byte[] bytecode = codefile.getBytecode();
-      DataOutputStream stream = new DataOutputStream(new FileOutputStream("testfile.bin"));
+      DataOutputStream stream = new DataOutputStream(new FileOutputStream("binary.bin"));
       stream.write(bytecode);
       stream.close();
     }
@@ -139,9 +140,11 @@ public class App {
 
 
     try{
-      runtime.VirtualMachine vm = new runtime.VirtualMachine("testfile.bin");
+      runtime.VirtualMachine vm = new runtime.VirtualMachine("binary.bin");
       // vm.list();
       vm.run();
+      File binary = new File("binary.bin");
+      binary.delete();
     }
     catch (Exception e) {}
   }
