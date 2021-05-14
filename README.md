@@ -25,3 +25,5 @@ Compila is a small language running on JVM.
 
 # Tests
 [Tests](/TESTS.md)
+# Code structure
+[Code structure](/CODESTRUCTURE.md)
