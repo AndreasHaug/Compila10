@@ -1,9 +1,0 @@
-program undeclared_new_argument_fail
-begin
-
-    procedure main() : float
-    begin
-     in
-        return new foobar (* error: argument of new is not declared. *)
-    end
-end

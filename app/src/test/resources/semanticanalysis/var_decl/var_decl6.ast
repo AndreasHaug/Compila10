@@ -1,4 +1,0 @@
-(PROGRAM NAME:vardecltest6 begin
-  (VAR_DECL NAME:x TYPE:int (Stringliteral:"hello"))
-  (PROC_DECL NAME:main begin in end)
-end)

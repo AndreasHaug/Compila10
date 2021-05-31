@@ -1,8 +1,0 @@
-(PROGRAM NAME:procedure_unknown_return_type_fail begin
-  (PROC_DECL NAME:main begin in end)
-  (PROC_DECL NAME:test TYPE:NAME:notexists
-  begin in
-    (RETURN_STMT
-      (NEW NAME:notexists))
-  end)
-end)

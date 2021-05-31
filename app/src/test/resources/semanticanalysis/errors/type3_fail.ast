@@ -1,8 +1,0 @@
-(PROGRAM NAME:type3_fail begin
-  (PROC_DECL NAME:main
-  begin
-    (VAR_DECL NAME:tmp TYPE:int)
-  in
-    (ASSIGN_STMT NAME:tmp (+ Intliteral:21 Floatliteral:21.000000))
-  end)
-end)

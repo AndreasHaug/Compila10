@@ -1,9 +1,0 @@
-(PROGRAM NAME:procdecl2 begin
-  (PROC_DECL NAME:world
-    (PARAMFIELD_DECL NAME:a TYPE:int)
-    (PARAMFIELD_DECL NAME:b
-      (TYPE:ref TYPE:int))
-    (PARAMFIELD_DECL NAME:b TYPE:float)
-  begin in end)
-  (PROC_DECL NAME:main begin in end)
-end)

@@ -1,8 +1,0 @@
-(PROGRAM NAME:type1_fail begin
-  (PROC_DECL NAME:main
-  begin
-    (VAR_DECL NAME:tmp TYPE:bool)
-  in
-    (ASSIGN_STMT NAME:tmp Intliteral:42)
-  end)
-end)

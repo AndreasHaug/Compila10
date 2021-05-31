@@ -1,6 +1,0 @@
-(PROGRAM NAME:recdecl2 begin
-  (REC_DECL NAME:obj
-    (PARAMFIELD_DECL NAME:a TYPE:NAME:number)
-    (PARAMFIELD_DECL NAME:b TYPE:float))
-  (PROC_DECL NAME:main begin in end)
-end)

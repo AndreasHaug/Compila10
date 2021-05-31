@@ -1,5 +1,0 @@
-(PROGRAM NAME:undeclared_struct_fail begin
-  (PROC_DECL NAME:main begin in
-    (ASSIGN_STMT (. NAME:zot NAME:bar) Intliteral:42)
-  end)
-end)

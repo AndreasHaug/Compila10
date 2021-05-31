@@ -1,4 +1,0 @@
-(PROGRAM NAME:vardecltest7 begin
-  (VAR_DECL NAME:x TYPE:NAME:sometype (Intliteral:8))
-  (PROC_DECL NAME:main begin in end)
-end)

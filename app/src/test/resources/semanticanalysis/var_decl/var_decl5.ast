@@ -1,7 +1,0 @@
-(PROGRAM NAME:vardecltest5 begin
-  (VAR_DECL NAME:x TYPE:int (Intliteral:4))
-  (VAR_DECL NAME:u TYPE:float (Floatliteral:5.500000))
-  (VAR_DECL NAME:r TYPE:bool (true))
-  (VAR_DECL NAME:e TYPE:String (Stringliteral:"hello"))
-  (PROC_DECL NAME:main begin in end)
-end)

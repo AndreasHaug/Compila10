@@ -1,9 +1,0 @@
-program vardecltest6
-begin
-    var x : int := "hello";
-
-  procedure main()
-    begin
-  in
-  end
-end    

@@ -1,2 +1,0 @@
-compila/AppTest.java
- compila.AppTest
