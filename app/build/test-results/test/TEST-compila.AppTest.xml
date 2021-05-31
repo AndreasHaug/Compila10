@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="compila.AppTest" tests="61" skipped="0" failures="0" errors="0" timestamp="2021-05-31T17:12:18" hostname="andreas-gt62vr7rd" time="0.132">
+  <properties/>
+  <testcase name="euclidParserTest" classname="compila.AppTest" time="0.046"/>
+  <testcase name="undeclaredStructVarFail" classname="compila.AppTest" time="0.006"/>
+  <testcase name="procedureUnknownReturntypeFail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="plogParserTest" classname="compila.AppTest" time="0.002"/>
+  <testcase name="procedurefail2" classname="compila.AppTest" time="0.002"/>
+  <testcase name="procedurefail3" classname="compila.AppTest" time="0.001"/>
+  <testcase name="procedurefail4" classname="compila.AppTest" time="0.006"/>
+  <testcase name="procedurefail5" classname="compila.AppTest" time="0.002"/>
+  <testcase name="runmeParserTest" classname="compila.AppTest" time="0.006"/>
+  <testcase name="semanticAnalyzeTest1" classname="compila.AppTest" time="0.002"/>
+  <testcase name="semanticAnalyzeTest3" classname="compila.AppTest" time="0.001"/>
+  <testcase name="semanticAnalyzeTest4" classname="compila.AppTest" time="0.002"/>
+  <testcase name="test1" classname="compila.AppTest" time="0.003"/>
+  <testcase name="test2" classname="compila.AppTest" time="0.001"/>
+  <testcase name="test3" classname="compila.AppTest" time="0.001"/>
+  <testcase name="test4" classname="compila.AppTest" time="0.001"/>
+  <testcase name="test5" classname="compila.AppTest" time="0.0"/>
+  <testcase name="test6" classname="compila.AppTest" time="0.001"/>
+  <testcase name="test7" classname="compila.AppTest" time="0.004"/>
+  <testcase name="test8" classname="compila.AppTest" time="0.004"/>
+  <testcase name="test9" classname="compila.AppTest" time="0.004"/>
+  <testcase name="complexAdditionParserTest" classname="compila.AppTest" time="0.001"/>
+  <testcase name="type1Fail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="type2Fail" classname="compila.AppTest" time="0.0"/>
+  <testcase name="type3Fail" classname="compila.AppTest" time="0.0"/>
+  <testcase name="type4Fail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="type5Fail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="type6Fail" classname="compila.AppTest" time="0.0"/>
+  <testcase name="type7Fail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="wrongLogExpTypeFail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="wrongArithOperandTypeFail" classname="compila.AppTest" time="0.0"/>
+  <testcase name="recDeclTest1" classname="compila.AppTest" time="0.001"/>
+  <testcase name="recDeclTest2" classname="compila.AppTest" time="0.001"/>
+  <testcase name="recDeclTest3" classname="compila.AppTest" time="0.0"/>
+  <testcase name="variableScopeShadowFail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="undeclaredNewArgumentFail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="wrongNotOperandFail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="varDeclTest1" classname="compila.AppTest" time="0.0"/>
+  <testcase name="varDeclTest2" classname="compila.AppTest" time="0.001"/>
+  <testcase name="varDeclTest3" classname="compila.AppTest" time="0.0"/>
+  <testcase name="varDeclTest4" classname="compila.AppTest" time="0.001"/>
+  <testcase name="varDeclTest5" classname="compila.AppTest" time="0.0"/>
+  <testcase name="varDeclTest6" classname="compila.AppTest" time="0.0"/>
+  <testcase name="varDeclTest7" classname="compila.AppTest" time="0.001"/>
+  <testcase name="varDeclTest8" classname="compila.AppTest" time="0.0"/>
+  <testcase name="wrongRelOperandTypeFail" classname="compila.AppTest" time="0.001"/>
+  <testcase name="generalFail1" classname="compila.AppTest" time="0.001"/>
+  <testcase name="generalFail2" classname="compila.AppTest" time="0.001"/>
+  <testcase name="generalFail3" classname="compila.AppTest" time="0.001"/>
+  <testcase name="generalFail4" classname="compila.AppTest" time="0.0"/>
+  <testcase name="generalFail5" classname="compila.AppTest" time="0.006"/>
+  <testcase name="procDeclTest1" classname="compila.AppTest" time="0.0"/>
+  <testcase name="procDeclTest2" classname="compila.AppTest" time="0.0"/>
+  <testcase name="procDeclTest3" classname="compila.AppTest" time="0.001"/>
+  <testcase name="procDeclTest4" classname="compila.AppTest" time="0.0"/>
+  <testcase name="procDeclTest5" classname="compila.AppTest" time="0.001"/>
+  <testcase name="procDeclTest6" classname="compila.AppTest" time="0.001"/>
+  <testcase name="returnContradictingExpressionFail" classname="compila.AppTest" time="0.0"/>
+  <testcase name="ifTest1" classname="compila.AppTest" time="0.001"/>
+  <testcase name="ifTest2" classname="compila.AppTest" time="0.001"/>
+  <testcase name="undeclaredStructFail" classname="compila.AppTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

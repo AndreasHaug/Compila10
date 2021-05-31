@@ -1,0 +1,10 @@
+(PROGRAM NAME:procdecl6 begin
+  (PROC_DECL NAME:wrongTypeDecl TYPE:bool
+  begin
+    (VAR_DECL NAME:a TYPE:int (Stringliteral:"hello"))
+    (VAR_DECL NAME:b TYPE:float (Floatliteral:2.300000))
+  in
+    (RETURN_STMT true)
+  end)
+  (PROC_DECL NAME:main begin in end)
+end)

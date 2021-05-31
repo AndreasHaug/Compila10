@@ -5,7 +5,6 @@ import bytecode.CodeStruct;
 import list.*;
 import symboltable.Symboltable;
 import symboltable.SymboltableUnit;
-import syntaxtree.SyntaxtreeProperty;
 import symboltable.StructType;
 
 public class RecDecl extends Decl {
@@ -47,7 +46,7 @@ public class RecDecl extends Decl {
   public void codegen(CodeFile codefile) {    
     CodeStruct struct = new CodeStruct(n.toString());
 
-    for (SyntaxtreeProperty pd : l.getList()) {
+    for (SyntaxtreeNode pd : l.getList()) {
       struct.addVariable(((ParamfieldDecl) pd).getName().toString(),
 			 table.lookupType(((ParamfieldDecl) pd)
 					  .getType()

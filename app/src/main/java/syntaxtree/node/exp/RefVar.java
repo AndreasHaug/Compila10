@@ -1,7 +1,6 @@
 package node;
 
-public class RefVar extends Exp implements
-				syntaxtree.SyntaxtreeProperty {
+public class RefVar extends Exp {
 
   private Var var;
 

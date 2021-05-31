@@ -2,9 +2,9 @@ package syntaxtree;
 
 import node.*;
 
-public class Syntaxtree implements SyntaxtreeProperty {
+public class Syntaxtree extends SyntaxtreeNode {
 
-  Program program;
+  Program program; //the root node of the ast
 
   public Syntaxtree(Program program) {
     this.program = program;

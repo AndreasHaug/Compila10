@@ -1,8 +1,7 @@
 package node;
 
 import symboltable.Symboltable;
-import syntaxtree.SyntaxtreeProperty;
 
-public abstract class Decl implements SyntaxtreeProperty {
+public abstract class Decl extends SyntaxtreeNode {
   protected Symboltable table;
 }

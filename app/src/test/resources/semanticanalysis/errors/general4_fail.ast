@@ -1,0 +1,5 @@
+(PROGRAM NAME:general4_fail begin
+  (PROC_DECL NAME:Proc begin in
+    (CALL_STMT NAME:printstr Stringliteral:"Hello world!")
+  end)
+end)

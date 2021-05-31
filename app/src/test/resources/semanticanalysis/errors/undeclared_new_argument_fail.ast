@@ -1,0 +1,7 @@
+(PROGRAM NAME:undeclared_new_argument_fail begin
+  (PROC_DECL NAME:main TYPE:float
+  begin in
+    (RETURN_STMT
+      (NEW NAME:foobar))
+  end)
+end)

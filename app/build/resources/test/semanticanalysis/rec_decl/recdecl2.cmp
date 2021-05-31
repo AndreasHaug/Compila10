@@ -1,0 +1,11 @@
+program recdecl2 begin
+    (* declaring a "member" of obj
+     with a nonexisting type
+     will expect a typeerror *)
+    struct obj { a : number; b : float };
+
+  procedure main()
+    begin
+  in
+  end
+end

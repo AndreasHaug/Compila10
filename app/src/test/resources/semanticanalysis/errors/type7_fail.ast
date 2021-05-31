@@ -1,0 +1,10 @@
+(PROGRAM NAME:type7_fail begin
+  (REC_DECL NAME:Foo
+    (PARAMFIELD_DECL NAME:Attr TYPE:int))
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:foo TYPE:NAME:Foo)
+  in
+    (ASSIGN_STMT (. NAME:foo NAME:DoesntExist) Intliteral:42)
+  end)
+end)

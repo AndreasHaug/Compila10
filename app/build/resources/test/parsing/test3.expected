@@ -1,0 +1,8 @@
+(PROGRAM NAME:A_A begin
+  (VAR_DECL NAME:x TYPE:NAME:x)
+  (VAR_DECL NAME:x
+    (TYPE:ref TYPE:NAME:x))
+  (VAR_DECL NAME:x
+    (TYPE:ref
+      (TYPE:ref TYPE:NAME:x)))
+end)

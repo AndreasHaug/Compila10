@@ -9,7 +9,7 @@ import bytecode.CodeProcedure;
 import error.WrongNumberOfArguments;
 import list.ExpList;
 import symboltable.Symboltable;
-import syntaxtree.SyntaxtreeProperty;
+import node.SyntaxtreeNode;
 import bytecode.instructions.CALL;
 
 public class CallStmt extends Stmt {
@@ -67,7 +67,7 @@ public class CallStmt extends Stmt {
   public void codegen(CodeFile codefile, CodeProcedure procedure) {
     Iterator i = el.getList().listIterator();
     while (i.hasNext()) {
-      SyntaxtreeProperty e = (SyntaxtreeProperty)  i.next();
+      SyntaxtreeNode e = (SyntaxtreeNode)  i.next();
       ((Exp) e).pushOnStack(codefile, procedure);
     }
 

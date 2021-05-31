@@ -1,11 +1,10 @@
 package node;
 
-import syntaxtree.SyntaxtreeProperty;
 import bytecode.CodeFile;
 import list.*;
 import symboltable.Symboltable;
 
-public class Program implements SyntaxtreeProperty {
+public class Program extends SyntaxtreeNode {
 
   private Name name;
   private DeclList l;

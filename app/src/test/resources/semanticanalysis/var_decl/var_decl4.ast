@@ -1,0 +1,4 @@
+(PROGRAM NAME:vardecltest4 begin
+  (VAR_DECL NAME:x TYPE:NAME:i)
+  (PROC_DECL NAME:main begin in end)
+end)

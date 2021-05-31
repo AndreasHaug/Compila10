@@ -1,0 +1,28 @@
+(PROGRAM NAME:test4 begin
+  (PROC_DECL NAME:Sum
+    (PARAMFIELD_DECL NAME:v1 TYPE:float)
+    (PARAMFIELD_DECL NAME:v2 TYPE:float)
+  TYPE:float
+  begin in
+    (RETURN_STMT (+ NAME:v1 NAME:v2))
+  end)
+  (PROC_DECL NAME:main
+  begin
+    (PROC_DECL NAME:InnerSum
+      (PARAMFIELD_DECL NAME:v1 TYPE:int)
+      (PARAMFIELD_DECL NAME:v2 TYPE:int)
+    TYPE:int
+    begin in
+      (RETURN_STMT (+ NAME:v1 NAME:v2))
+    end)
+    (VAR_DECL NAME:f TYPE:float)
+    (VAR_DECL NAME:v TYPE:int)
+  in
+    (ASSIGN_STMT NAME:f
+      (CALL_STMT NAME:Sum Floatliteral:41.500000 Floatliteral:0.500000))
+    (ASSIGN_STMT NAME:v
+      (CALL_STMT NAME:InnerSum Intliteral:40 Intliteral:2))
+    (CALL_STMT NAME:printfloat NAME:f)
+    (CALL_STMT NAME:printint NAME:v)
+  end)
+end)

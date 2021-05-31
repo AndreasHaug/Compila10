@@ -1,0 +1,7 @@
+(PROGRAM NAME:procdecl3 begin
+  (PROC_DECL NAME:donald TYPE:int
+  begin in
+    (RETURN_STMT Intliteral:4)
+  end)
+  (PROC_DECL NAME:main begin in end)
+end)

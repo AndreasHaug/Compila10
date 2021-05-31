@@ -1,0 +1,5 @@
+(PROGRAM NAME:return_contradicting_expression_fail begin
+  (PROC_DECL NAME:main begin in
+    (RETURN_STMT Intliteral:1234)
+  end)
+end)

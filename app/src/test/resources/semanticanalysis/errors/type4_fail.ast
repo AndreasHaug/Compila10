@@ -1,0 +1,6 @@
+(PROGRAM NAME:type4_fail begin
+  (PROC_DECL NAME:main begin in
+    (WHILE_STMT Floatliteral:42.000000
+      (CALL_STMT NAME:printstr Stringliteral:"Should not be here"))
+  end)
+end)

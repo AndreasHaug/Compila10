@@ -1,0 +1,15 @@
+program procdecl5 begin
+  procedure goodbye() : int
+    begin 
+      var a : int := 4;
+      var b : int := 6
+    in
+      return a + c  //error: c is not declared
+    end;
+
+  procedure main()
+    begin
+  in
+  end
+end
+    

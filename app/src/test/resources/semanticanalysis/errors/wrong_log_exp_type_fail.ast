@@ -1,0 +1,11 @@
+(PROGRAM NAME:wrong_log_exp_type_fail begin
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:b TYPE:bool)
+  in
+    (ASSIGN_STMT NAME:b
+      (or false Intliteral:4))
+    (ASSIGN_STMT NAME:b
+      (and Intliteral:5 true))
+  end)
+end)

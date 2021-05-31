@@ -1,0 +1,6 @@
+(PROGRAM NAME:type2_fail begin
+  (PROC_DECL NAME:main begin in
+    (IF_STMT Intliteral:42
+      (CALL_STMT NAME:printstr Stringliteral:"Should not happen"))
+  end)
+end)

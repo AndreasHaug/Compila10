@@ -6,7 +6,7 @@ import bytecode.instructions.STOREGLOBAL;
 import bytecode.instructions.STORELOCAL;
 import symboltable.Symboltable;
 
-public abstract class Exp implements syntaxtree.SyntaxtreeProperty {
+public abstract class Exp extends SyntaxtreeNode {
 
   protected Symboltable table;
 

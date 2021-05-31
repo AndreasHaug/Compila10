@@ -1,0 +1,17 @@
+(PROGRAM NAME:general5_fail begin
+  (PROC_DECL NAME:Proc
+    (PARAMFIELD_DECL NAME:a
+      (TYPE:ref TYPE:int))
+  begin in
+    (ASSIGN_STMT
+      (DEREF_VAR NAME:a) Intliteral:42)
+  end)
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:tmp TYPE:int)
+  in
+    (ASSIGN_STMT NAME:tmp Intliteral:32)
+    (CALL_STMT NAME:Proc NAME:tmp)
+    (CALL_STMT NAME:printint NAME:tmp)
+  end)
+end)

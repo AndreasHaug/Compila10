@@ -9,7 +9,6 @@ import bytecode.instructions.STOREGLOBAL;
 import list.*;
 import symboltable.StructType;
 import symboltable.Symboltable;
-import syntaxtree.SyntaxtreeProperty;
 
 public class WithoutTypeProcDecl extends ProcDecl {
 

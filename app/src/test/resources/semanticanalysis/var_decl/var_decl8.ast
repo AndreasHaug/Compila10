@@ -1,0 +1,5 @@
+(PROGRAM NAME:vardecltest8 begin
+  (VAR_DECL NAME:x TYPE:int (Intliteral:9))
+  (VAR_DECL NAME:x TYPE:String (Stringliteral:"hello"))
+  (PROC_DECL NAME:main begin in end)
+end)

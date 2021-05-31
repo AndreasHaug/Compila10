@@ -2,7 +2,7 @@ package node;
 
 import symboltable.Symboltable;
 
-public abstract class Stmt implements syntaxtree.SyntaxtreeProperty {
+public abstract class Stmt extends SyntaxtreeNode {
 
   protected Exp e;
   protected Symboltable table;

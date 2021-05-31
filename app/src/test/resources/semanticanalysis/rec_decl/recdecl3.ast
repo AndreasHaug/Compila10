@@ -1,0 +1,6 @@
+(PROGRAM NAME:recdecl3 begin
+  (REC_DECL NAME:obj
+    (PARAMFIELD_DECL NAME:a TYPE:int)
+    (PARAMFIELD_DECL NAME:a TYPE:float))
+  (PROC_DECL NAME:main begin in end)
+end)

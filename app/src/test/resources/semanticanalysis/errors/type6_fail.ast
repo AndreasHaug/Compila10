@@ -1,0 +1,5 @@
+(PROGRAM NAME:type6_fail begin
+  (PROC_DECL NAME:main begin in
+    (ASSIGN_STMT (. Intliteral:42 NAME:Foo) Intliteral:42)
+  end)
+end)

@@ -1,0 +1,315 @@
+syntaxtree/node/exp/NotExp.java
+ node.NotExp
+bytecode/instructions/EQ.java
+ bytecode.instructions.EQ
+compila/App.java
+ compila.App
+syntaxtree/node/stmt/if_stmt/WithoutElseIfStmt.java
+ node.WithoutElseIfStmt
+syntaxtree/node/exp/literal/Literal.java
+ node.Literal
+bytecode/instructions/PUTFIELD.java
+ bytecode.instructions.PUTFIELD
+bytecode/instructions/LTEQ.java
+ bytecode.instructions.LTEQ
+bytecode/instructions/AND.java
+ bytecode.instructions.AND
+error/NoStructMember.java
+ error.NoStructMember
+syntaxtree/node/name/Name.java
+ node.Name
+bytecode/type/CodeType.java
+ bytecode.type.CodeType
+runtime/Heap.java
+ runtime.Heap
+bytecode/instructions/LOADOUTER.java
+ bytecode.instructions.LOADOUTER
+syntaxtree/node/stmt/if_stmt/WithElseIfStmt.java
+ node.WithElseIfStmt
+runtime/Procedure.java
+ runtime.Procedure
+symboltable/Symboltable.java
+ symboltable.Symboltable
+symboltable/Var.java
+ symboltable.Var
+syntaxtree/node/stmt/assign_stmt/VarAssignStmt.java
+ node.VarAssignStmt
+syntaxtree/node/exp/op/arithop/AddOpExp.java
+ node.AddOpExp
+bytecode/instructions/Instruction.java
+ bytecode.instructions.Instruction
+error/WrongNumberOfArguments.java
+ error.WrongNumberOfArguments
+syntaxtree/node/decl/RecDecl.java
+ node.RecDecl
+syntaxtree/node/type/IntType.java
+ node.IntType
+bytecode/CodeProcedure.java
+ bytecode.CodeProcedure
+symboltable/Type.java
+ symboltable.BoolType
+ symboltable.FloatType
+ symboltable.IntType
+ symboltable.NullType
+ symboltable.StringType
+ symboltable.Type
+ symboltable.VoidType
+bytecode/type/RefType.java
+ bytecode.type.RefType
+runtime/Struct.java
+ runtime.Struct
+bytecode/instructions/NOT.java
+ bytecode.instructions.NOT
+runtime/Variable.java
+ runtime.Variable
+error/NoMainProcedure.java
+ error.NoMainProcedure
+bytecode/instructions/NEW.java
+ bytecode.instructions.NEW
+syntaxtree/node/exp/DerefVar.java
+ node.DerefVar
+syntaxtree/node/exp/op/relop/LessOpExp.java
+ node.LessOpExp
+syntaxtree/node/exp/op/relop/EqualsOpExp.java
+ node.EqualsOpExp
+syntaxtree/node/decl/vardecl/WithTypeAssignedVarDecl.java
+ node.WithTypeAssignedVarDecl
+syntaxtree/list/ParamfieldDeclList.java
+ list.ParamfieldDeclList
+syntaxtree/node/program/Program.java
+ node.Program
+syntaxtree/node/exp/literal/Boolliteral.java
+ node.Boolliteral
+syntaxtree/list/ExpList.java
+ list.ExpList
+bytecode/type/VoidType.java
+ bytecode.type.VoidType
+symboltable/Procedure.java
+ symboltable.Procedure
+bytecode/instructions/LOADLOCAL.java
+ bytecode.instructions.LOADLOCAL
+syntaxtree/node/exp/literal/Null.java
+ node.Null
+error/NotABool.java
+ error.NotABool
+syntaxtree/node/stmt/Stmt.java
+ node.Stmt
+syntaxtree/node/decl/procdecl/WithoutTypeProcDecl.java
+ node.WithoutTypeProcDecl
+runtime/Loader.java
+ runtime.Loader
+syntaxtree/node/exp/Exp.java
+ node.Exp
+syntaxtree/Syntaxtree.java
+ syntaxtree.Syntaxtree
+error/MismatchedTypes.java
+ error.MismatchedTypes
+runtime/Interpreter.java
+ runtime.Interpreter
+bytecode/instructions/POP.java
+ bytecode.instructions.POP
+syntaxtree/list/StmtList.java
+ list.StmtList
+syntaxtree/node/exp/literal/Floatliteral.java
+ node.Floatliteral
+bytecode/instructions/PUSHFLOAT.java
+ bytecode.instructions.PUSHFLOAT
+syntaxtree/node/exp/LiteralExp.java
+ node.LiteralExp
+syntaxtree/list/DeclList.java
+ list.DeclList
+syntaxtree/node/exp/op/arithop/DivOpExp.java
+ node.DivOpExp
+parser/parser.java
+ parser.parser
+ parser.parser$CUP$parser$actions
+bytecode/type/StringType.java
+ bytecode.type.StringType
+bytecode/CodeFile.java
+ bytecode.CodeFile
+bytecode/instructions/DIV.java
+ bytecode.instructions.DIV
+syntaxtree/node/decl/vardecl/VarDecl.java
+ node.VarDecl
+bytecode/instructions/PUSHBOOL.java
+ bytecode.instructions.PUSHBOOL
+symboltable/RefType.java
+ symboltable.RefType
+syntaxtree/node/decl/Decl.java
+ node.Decl
+syntaxtree/node/exp/op/relop/GreaterEqualOpExp.java
+ node.GreaterEqualOpExp
+runtime/VirtualMachine.java
+ runtime.VirtualMachine
+bytecode/instructions/ADD.java
+ bytecode.instructions.ADD
+syntaxtree/node/exp/RefVar.java
+ node.RefVar
+syntaxtree/node/decl/procdecl/ProcDecl.java
+ node.ProcDecl
+runtime/Stack.java
+ runtime.Stack
+bytecode/instructions/GETFIELD.java
+ bytecode.instructions.GETFIELD
+error/NameNotFound.java
+ error.NameNotFound
+bytecode/instructions/CALL.java
+ bytecode.instructions.CALL
+syntaxtree/node/exp/op/arithop/MinusOpExp.java
+ node.MinusOpExp
+syntaxtree/node/exp/NewNameExp.java
+ node.NewNameExp
+bytecode/instructions/EXP.java
+ bytecode.instructions.EXP
+syntaxtree/node/exp/var/Var.java
+ node.Var
+bytecode/instructions/GT.java
+ bytecode.instructions.GT
+bytecode/type/IntType.java
+ bytecode.type.IntType
+bytecode/instructions/STOREOUTER.java
+ bytecode.instructions.STOREOUTER
+bytecode/instructions/PUSHSTRING.java
+ bytecode.instructions.PUSHSTRING
+bytecode/instructions/PUSHINT.java
+ bytecode.instructions.PUSHINT
+syntaxtree/node/exp/op/arithop/ArithOpExp.java
+ node.ArithOpExp
+error/NoTypeExists.java
+ error.NoTypeExists
+bytecode/instructions/JMP.java
+ bytecode.instructions.JMP
+syntaxtree/node/exp/literal/Intliteral.java
+ node.Intliteral
+bytecode/instructions/LOADGLOBAL.java
+ bytecode.instructions.LOADGLOBAL
+runtime/NullReference.java
+ runtime.NullReference
+bytecode/instructions/RETURN.java
+ bytecode.instructions.RETURN
+syntaxtree/node/exp/op/logop/LogOpExp.java
+ node.LogOpExp
+runtime/Reference.java
+ runtime.Reference
+error/IfInvalidExpression.java
+ error.IfInvalidExpression
+syntaxtree/list/DeclListWithIn.java
+ list.DeclListWithIn
+syntaxtree/node/decl/vardecl/NotAssignedVarDecl.java
+ node.NotAssignedVarDecl
+bytecode/instructions/PUSHNULL.java
+ bytecode.instructions.PUSHNULL
+bytecode/instructions/NEQ.java
+ bytecode.instructions.NEQ
+error/ScannerError.java
+ error.ScannerError
+bytecode/instructions/GTEQ.java
+ bytecode.instructions.GTEQ
+error/InvalidReturnType.java
+ error.InvalidReturnType
+bytecode/CodeStruct.java
+ bytecode.CodeStruct
+bytecode/instructions/MUL.java
+ bytecode.instructions.MUL
+syntaxtree/node/stmt/assign_stmt/DerefVarAssignStmt.java
+ node.DerefVarAssignStmt
+parser/sym.java
+ parser.sym
+syntaxtree/node/exp/op/relop/RelOpExp.java
+ node.RelOpExp
+syntaxtree/node/exp/CallStmtExp.java
+ node.CallStmtExp
+syntaxtree/node/exp/op/arithop/PowerOpExp.java
+ node.PowerOpExp
+syntaxtree/node/stmt/WhileStmt.java
+ node.WhileStmt
+bytecode/instructions/STOREGLOBAL.java
+ bytecode.instructions.STOREGLOBAL
+bytecode/instructions/LT.java
+ bytecode.instructions.LT
+syntaxtree/node/stmt/if_stmt/IfStmt.java
+ node.IfStmt
+bytecode/instructions/NOP.java
+ bytecode.instructions.NOP
+syntaxtree/node/exp/op/OpExp.java
+ node.OpExp
+syntaxtree/node/exp/DerefDerefVar.java
+ node.DerefDerefVar
+syntaxtree/node/type/RefType.java
+ node.RefType
+error/NoStruct.java
+ error.NoStruct
+syntaxtree/node/exp/op/logop/OrOpExp.java
+ node.OrOpExp
+error/NameAlreadyDeclared.java
+ error.NameAlreadyDeclared
+syntaxtree/list/ListProperty.java
+ list.ListProperty
+syntaxtree/node/stmt/assign_stmt/AssignStmt.java
+ node.AssignStmt
+symboltable/SymboltableInstance.java
+ symboltable.SymboltableInstance
+syntaxtree/node/SyntaxtreeNode.java
+ node.SyntaxtreeNode
+syntaxtree/node/stmt/ReturnStmt.java
+ node.ReturnStmt
+bytecode/instructions/STORELOCAL.java
+ bytecode.instructions.STORELOCAL
+syntaxtree/node/exp/op/arithop/MulOpExp.java
+ node.MulOpExp
+syntaxtree/node/exp/op/relop/LessEqualOpExp.java
+ node.LessEqualOpExp
+syntaxtree/node/exp/literal/Stringliteral.java
+ node.Stringliteral
+syntaxtree/node/exp/var/NameVar.java
+ node.NameVar
+bytecode/type/BoolType.java
+ bytecode.type.BoolType
+syntaxtree/node/type/NameType.java
+ node.NameType
+syntaxtree/node/type/StringType.java
+ node.StringType
+runtime/ActivationBlock.java
+ runtime.ActivationBlock
+syntaxtree/node/decl/procdecl/WithTypeProcDecl.java
+ node.WithTypeProcDecl
+symboltable/SymboltableUnit.java
+ symboltable.SymboltableUnit
+syntaxtree/node/stmt/CallStmt.java
+ node.CallStmt
+syntaxtree/node/exp/var/ExpVar.java
+ node.ExpVar
+bytecode/instructions/JMPTRUE.java
+ bytecode.instructions.JMPTRUE
+error/WhileInvalidExpression.java
+ error.WhileInvalidExpression
+syntaxtree/node/type/Type.java
+ node.Type
+syntaxtree/node/exp/op/logop/AndOpExp.java
+ node.AndOpExp
+bytecode/type/FloatType.java
+ bytecode.type.FloatType
+bytecode/NumberConversion.java
+ bytecode.NumberConversion
+syntaxtree/node/exp/op/relop/GreaterOpExp.java
+ node.GreaterOpExp
+syntaxtree/node/decl/paramfielddecl/ParamfieldDecl.java
+ node.ParamfieldDecl
+symboltable/StructType.java
+ symboltable.StructType
+syntaxtree/node/decl/vardecl/WithoutTypeAssignedVarDecl.java
+ node.WithoutTypeAssignedVarDecl
+bytecode/instructions/JMPFALSE.java
+ bytecode.instructions.JMPFALSE
+syntaxtree/node/exp/op/relop/NotEqualsOpExp.java
+ node.NotEqualsOpExp
+parser/Lexer.java
+ parser.Lexer
+bytecode/instructions/OR.java
+ bytecode.instructions.OR
+bytecode/instructions/SUB.java
+ bytecode.instructions.SUB
+syntaxtree/node/type/BoolType.java
+ node.BoolType
+syntaxtree/node/type/FloatType.java
+ node.FloatType

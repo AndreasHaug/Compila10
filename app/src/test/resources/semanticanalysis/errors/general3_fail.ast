@@ -1,0 +1,8 @@
+(PROGRAM NAME:general3_fail begin
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:foo TYPE:int)
+  in
+    (ASSIGN_STMT NAME:bar Intliteral:42)
+  end)
+end)

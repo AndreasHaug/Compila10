@@ -1,0 +1,111 @@
+(PROGRAM NAME:runme begin
+  (REC_DECL NAME:Complex
+    (PARAMFIELD_DECL NAME:Real TYPE:float)
+    (PARAMFIELD_DECL NAME:Imag TYPE:float))
+  (VAR_DECL NAME:dummy TYPE:NAME:Complex)
+  (PROC_DECL NAME:Add
+    (PARAMFIELD_DECL NAME:a TYPE:NAME:Complex)
+    (PARAMFIELD_DECL NAME:b TYPE:NAME:Complex)
+  TYPE:NAME:Complex
+  begin
+    (VAR_DECL NAME:retval TYPE:NAME:Complex)
+  in
+    (ASSIGN_STMT NAME:retval
+      (NEW NAME:Complex))
+    (ASSIGN_STMT (. NAME:retval NAME:Real) (+ (. NAME:a NAME:Real) (. NAME:b NAME:Real)))
+    (ASSIGN_STMT (. NAME:retval NAME:Imag) (+ (. NAME:a NAME:Imag) (. NAME:b NAME:Imag)))
+    (RETURN_STMT NAME:retval)
+  end)
+  (PROC_DECL NAME:Max
+    (PARAMFIELD_DECL NAME:a TYPE:int)
+    (PARAMFIELD_DECL NAME:b TYPE:int)
+  TYPE:int
+  begin
+    (VAR_DECL NAME:res TYPE:int)
+  in
+    (IF_STMT (> NAME:a NAME:b)
+      (ASSIGN_STMT NAME:res NAME:a)
+      (else
+        (ASSIGN_STMT NAME:res NAME:b)))
+    (RETURN_STMT NAME:res)
+  end)
+  (PROC_DECL NAME:printCmplx
+    (PARAMFIELD_DECL NAME:pr TYPE:NAME:Complex)
+  begin in
+    (CALL_STMT NAME:printstr Stringliteral:"Real ")
+    (CALL_STMT NAME:printfloat (. NAME:pr NAME:Real))
+    (CALL_STMT NAME:printline Stringliteral:"")
+    (CALL_STMT NAME:printstr Stringliteral:"Imag ")
+    (CALL_STMT NAME:printfloat (. NAME:pr NAME:Imag))
+    (CALL_STMT NAME:printline Stringliteral:"")
+  end)
+  (PROC_DECL NAME:test
+  begin
+    (VAR_DECL NAME:c1 TYPE:NAME:Complex)
+    (VAR_DECL NAME:c2 TYPE:NAME:Complex)
+    (VAR_DECL NAME:cAdd TYPE:NAME:Complex)
+    (VAR_DECL NAME:x TYPE:int)
+    (VAR_DECL NAME:y TYPE:int)
+    (VAR_DECL NAME:max TYPE:int)
+  in
+    (ASSIGN_STMT NAME:c1
+      (NEW NAME:Complex))
+    (ASSIGN_STMT NAME:c2
+      (NEW NAME:Complex))
+    (ASSIGN_STMT (. NAME:c1 NAME:Real) Intliteral:1)
+    (ASSIGN_STMT (. NAME:c1 NAME:Imag) Intliteral:2)
+    (ASSIGN_STMT (. NAME:c2 NAME:Real) Intliteral:3)
+    (ASSIGN_STMT (. NAME:c2 NAME:Imag) Intliteral:4)
+    (CALL_STMT NAME:printCmplx
+        (CALL_STMT NAME:Add NAME:c1 NAME:c2))
+    (ASSIGN_STMT NAME:x Intliteral:3)
+    (ASSIGN_STMT NAME:y Intliteral:7)
+    (ASSIGN_STMT NAME:max
+      (CALL_STMT NAME:Max NAME:y NAME:x))
+  end)
+  (PROC_DECL NAME:printStr
+    (PARAMFIELD_DECL NAME:str TYPE:String)
+  begin in
+    (CALL_STMT NAME:printstr NAME:str)
+  end)
+  (PROC_DECL NAME:inOutTest
+  begin
+    (VAR_DECL NAME:v1 TYPE:int)
+    (VAR_DECL NAME:v2 TYPE:int)
+  in
+    (CALL_STMT NAME:printline Stringliteral:"skriv v1")
+    (ASSIGN_STMT NAME:v1
+      (CALL_STMT NAME:readint))
+    (CALL_STMT NAME:printline Stringliteral:"skriv v2")
+    (ASSIGN_STMT NAME:v2
+      (CALL_STMT NAME:readint))
+    (CALL_STMT NAME:printstr Stringliteral:"Storst ")
+    (CALL_STMT NAME:printint
+        (CALL_STMT NAME:Max NAME:v1 NAME:v2))
+    (CALL_STMT NAME:printline Stringliteral:"")
+  end)
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:num TYPE:float)
+    (VAR_DECL NAME:num2 TYPE:int)
+    (VAR_DECL NAME:navn TYPE:String)
+  in
+    (ASSIGN_STMT NAME:num Floatliteral:6.480740)
+    (CALL_STMT NAME:printfloat NAME:num)
+    (CALL_STMT NAME:printline Stringliteral:"")
+    (ASSIGN_STMT NAME:num2 Intliteral:7)
+    (CALL_STMT NAME:printint NAME:num2)
+    (CALL_STMT NAME:printline Stringliteral:"")
+    (ASSIGN_STMT NAME:navn Stringliteral:"TestNavn")
+    (CALL_STMT NAME:printStr NAME:navn)
+    (CALL_STMT NAME:printline Stringliteral:"")
+    (CALL_STMT NAME:test)
+    (CALL_STMT NAME:inOutTest)
+    (ASSIGN_STMT NAME:dummy
+      (NEW NAME:Complex))
+    (ASSIGN_STMT (. NAME:dummy NAME:Real) Floatliteral:1.000000)
+    (ASSIGN_STMT (. NAME:dummy NAME:Imag) Floatliteral:2.000000)
+    (CALL_STMT NAME:printCmplx NAME:dummy)
+    (CALL_STMT NAME:printline Stringliteral:"DONE")
+  end)
+end)

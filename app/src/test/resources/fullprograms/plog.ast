@@ -1,0 +1,31 @@
+(PROGRAM NAME:plog begin
+  (PROC_DECL NAME:symbols
+    (PARAMFIELD_DECL NAME:n TYPE:int)
+    (PARAMFIELD_DECL NAME:zz TYPE:String)
+  begin
+    (VAR_DECL NAME:i TYPE:int)
+  in
+    (ASSIGN_STMT NAME:i Intliteral:0)
+    (WHILE_STMT (< NAME:i NAME:n)
+      (CALL_STMT NAME:printstr NAME:zz)
+      (ASSIGN_STMT NAME:i (+ NAME:i Intliteral:1)))
+  end)
+  (PROC_DECL NAME:skriv_plog
+  begin
+    (VAR_DECL NAME:h TYPE:int)
+    (VAR_DECL NAME:j TYPE:int)
+  in
+    (ASSIGN_STMT NAME:h Intliteral:5)
+    (ASSIGN_STMT NAME:j Intliteral:0)
+    (WHILE_STMT (< NAME:j NAME:h)
+      (CALL_STMT NAME:symbols NAME:j Stringliteral:" ")
+      (CALL_STMT NAME:symbols Intliteral:1 Stringliteral:"X")
+      (CALL_STMT NAME:symbols (* (- (- NAME:h NAME:j) Intliteral:1) Intliteral:2) Stringliteral:" ")
+      (CALL_STMT NAME:symbols Intliteral:1 Stringliteral:"X")
+      (CALL_STMT NAME:printline Stringliteral:"")
+      (ASSIGN_STMT NAME:j (+ NAME:j Intliteral:1)))
+  end)
+  (PROC_DECL NAME:main begin in
+    (CALL_STMT NAME:skriv_plog)
+  end)
+end)

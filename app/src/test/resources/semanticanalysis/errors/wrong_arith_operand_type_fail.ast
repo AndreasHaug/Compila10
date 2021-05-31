@@ -1,0 +1,11 @@
+(PROGRAM NAME:wrong_arith_operand_type_fail begin
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:n TYPE:int)
+    (VAR_DECL NAME:s TYPE:String)
+    (VAR_DECL NAME:b TYPE:bool)
+  in
+    (ASSIGN_STMT NAME:s Stringliteral:"bad operand")
+    (ASSIGN_STMT NAME:n (+ true NAME:b))
+  end)
+end)

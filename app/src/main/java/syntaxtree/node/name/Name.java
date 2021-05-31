@@ -1,6 +1,6 @@
 package node;
 
-public class Name implements syntaxtree.SyntaxtreeProperty {
+public class Name extends SyntaxtreeNode {
 
   private String n;
 

@@ -1,0 +1,44 @@
+(PROGRAM NAME:ComplexAddition begin
+  (REC_DECL NAME:Complex
+    (PARAMFIELD_DECL NAME:Real TYPE:float)
+    (PARAMFIELD_DECL NAME:Imag TYPE:float))
+  (PROC_DECL NAME:Add
+    (PARAMFIELD_DECL NAME:a TYPE:NAME:Complex)
+    (PARAMFIELD_DECL NAME:b TYPE:NAME:Complex)
+  TYPE:NAME:Complex
+  begin
+    (VAR_DECL NAME:retval TYPE:NAME:Complex)
+  in
+    (ASSIGN_STMT NAME:retval
+      (NEW NAME:Complex))
+    (ASSIGN_STMT (. NAME:retval NAME:Real) (+ (. NAME:a NAME:Real) (. NAME:b NAME:Real)))
+    (ASSIGN_STMT (. NAME:retval NAME:Imag) (+ (. NAME:a NAME:Imag) (. NAME:b NAME:Imag)))
+    (RETURN_STMT NAME:retval)
+  end)
+  (PROC_DECL NAME:Max
+    (PARAMFIELD_DECL NAME:a TYPE:int)
+    (PARAMFIELD_DECL NAME:b TYPE:int)
+  TYPE:int
+  begin
+    (IF_STMT (> NAME:a NAME:b)
+      (RETURN_STMT NAME:a))
+    (RETURN_STMT NAME:b)
+  end)
+  (PROC_DECL NAME:Square
+    (PARAMFIELD_DECL NAME:val TYPE:float)
+  TYPE:float
+  begin in
+    (RETURN_STMT (pow NAME:val Floatliteral:2.000000))
+  end)
+  (PROC_DECL NAME:main
+  begin
+    (VAR_DECL NAME:num TYPE:float)
+  in
+    (ASSIGN_STMT NAME:num Floatliteral:6.480740)
+    (CALL_STMT NAME:printfloat NAME:num)
+    (CALL_STMT NAME:printstr Stringliteral:" squared is ")
+    (CALL_STMT NAME:printfloat
+        (CALL_STMT NAME:Square NAME:num))
+    (RETURN_STMT)
+  end)
+end)
