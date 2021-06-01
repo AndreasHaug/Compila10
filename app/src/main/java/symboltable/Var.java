@@ -2,7 +2,7 @@ package symboltable;
 
 import node.Exp;
 
-public class Var implements SymboltableInstance {
+public class Var extends SymboltableInstance {
 
   private String n;
   private Exp e;

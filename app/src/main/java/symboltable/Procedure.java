@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
-public class Procedure implements SymboltableInstance {
+public class Procedure extends SymboltableInstance {
 
   String n;
   ArrayList<symboltable.Var> args;

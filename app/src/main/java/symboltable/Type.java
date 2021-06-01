@@ -4,7 +4,7 @@ import bytecode.CodeFile;
 import bytecode.type.*;
 import node.RefType;
 
-public abstract class Type implements SymboltableInstance {
+public abstract class Type extends SymboltableInstance {
 
   public static FloatType floatType = new FloatType();
   public static IntType intType = new IntType();

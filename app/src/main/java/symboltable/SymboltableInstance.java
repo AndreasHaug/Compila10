@@ -1,4 +1,4 @@
 package symboltable;
 
-public interface SymboltableInstance {}
+public abstract class SymboltableInstance {}
 
