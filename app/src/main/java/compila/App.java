@@ -37,6 +37,7 @@ public class App {
       System.out.println("Usage: compila [option] <filename>\n");
       System.out.println("-c    --compile\t\tCompile cmp source file");
       System.out.println("-r    --run\t\tExecute bytecode file");
+      System.out.println("-p    --print\t\tPrint out the instructions of a bytecode file");
       System.out.println("Without option the program takes a compila source file, compiles and executes the bytecode.");
       return;
     }
@@ -45,8 +46,9 @@ public class App {
     boolean compileAndRun = args.length == 1;
     boolean compile = args[0].equals("-c") || args[0].equals("--compile");
     boolean run = args[0].equals("-r") || args[0].equals("--run");
+    boolean printOut = args[0].equals("-p") || args[0].equals("--print");
 
-    if (!compileAndRun && !compile & !run) {
+    if (!compileAndRun && !compile && !run && !printOut) {
       System.out.println("Error: argument " + args[0] + " is invalid");
       System.exit(1);
     }
@@ -80,7 +82,6 @@ public class App {
     BufferedWriter bw = null;
     Program p = null;
    
-    // try {
     try {
       reader = new FileReader(filename);	
     }
@@ -93,7 +94,7 @@ public class App {
     String binFilename = filename.split("\\.")[0] + ".bin";
 
     //if have to compile
-    if (!run) {
+    if (!run && !printOut) {
       parser par = new parser(new Lexer(reader));
       try {
 	p = (Program) par.parse().value;     
@@ -171,14 +172,20 @@ public class App {
     }
 
     //running the virtual machine if supposed to
-    if (compileAndRun || run) {         
+    if (compileAndRun || run || printOut) {         
       try{
 	runtime.VirtualMachine vm = new runtime.VirtualMachine(binFilename);
-	vm.run();
-	if (compileAndRun) {
-	  File binary = new File(binFilename);
-	  binary.delete();	  
+	if (printOut) {
+	  vm.list();
 	}
+	else {
+	  vm.run();
+	  if (compileAndRun) {
+	    File binary = new File(binFilename);
+	    binary.delete();	  
+	  }	  
+	}
+
       }
       catch (Exception e) {}
     }
