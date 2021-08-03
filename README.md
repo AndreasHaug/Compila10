@@ -6,7 +6,8 @@ Compila is a small language running on JVM.
    ```bash
    gradle build
    ```
-   Note: Gradle version > 7 will not work at the moment.
+   Note: Gradle version 7 will not work at the moment. During
+      compilation some warnings regarding deprecated features are shown.
    
    Without Gradle, build with the wrapper script:
    ```bash
@@ -14,7 +15,7 @@ Compila is a small language running on JVM.
    ```
    An executable will be located in app/build/distributions/.
    
-   The provided makefile can also be used to build with
+   On Linux, the provided makefile can also be used to build with
    ```bash
    make
    ```
@@ -46,10 +47,7 @@ or
 ```shell
 ./gradlew test
 ```
-or
-```shell
-make test
-```
+
 The tests will generate AST-representation located in
 app/src/test/resources as it will run syntactic analyzes as well as
 semantic analyzes.
