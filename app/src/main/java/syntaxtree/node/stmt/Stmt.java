@@ -12,9 +12,7 @@ public abstract class Stmt extends SyntaxtreeNode {
   }
 
   @Override
-  public String printSyntaxtree(int indent) {
-    return "stmt abstract super class not implemented";
-  }
+  public abstract String printSyntaxtree(int indent);
 
   public symboltable.Type stmtForWithoutTypeProcDecl(Symboltable table) {
     return semanticAnalyze(table);

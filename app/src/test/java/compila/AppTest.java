@@ -83,11 +83,6 @@ public class AppTest {
   }
 
   @Test
-  public void complexAdditionParserTest() {
-    parserFullProgramTest("complexaddition");
-  }
-
-  @Test
   public void euclidParserTest() {
     parserFullProgramTest("euclid");
   }
