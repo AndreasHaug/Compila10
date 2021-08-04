@@ -12,6 +12,6 @@ public class IntType extends CodeType {
 	return "int";
     }
     public Object initialValue() {
-	return new Integer(0);
+	return Integer.valueOf(0);
     }
 }
