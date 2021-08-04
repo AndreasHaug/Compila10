@@ -6,8 +6,7 @@ Compila is a small language running on JVM.
    ```bash
    gradle build
    ```
-   Note: Gradle version 7 will not work at the moment. During
-      compilation some warnings regarding deprecated features are shown.
+   Note: Gradle version 7 will not work at the moment.
    
    Without Gradle, build with the wrapper script:
    ```bash
